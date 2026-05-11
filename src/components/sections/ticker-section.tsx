@@ -15,6 +15,7 @@ const SERVICES = [
 ];
 
 export function TickerSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
 
@@ -27,7 +28,21 @@ export function TickerSection() {
         duration: 35, // Smooth, elegant speed
         repeat: -1,
       });
-    }, containerRef);
+
+      // Subtle 3D depth parallax: slide down and scale down slightly as it's covered
+      gsap.to(sectionRef.current, {
+        y: 60,
+        scale: 0.98,
+        opacity: 0.8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
@@ -41,7 +56,11 @@ export function TickerSection() {
   };
 
   return (
-    <Section className="mt-8 overflow-hidden bg-[#0A0A0A] py-12 md:mt-32" id="ticker">
+    <Section 
+      ref={sectionRef}
+      className="relative z-10 overflow-hidden bg-bg py-16 md:py-24" 
+      id="ticker"
+    >
       <div 
         className="relative mx-auto flex w-full max-w-[100vw] items-center"
         ref={containerRef}
@@ -55,7 +74,7 @@ export function TickerSection() {
               {SERVICES.map((service, index) => (
                 <div key={`${setIndex}-${index}`} className="flex items-center">
                   <span 
-                    className="whitespace-nowrap font-[family-name:var(--font-display)] text-5xl font-medium tracking-tight text-white/90 transition-colors hover:text-white md:text-7xl lg:text-8xl"
+                    className="whitespace-nowrap font-display text-5xl font-medium tracking-tight text-white/90 transition-colors hover:text-white md:text-7xl lg:text-8xl"
                   >
                     {service}
                   </span>

@@ -34,11 +34,13 @@ export interface SectionProps
   containerSize?: "default" | "narrow" | "wide";
 }
 
+import { forwardRef } from "react";
+
 /**
  * Section — consistent vertical padding with optional container wrapping.
  * Handles the 120px desktop / 80px tablet / 56px mobile spacing from the brief.
  */
-export function Section({
+export const Section = forwardRef<HTMLElement, SectionProps>(({
   as: Tag = "section",
   className,
   padding,
@@ -47,9 +49,13 @@ export function Section({
   containerSize = "default",
   children,
   ...props
-}: SectionProps) {
+}, ref) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const TagRef = ref as any;
+
   return (
     <Tag
+      ref={TagRef}
       className={cn(sectionVariants({ padding, background, className }))}
       {...props}
     >
@@ -60,4 +66,6 @@ export function Section({
       )}
     </Tag>
   );
-}
+});
+
+Section.displayName = "Section";

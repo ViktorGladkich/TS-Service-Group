@@ -13,7 +13,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-40 flex flex-col bg-[var(--color-bg)] transition-all duration-500 lg:hidden",
+        "fixed inset-0 z-40 flex flex-col bg-bg transition-all duration-500 lg:hidden",
         isOpen
           ? "pointer-events-auto opacity-100"
           : "pointer-events-none opacity-0"
@@ -26,14 +26,14 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
             href={item.href}
             onClick={onClose}
             className={cn(
-              "group flex items-center gap-6 border-b border-[var(--color-border)] py-6 transition-all duration-500",
+              "group flex items-center gap-6 border-b border-border py-6 transition-all duration-500",
               isOpen
                 ? "translate-y-0 opacity-100"
                 : "translate-y-4 opacity-0",
             )}
             style={{ transitionDelay: isOpen ? `${150 + i * 80}ms` : "0ms" }}
           >
-            <span className="font-mono text-xs text-[var(--color-text-subtle)]">
+            <span className="font-mono text-xs text-text-subtle">
               0{i + 1}
             </span>
             <span className="text-2xl font-medium">{item.label}</span>

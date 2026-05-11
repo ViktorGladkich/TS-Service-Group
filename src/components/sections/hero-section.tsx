@@ -10,7 +10,7 @@ import gsap from "gsap";
 
 const Corner = ({ className }: { className?: string }) => (
   <svg
-    className={cn("absolute h-8 w-8 fill-current text-[#EDEDED]", className)}
+    className={cn("absolute h-8 w-8 fill-current text-metallic-light", className)}
     viewBox="0 0 40 40"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -103,10 +103,10 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex h-screen min-h-[750px] flex-col overflow-hidden bg-[#EDEDED] p-4 font-sans lg:p-6"
+      className="relative flex h-screen min-h-[750px] flex-col overflow-hidden bg-metallic-light p-4 font-sans lg:p-6"
     >
       {/* Inner Dark Container */}
-      <div className="relative w-full flex-1 overflow-hidden rounded-[32px] bg-[#0A0A0A]">
+      <div className="relative w-full flex-1 overflow-hidden rounded-[32px] bg-bg">
 
         {/* Background Slides */}
         {SLIDES.map((src, i) => (
@@ -119,14 +119,14 @@ export function HeroSection() {
             }}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/40 to-[#0A0A0A]/60" />
+        <div className="absolute inset-0 bg-linear-to-t from-bg via-black/40 to-bg/60" />
 
         {/* Main Content (Center) */}
         <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 lg:px-24">
           <div className="max-w-[800px]">
             <h1
               className={cn(
-                "font-[family-name:var(--font-display)] text-white",
+                "font-display text-white",
                 "text-[clamp(3rem,7vw+1rem,6.5rem)] font-medium leading-[1.05] tracking-[-0.03em]"
               )}
             >
@@ -192,7 +192,7 @@ export function HeroSection() {
           ============================================================ */}
 
       {/* Top-Left Panel (Logo + Nav) */}
-      <div className="hero-panel-tl absolute left-6 top-6 z-50 hidden items-center gap-8 rounded-br-[32px] bg-[#EDEDED] pb-5 pr-6 opacity-0 lg:flex">
+      <div className="hero-panel-tl absolute left-6 top-6 z-50 hidden items-center gap-8 rounded-br-[32px] bg-metallic-light pb-5 pr-6 opacity-0 lg:flex">
         <Corner className="-right-8 top-0 rotate-180" />
         <Corner className="-bottom-8 left-0 rotate-180" />
 
@@ -207,7 +207,7 @@ export function HeroSection() {
           />
         </Link>
 
-        <nav className="flex items-center gap-8 text-sm font-medium text-[#0A0A0A]">
+        <nav className="flex items-center gap-8 text-sm font-medium text-bg">
           <Link
             href="/"
             className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
@@ -227,7 +227,7 @@ export function HeroSection() {
       </div>
 
       {/* Top-Right Panel (Socials + CTA) */}
-      <div className="hero-panel-tr absolute right-6 top-6 z-50 hidden items-center gap-6 rounded-bl-[32px] bg-[#EDEDED] pb-5 pl-6 opacity-0 lg:flex">
+      <div className="hero-panel-tr absolute right-6 top-6 z-50 hidden items-center gap-6 rounded-bl-[32px] bg-metallic-light pb-5 pl-6 opacity-0 lg:flex">
         {/* Left concave corner — sits at the outer-left edge of this panel */}
         <Corner className="-left-8 top-0 -rotate-90" />
         {/* Bottom concave corner — sits at the bottom-right */}
@@ -256,7 +256,7 @@ export function HeroSection() {
 
         <Link
           href="/kontakt"
-          className="flex h-12 items-center gap-3 rounded-full bg-[#0A0A0A] pl-6 pr-2 text-sm font-medium text-white transition-colors hover:bg-black/80"
+          className="flex h-12 items-center gap-3 rounded-full bg-bg pl-6 pr-2 text-sm font-medium text-white transition-colors hover:bg-black/80"
         >
           Anfragen
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
@@ -266,7 +266,7 @@ export function HeroSection() {
       </div>
 
       {/* Bottom-Left Panel (Stats) — pill inside a cornered white panel */}
-      <div className="hero-panel-bl absolute bottom-6 left-6 z-50 hidden items-center rounded-tr-[32px] bg-[#EDEDED] pb-0 pl-0 pr-4 pt-4 opacity-0 lg:flex">
+      <div className="hero-panel-bl absolute bottom-6 left-6 z-50 hidden items-center rounded-tr-[32px] bg-metallic-light pb-0 pl-0 pr-4 pt-4 opacity-0 lg:flex">
         <Corner className="-top-8 left-0 rotate-90" />
         <Corner className="-right-8 bottom-0 rotate-90" />
 
@@ -274,7 +274,7 @@ export function HeroSection() {
         <div className="flex items-center overflow-hidden rounded-full shadow-sm ring-1 ring-black/10">
           {/* Stat item */}
           <div className="flex flex-col px-7 py-4">
-            <span className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[#0A0A0A]">
+            <span className="font-display text-2xl font-semibold text-bg">
               24/7
             </span>
             <span className="mt-0.5 font-mono text-[9px] uppercase tracking-widest text-black/40">
@@ -283,7 +283,7 @@ export function HeroSection() {
           </div>
           <div className="h-10 w-px bg-black/10" />
           <div className="flex flex-col px-7 py-4">
-            <span className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[#0A0A0A]">
+            <span className="font-display text-2xl font-semibold text-bg">
               3
             </span>
             <span className="mt-0.5 font-mono text-[9px] uppercase tracking-widest text-black/40">
@@ -292,7 +292,7 @@ export function HeroSection() {
           </div>
           <div className="h-10 w-px bg-black/10" />
           <div className="flex flex-col px-7 py-4">
-            <span className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[#0A0A0A]">
+            <span className="font-display text-2xl font-semibold text-bg">
               100%
             </span>
             <span className="mt-0.5 font-mono text-[9px] uppercase tracking-widest text-black/40">

@@ -26,7 +26,7 @@ export function Header() {
         className={cn(
           "fixed top-0 right-0 left-0 z-50 transition-all duration-500",
           scrolled
-            ? "bg-[var(--color-bg)]/80 backdrop-blur-xl"
+            ? "bg-bg/80 backdrop-blur-xl"
             : "bg-transparent",
           isHome && "max-lg:flex lg:hidden" // Show on mobile, hide on desktop where Hero has custom panels
         )}
@@ -53,8 +53,8 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "relative rounded-full px-5 py-2 text-sm font-medium transition-all duration-300",
-                    "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
-                    "hover:bg-[var(--color-elevated)]"
+                    "text-text-muted hover:text-text",
+                    "hover:bg-elevated"
                   )}
                 >
                   {item.label}
@@ -70,8 +70,8 @@ export function Header() {
               href="/kontakt"
               className={cn(
                 "hidden rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 lg:inline-flex",
-                "border border-[var(--color-border-hover)] text-[var(--color-text)]",
-                "hover:border-[var(--color-text)] hover:bg-[var(--color-text)] hover:text-[var(--color-bg)]"
+                "border border-border-hover text-text",
+                "hover:border-text hover:bg-text hover:text-bg"
               )}
             >
               Kontakt
@@ -87,14 +87,14 @@ export function Header() {
               <div className="flex flex-col gap-1.5">
                 <span
                   className={cn(
-                    "block h-px w-6 bg-[var(--color-text)] transition-all duration-300",
+                    "block h-px w-6 bg-text transition-all duration-300",
                     mobileOpen && "translate-y-[3.5px] rotate-45"
                   )}
                 />
                 <span
                   className={cn(
-                    "block h-px w-6 bg-[var(--color-text)] transition-all duration-300",
-                    mobileOpen && "-translate-y-[3.5px] -rotate-45"
+                    "block h-px w-6 bg-text transition-all duration-300",
+                    mobileOpen && "translate-y-[-3.5px] -rotate-45"
                   )}
                 />
               </div>
@@ -107,7 +107,7 @@ export function Header() {
           className={cn(
             "h-px w-full transition-opacity duration-500",
             scrolled
-              ? "bg-[var(--color-border)] opacity-100"
+              ? "bg-border opacity-100"
               : "opacity-0"
           )}
         />

@@ -13,11 +13,11 @@ export default function DatenschutzPage() {
   return (
     <Section padding="default" containerSize="narrow">
       <h1 className="heading-2 mb-12">{DATENSCHUTZ.title}</h1>
-      <p className="text-sm text-[var(--color-text-subtle)]">
+      <p className="text-sm text-text-subtle">
         Stand: {DATENSCHUTZ.lastUpdated}
       </p>
       {/* TODO: Full Datenschutzerklärung content — must be reviewed by legal */}
-      <div className="mt-8 space-y-8 text-[var(--color-text-muted)]">
+      <div className="mt-8 space-y-8 text-text-muted">
         <p>
           Die Datenschutzerklärung wird vor der Veröffentlichung ergänzt und von
           einem Rechtsanwalt geprüft.

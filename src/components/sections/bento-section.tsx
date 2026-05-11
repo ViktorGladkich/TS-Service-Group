@@ -18,7 +18,15 @@ const Scoop = ({ className, fill = "#0A0A0A", path }: { className: string; fill?
 /* ── Scroll animation hook ── */
 function useBentoAnimations(
   sectionRef: React.RefObject<HTMLElement | null>,
-  refs: Record<string, React.RefObject<HTMLElement | null>>
+  refs: {
+    headline: React.RefObject<HTMLDivElement | null>;
+    topRight: React.RefObject<HTMLDivElement | null>;
+    leftTall: React.RefObject<HTMLDivElement | null>;
+    rightLarge: React.RefObject<HTMLDivElement | null>;
+    stat: React.RefObject<HTMLDivElement | null>;
+    glass: React.RefObject<HTMLDivElement | null>;
+    bottomText: React.RefObject<HTMLDivElement | null>;
+  }
 ) {
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -75,84 +83,91 @@ const PILLS = ["Sicherheit", "Premium", "Umzug", "Reinigung"];
 
 export function BentoSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const refs = {
-    headline: useRef<HTMLDivElement>(null),
-    topRight: useRef<HTMLDivElement>(null),
-    leftTall: useRef<HTMLDivElement>(null),
-    rightLarge: useRef<HTMLDivElement>(null),
-    stat: useRef<HTMLDivElement>(null),
-    glass: useRef<HTMLDivElement>(null),
-    bottomText: useRef<HTMLDivElement>(null),
-  };
+  
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const topRightRef = useRef<HTMLDivElement>(null);
+  const leftTallRef = useRef<HTMLDivElement>(null);
+  const rightLargeRef = useRef<HTMLDivElement>(null);
+  const statRef = useRef<HTMLDivElement>(null);
+  const glassRef = useRef<HTMLDivElement>(null);
+  const bottomTextRef = useRef<HTMLDivElement>(null);
 
-  useBentoAnimations(sectionRef, refs);
+  useBentoAnimations(sectionRef, {
+    headline: headlineRef,
+    topRight: topRightRef,
+    leftTall: leftTallRef,
+    rightLarge: rightLargeRef,
+    stat: statRef,
+    glass: glassRef,
+    bottomText: bottomTextRef,
+  });
 
   return (
-    <section ref={sectionRef} className="bg-[#0A0A0A] py-24 px-4 md:px-8 overflow-hidden">
+    <section ref={sectionRef} className="bg-bg py-24 px-4 md:px-8 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 auto-rows-[240px] md:auto-rows-[280px]">
 
           {/* ── ROW 1: Headline ── */}
-          <div ref={refs.headline} className="bento-mobile-item col-span-1 lg:col-span-7 row-span-1 flex flex-col justify-center p-4 lg:p-8">
-            <h2 className="font-[family-name:var(--font-display)] text-4xl lg:text-5xl xl:text-6xl text-white font-medium leading-tight tracking-tight mb-4">
+          <div ref={headlineRef} className="bento-mobile-item col-span-1 lg:col-span-7 row-span-1 flex flex-col justify-center p-4 lg:p-8">
+            <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl text-white font-medium leading-tight tracking-tight mb-4">
               Wir bieten Premium-Lösungen <br className="hidden md:block" />für höchste Ansprüche.
             </h2>
           </div>
 
           {/* ── ROW 1: Security Card ── */}
-          <div ref={refs.topRight} className="bento-mobile-item col-span-1 lg:col-span-5 row-span-1 rounded-[2rem] overflow-hidden relative flex flex-col sm:flex-row group cursor-pointer">
+          <div ref={topRightRef} className="bento-mobile-item col-span-1 lg:col-span-5 row-span-1 rounded-4xl overflow-hidden relative flex flex-col sm:flex-row group cursor-pointer">
             <div className="w-full sm:w-1/2 h-48 sm:h-full relative">
               <Image src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop" fill className="object-cover" alt="Service" />
             </div>
             <div className="w-full sm:w-1/2 h-full flex flex-col justify-center p-8 relative bg-white/10 backdrop-blur-2xl border-l border-white/10">
               <div className="absolute top-6 right-6 w-10 h-10 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                <ArrowUpRight className="text-[#0A0A0A] w-5 h-5" />
+                <ArrowUpRight className="text-bg w-5 h-5" />
               </div>
-              <h3 className="text-2xl font-[family-name:var(--font-display)] font-medium text-white tracking-tight mt-4 sm:mt-0">Ihre Sicherheit.<br />Garantiert.</h3>
+              <h3 className="text-2xl font-display font-medium text-white tracking-tight mt-4 sm:mt-0">Ihre Sicherheit.<br />Garantiert.</h3>
             </div>
           </div>
 
           {/* ── ROW 2-3: Left Tall Card ── */}
-          <div ref={refs.leftTall} className="bento-mobile-item col-span-1 lg:col-span-4 lg:row-span-2 bg-[#1A1A1A] rounded-[2rem] p-8 flex flex-col relative group cursor-pointer border border-white/5">
+          <div ref={leftTallRef} className="bento-mobile-item col-span-1 lg:col-span-4 lg:row-span-2 bg-elevated rounded-4xl p-8 flex flex-col relative group cursor-pointer border border-white/5">
             <div className="absolute top-8 right-8 w-10 h-10 bg-white rounded-full flex items-center justify-center z-10 group-hover:scale-110 transition-transform shadow-lg">
-              <ArrowUpRight className="text-[#0A0A0A] w-5 h-5" />
+              <ArrowUpRight className="text-bg w-5 h-5" />
             </div>
-            <h3 className="text-3xl lg:text-4xl text-white font-[family-name:var(--font-display)] font-medium mb-4 pr-12 tracking-tight">Nutzen Sie unseren Premium-Service</h3>
+            <h3 className="text-3xl lg:text-4xl text-white font-display font-medium mb-4 pr-12 tracking-tight">Nutzen Sie unseren Premium-Service</h3>
             <p className="text-gray-400 text-sm leading-relaxed max-w-[85%] mb-8">Beantworten Sie ein paar kurze Fragen, um den perfekten Service für Sie zusammenzustellen.</p>
-            <div className="relative flex-grow mt-auto rounded-2xl overflow-hidden min-h-[200px]">
+            <div className="relative grow mt-auto rounded-2xl overflow-hidden min-h-[200px]">
               <Image src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop" fill className="object-cover group-hover:scale-105 transition-transform duration-700" alt="Premium Service" />
             </div>
           </div>
 
           {/* ── ROW 2-3: Right Large Card with L-shape cutout ── */}
-          <div ref={refs.rightLarge} className="bento-mobile-item col-span-1 lg:col-span-8 lg:row-span-2 relative rounded-[2rem] overflow-hidden min-h-[500px] lg:min-h-0">
+          <div ref={rightLargeRef} className="bento-mobile-item col-span-1 lg:col-span-8 lg:row-span-2 relative rounded-4xl overflow-hidden min-h-[500px] lg:min-h-0">
             <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop" fill className="object-cover" alt="Office" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-[#0A0A0A]/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-t from-bg/70 via-bg/20 to-transparent pointer-events-none" />
 
             {/* L-Shape Cutout (desktop) */}
-            <div ref={refs.stat} className="hidden lg:block absolute top-0 left-0 bg-[#0A0A0A] z-10" style={{ width: "calc(45% + 0.625rem)", height: "calc(40% + 0.625rem)", borderBottomRightRadius: "2rem" }}>
+            <div ref={statRef} className="hidden lg:block absolute top-0 left-0 bg-bg z-10" style={{ width: "calc(45% + 0.625rem)", height: "calc(40% + 0.625rem)", borderBottomRightRadius: "2rem" }}>
               <Scoop className="absolute top-0 -right-8 w-8 h-8" fill="#0A0A0A" path={SCOOP_BR} />
               <Scoop className="absolute -bottom-8 left-0 w-8 h-8" fill="#0A0A0A" path={SCOOP_BR} />
-              <div className="absolute inset-0 right-5 bottom-5 bg-[#1A1A1A] rounded-[2rem] p-8 flex flex-col justify-center border border-white/5">
-                <h3 className="text-5xl font-[family-name:var(--font-display)] font-semibold text-white tracking-tight mb-3">100%</h3>
+              <div className="absolute inset-0 right-5 bottom-5 bg-elevated rounded-4xl p-8 flex flex-col justify-center border border-white/5">
+                <h3 className="text-5xl font-display font-semibold text-white tracking-tight mb-3">100%</h3>
                 <p className="text-gray-400 text-sm">Zuverlässigkeit und Transparenz bei jedem Serviceeinsatz.</p>
               </div>
             </div>
 
             {/* Mobile fallback */}
-            <div className="block lg:hidden bg-[#1A1A1A] p-8 m-4 rounded-[1.5rem] relative z-20 border border-white/5">
-              <h3 className="text-4xl font-[family-name:var(--font-display)] font-semibold text-white mb-2">100%</h3>
+            <div className="block lg:hidden bg-elevated p-8 m-4 rounded-3xl relative z-20 border border-white/5">
+              <h3 className="text-4xl font-display font-semibold text-white mb-2">100%</h3>
               <p className="text-gray-400 text-sm">Zuverlässigkeit und Transparenz bei jedem Serviceeinsatz.</p>
             </div>
 
             {/* Floating content */}
             <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-between z-20 pointer-events-none">
               {/* 250+ glass card */}
-              <div ref={refs.glass} className="self-end bg-white/10 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 w-[calc(100%-2rem)] lg:w-auto max-w-[16rem] pointer-events-auto shadow-2xl">
+              <div ref={glassRef} className="self-end bg-white/10 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 w-[calc(100%-2rem)] lg:w-auto max-w-[16rem] pointer-events-auto shadow-2xl">
                 <div className="flex justify-between items-start mb-3">
-                  <h4 className="text-3xl font-[family-name:var(--font-display)] font-semibold text-white tracking-tight">250+</h4>
+                  <h4 className="text-3xl font-display font-semibold text-white tracking-tight">250+</h4>
                   <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-                    <ArrowUpRight className="text-[#0A0A0A] w-4 h-4" />
+                    <ArrowUpRight className="text-bg w-4 h-4" />
                   </div>
                 </div>
                 <p className="text-white/80 text-sm mb-4">Zufriedene Kunden vertrauen unserer Expertise.</p>
@@ -172,7 +187,7 @@ export function BentoSection() {
             </div>
 
             {/* Bottom-right text with inverted corners */}
-            <div ref={refs.bottomText} className="absolute bottom-0 right-0 z-30 bg-[#0A0A0A] rounded-tl-[2rem] pl-6 pt-6 pr-4 pb-4 max-w-xs">
+            <div ref={bottomTextRef} className="absolute bottom-0 right-0 z-30 bg-bg rounded-tl-4xl pl-6 pt-6 pr-4 pb-4 max-w-xs">
               <Scoop className="absolute -top-8 right-0 w-8 h-8" path={SCOOP_TL} />
               <Scoop className="absolute bottom-0 -left-8 w-8 h-8" path={SCOOP_TL} />
               <h4 className="text-lg lg:text-xl font-medium text-white tracking-tight leading-snug">Wir schaffen sichere und saubere Räume für Sie.</h4>

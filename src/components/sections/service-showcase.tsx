@@ -36,59 +36,88 @@ const SERVICES = [
 ];
 
 export function ServiceShowcase() {
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Entrance animation sequence
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-          once: true,
+    const mm = gsap.matchMedia();
+
+    mm.add({
+      isDesktop: "(min-width: 1024px)",
+      isMobile: "(max-width: 1023px)"
+    }, (context) => {
+      const { isDesktop } = context.conditions as { isDesktop: boolean };
+
+      const ctx = gsap.context(() => {
+        // Entrance animation sequence
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          }
+        });
+
+        tl.fromTo(headlineRef.current, 
+          { y: 50, opacity: 0 }, 
+          { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+        );
+
+        tl.fromTo(cardsRef.current, 
+          { y: 100, opacity: 0 }, 
+          { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out" },
+          "-=0.6"
+        );
+
+        tl.fromTo(".service-image-mask",
+          { clipPath: "inset(100% 0 0 0)" },
+          { clipPath: "inset(0% 0 0 0)", duration: 1.2, stagger: 0.15, ease: "power3.inOut" },
+          "-=0.8"
+        );
+
+        // Desktop-only overlay parallax: slide up on top of ticker
+        if (isDesktop) {
+          gsap.fromTo(sectionRef.current,
+            { y: 140 },
+            {
+              y: -80,
+              ease: "none",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+              }
+            }
+          );
         }
-      });
+      }, containerRef);
 
-      // 1. Headline slides up
-      tl.fromTo(headlineRef.current, 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
-      );
+      return () => ctx.revert();
+    });
 
-      // 2. Cards stagger up
-      tl.fromTo(cardsRef.current, 
-        { y: 100, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out" },
-        "-=0.6"
-      );
-
-      // 3. Image masks wipe open (Awwwards style reveal)
-      tl.fromTo(".service-image-mask",
-        { clipPath: "inset(100% 0 0 0)" },
-        { clipPath: "inset(0% 0 0 0)", duration: 1.2, stagger: 0.15, ease: "power3.inOut" },
-        "-=0.8"
-      );
-
-    }, containerRef);
-
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
-    <Section className="bg-[#EDEDED] py-24 md:py-32" id="expertise">
+    <Section 
+      ref={sectionRef}
+      className="relative z-20 -mt-20 rounded-t-[3rem] bg-metallic-light py-24 shadow-[0_-35px_60px_-15px_rgba(0,0,0,0.35)] md:-mt-32 md:rounded-t-[5rem] md:py-32" 
+      id="expertise"
+    >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12" ref={containerRef}>
         
         {/* Headline */}
         <div className="mb-16 flex flex-col md:mb-24">
-          <span className="mb-4 font-mono text-sm tracking-[0.2em] text-[#0A0A0A]/50">
+          <span className="mb-4 font-mono text-sm tracking-[0.2em] text-bg/50">
             UNSERE EXPERTISE
           </span>
           <h2 
             ref={headlineRef}
-            className="font-[family-name:var(--font-display)] text-4xl font-medium tracking-tight text-[#0A0A0A] md:text-6xl lg:text-7xl"
+            className="font-display text-4xl font-medium tracking-tight text-bg md:text-6xl lg:text-7xl"
           >
             Drei Disziplinen.<br/>
             Ein Anspruch.
@@ -109,25 +138,25 @@ export function ServiceShowcase() {
                 onMouseLeave={() => setHoveredIndex(null)}
                 // Flex manipulation drives the smooth expansion/compression
                 className={cn(
-                  "group relative overflow-hidden bg-[#121212] transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]",
+                  "group relative overflow-hidden bg-surface transition-all duration-800 ease-[cubic-bezier(0.25,1,0.5,1)]",
                   !isAnyHovered && "flex-1", // Equal distribution
-                  isHovered && "flex-[3]",   // Focused panel expands heavily
+                  isHovered && "flex-3",   // Focused panel expands heavily
                   isAnyHovered && !isHovered && "flex-[0.5]" // Others compress
                 )}
               >
                 {/* Background Image (Masked via GSAP on entrance) */}
-                <div className="service-image-mask absolute inset-0 z-0 bg-[#1A1A1A]">
+                <div className="service-image-mask absolute inset-0 z-0 bg-elevated">
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
                     className={cn(
-                      "object-cover transition-all duration-[1200ms] ease-out",
+                      "object-cover transition-all duration-1200 ease-out",
                       isHovered ? "scale-105 opacity-60 grayscale-0" : "scale-100 opacity-30 grayscale"
                     )}
                   />
                   {/* Gradient Overlay for text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
                 </div>
 
                 {/* Overlay Content */}
@@ -146,7 +175,7 @@ export function ServiceShowcase() {
                     
                     {/* Animated Arrow */}
                     <div className={cn(
-                      "flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/20 backdrop-blur-md transition-all duration-[600ms] ease-out",
+                      "flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/20 backdrop-blur-md transition-all duration-600 ease-out",
                       isHovered ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
                     )}>
                       <ArrowRight className="h-5 w-5 text-white" />
@@ -155,14 +184,14 @@ export function ServiceShowcase() {
 
                   {/* Bottom: Title & Sliding Description */}
                   <div className="flex flex-col justify-end">
-                    <h3 className="whitespace-nowrap font-[family-name:var(--font-display)] text-3xl font-medium tracking-tight text-white md:text-4xl lg:text-5xl">
+                    <h3 className="whitespace-nowrap font-display text-3xl font-medium tracking-tight text-white md:text-4xl lg:text-5xl">
                       {service.title}
                     </h3>
                     
                     {/* Hidden body that slides up on hover */}
                     <div 
                       className={cn(
-                        "mt-0 overflow-hidden transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]",
+                        "mt-0 overflow-hidden transition-all duration-800 ease-[cubic-bezier(0.25,1,0.5,1)]",
                         isHovered ? "mt-4 max-h-40 opacity-100" : "max-h-0 opacity-0"
                       )}
                     >

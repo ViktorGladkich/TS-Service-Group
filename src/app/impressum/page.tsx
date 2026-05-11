@@ -16,7 +16,7 @@ export default function ImpressumPage() {
       {IMPRESSUM.sections.map((section) => (
         <div key={section.heading} className="mb-10">
           <h2 className="mb-3 text-lg font-medium">{section.heading}</h2>
-          <p className="whitespace-pre-line text-[var(--color-text-muted)]">
+          <p className="whitespace-pre-line text-text-muted">
             {section.content}
           </p>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 
@@ -130,13 +130,13 @@ export function Preloader({ onComplete }: PreloaderProps) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"
+      className="fixed inset-0 z-9999 flex items-center justify-center pointer-events-none"
     >
       {/* 3 Staggered Background Curtains */}
       <div className="absolute inset-0 flex w-full h-full z-0">
-        <div ref={el => { curtainsRef.current[0] = el; }} className="w-1/3 h-full bg-[#EDEDED]" />
-        <div ref={el => { curtainsRef.current[1] = el; }} className="w-1/3 h-full bg-[#EDEDED]" />
-        <div ref={el => { curtainsRef.current[2] = el; }} className="w-1/3 h-full bg-[#EDEDED]" />
+        <div ref={el => { curtainsRef.current[0] = el; }} className="w-1/3 h-full bg-metallic-light" />
+        <div ref={el => { curtainsRef.current[1] = el; }} className="w-1/3 h-full bg-metallic-light" />
+        <div ref={el => { curtainsRef.current[2] = el; }} className="w-1/3 h-full bg-metallic-light" />
       </div>
 
       {/* Foreground Animation Container */}
@@ -145,7 +145,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
         {/* Step 0: Main Title */}
         <div 
           ref={textRef}
-          className="absolute flex space-x-1 md:space-x-3 font-[family-name:var(--font-display)] text-[5.5vw] sm:text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight text-[#0A0A0A] whitespace-nowrap"
+          className="absolute flex space-x-1 md:space-x-3 font-display text-[5.5vw] sm:text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight text-bg whitespace-nowrap"
           style={{ transformStyle: "preserve-3d" }}
         >
           {text.split("").map((char, index) => {
@@ -166,13 +166,13 @@ export function Preloader({ onComplete }: PreloaderProps) {
         </div>
 
         {/* Flashing Services */}
-        <div ref={step1Ref} className="absolute opacity-0 font-[family-name:var(--font-display)] text-[8vw] sm:text-5xl md:text-8xl font-medium text-[#0A0A0A] tracking-tighter">
+        <div ref={step1Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-bg tracking-tighter">
           SICHERHEIT
         </div>
-        <div ref={step2Ref} className="absolute opacity-0 font-[family-name:var(--font-display)] text-[8vw] sm:text-5xl md:text-8xl font-medium text-[#0A0A0A] tracking-tighter">
+        <div ref={step2Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-bg tracking-tighter">
           UMZUGSERVICE
         </div>
-        <div ref={step3Ref} className="absolute opacity-0 font-[family-name:var(--font-display)] text-[8vw] sm:text-5xl md:text-8xl font-medium text-[#0A0A0A] tracking-tighter">
+        <div ref={step3Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-bg tracking-tighter">
           CLEANING
         </div>
 

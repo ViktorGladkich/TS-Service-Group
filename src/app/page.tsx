@@ -8,19 +8,11 @@ import { BentoSection } from "@/components/sections/bento-section";
  */
 export default function HomePage() {
   return (
-    <main className="bg-[#EDEDED]">
+    <main className="bg-metallic-light">
       <HeroSection />
       <TickerSection />
-
-      {/* Parallax wrapper: ServiceShowcase sticks, BentoSection slides over it */}
-      <div className="relative">
-        <div className="sticky top-0 z-0">
-          <ServiceShowcase />
-        </div>
-        <div className="relative z-10">
-          <BentoSection />
-        </div>
-      </div>
+      <ServiceShowcase />
+      <BentoSection />
     </main>
   );
 }

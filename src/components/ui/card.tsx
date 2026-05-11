@@ -19,11 +19,11 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6",
+        "rounded-lg border border-border bg-surface p-6",
         interactive && [
-          "transition-all duration-[var(--duration-base)]",
-          "hover:border-[var(--color-border-hover)]",
-          "hover:bg-[var(--color-elevated)]",
+          "transition-all duration-300",
+          "hover:border-border-hover",
+          "hover:bg-elevated",
         ],
         className
       )}
