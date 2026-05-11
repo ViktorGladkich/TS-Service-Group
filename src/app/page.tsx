@@ -11,8 +11,16 @@ export default function HomePage() {
     <main className="bg-[#EDEDED]">
       <HeroSection />
       <TickerSection />
-      <ServiceShowcase />
-      <BentoSection />
+
+      {/* Parallax wrapper: ServiceShowcase sticks, BentoSection slides over it */}
+      <div className="relative">
+        <div className="sticky top-0 z-0">
+          <ServiceShowcase />
+        </div>
+        <div className="relative z-10">
+          <BentoSection />
+        </div>
+      </div>
     </main>
   );
 }

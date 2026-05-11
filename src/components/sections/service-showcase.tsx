@@ -48,7 +48,7 @@ export function ServiceShowcase() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse",
+          once: true,
         }
       });
 
