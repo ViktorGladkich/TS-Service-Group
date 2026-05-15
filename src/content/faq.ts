@@ -18,7 +18,7 @@ export const FAQ_GENERAL: FAQItem[] = [
   {
     question: "Sind Ihre Mitarbeiter versichert und geschult?",
     answer:
-      "Alle unsere Mitarbeiter sind vollständig versichert und werden regelmäßig geschult — sowohl fachlich als auch im Bereich Arbeitssicherheit und Datenschutz.",
+      "Ja. Unser Betrieb ist über eine Betriebshaftpflicht der Allianz abgesichert; im Sicherheitsbereich verfügen die eingesetzten Kräfte über die Sachkundeprüfung nach §34a GewO. Schulung in Arbeitssicherheit und Datenschutz gehört zum Standard.",
   },
   {
     question: "Kann ich ein unverbindliches Angebot anfordern?",
@@ -54,7 +54,7 @@ export const FAQ_UMZUG: FAQItem[] = [
   {
     question: "Bieten Sie auch Einlagerungsmöglichkeiten an?",
     answer:
-      "Wir verfügen über gesicherte Lagerräume in Dresden für Zwischen- und Langzeitlagerung. Die Räume sind trocken, alarmgesichert und jederzeit zugänglich nach Absprache.",
+      "Ja, Einlagerung gehört zu unseren Zusatzleistungen — für Zwischen- oder Langzeitlagerung im Raum Dresden. Wir stimmen Lagerort und Zugang individuell mit Ihnen ab.",
   },
 ];
 

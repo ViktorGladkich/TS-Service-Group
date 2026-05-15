@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/leistungen/umzugservice",
     "/leistungen/reinigung",
     "/ueber-uns",
-    "/referenzen",
+    "/haeufige-fragen",
     "/kontakt",
     "/impressum",
     "/datenschutz",

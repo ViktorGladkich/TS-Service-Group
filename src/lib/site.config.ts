@@ -17,8 +17,10 @@ export const siteConfig = {
   // ============================================================
   brand: {
     name: "TS Service Group",
-    legalName: "TS Service Group GmbH", // ⚠️ confirm legal form (GmbH / UG / e.K. / Einzelunternehmen)
-    foundedYear: 2026, // 🔒
+    legalName: "TS Service Group", // 🔒 Einzelunternehmen, Inhaber: Zaurbek Tsumaev — kein GmbH-Suffix
+    owner: "Zaurbek Tsumaev", // 🔒 Inhaber des Einzelunternehmens
+    foundedYear: 2026, // 🔒 gegründet 01.04.2026
+    foundedDate: "2026-04-01", // 🔒
     tagline: "Sicherheit. Sauberkeit. Bewegung.",
     shortDescription:
       "Ihr verlässlicher Partner für Sicherheitsdienst, Umzugservice und Reinigung in Dresden.",
@@ -31,30 +33,37 @@ export const siteConfig = {
   // ============================================================
   contact: {
     address: {
-      street: "Königsbrücker Straße 96", // ⚠️ PLACEHOLDER
-      postalCode: "01099", // ⚠️ PLACEHOLDER
+      street: "Hopfgartenstraße 6", // 🔒
+      postalCode: "01307", // 🔒
       city: "Dresden", // 🔒
       region: "Sachsen", // 🔒
       country: "DE",
       countryName: "Deutschland",
     },
-    phone: "+49 351 0000000", // ⚠️ PLACEHOLDER (E.164 format, used in tel: links)
-    phoneDisplay: "+49 (0) 351 000 00 00", // ⚠️ PLACEHOLDER (formatted for display)
-    email: "info@ts-service-group.de", // ⚠️ PLACEHOLDER
-    emailContact: "kontakt@ts-service-group.de", // ⚠️ PLACEHOLDER
+    phone: "+4915901439302", // 🔒 E.164 (Mobil — Inhaber direkt)
+    phoneDisplay: "+49 1590 1439302", // 🔒
+    whatsapp: "+4915901439302", // 🔒 gleicher Anschluss
+    email: "info@ts-servicegroup.de", // 🔒
+    emailContact: "info@ts-servicegroup.de", // 🔒 (gleiche Adresse — Einzelunternehmen, kein separater Postkasten)
     geo: {
-      latitude: 51.0707, // ⚠️ PLACEHOLDER (Dresden Neustadt approx)
-      longitude: 13.7407,
+      latitude: 51.0545, // 🔒 Hopfgartenstraße 6, Dresden-Johannstadt (approx.)
+      longitude: 13.7670,
     },
     openingHours: [
       { days: ["Mo", "Di", "Mi", "Do", "Fr"], opens: "08:00", closes: "18:00" },
       { days: ["Sa"], opens: "09:00", closes: "14:00" },
-      // Sonntag geschlossen
+      // Sonntag geschlossen — außer Sicherheits-Notdienst
     ],
     emergency: {
       available: true,
-      phone: "+49 351 0000001", // ⚠️ PLACEHOLDER
-      label: "24/7 Notruf für Sicherheitsdienst",
+      phone: "+4915901439302", // 🔒 gleiche Nummer — direkt an Inhaber
+      label: "Sicherheits-Notdienst rund um die Uhr (nur Sicherheitsbereich)",
+    },
+    legal: {
+      // Einzelunternehmen — kein HRB, keine USt-ID solange Kleinunternehmer (§19 UStG)
+      // §34a GewO Erlaubnis für Sicherheitsgewerbe
+      gewerbe: "Sicherheitsunternehmen gemäß §34a GewO",
+      liability: "Betriebshaftpflicht über Allianz", // 🔒
     },
   },
 
@@ -78,7 +87,7 @@ export const siteConfig = {
       "Unterhaltsreinigung Dresden",
       "Bauendreinigung Dresden",
     ],
-    siteUrl: "https://ts-service-group.de", // ⚠️ PLACEHOLDER — confirm final domain
+    siteUrl: "https://ts-servicegroup.de", // 🔒
     ogImage: "/og-image.jpg",
     locale: "de_DE",
   },
@@ -87,9 +96,10 @@ export const siteConfig = {
   // SOCIAL (leave empty if none — handled gracefully in UI)
   // ============================================================
   social: {
-    instagram: "", // ⚠️ PLACEHOLDER
-    linkedin: "", // ⚠️ PLACEHOLDER
-    facebook: "", // ⚠️ PLACEHOLDER
+    // 🔒 Kunde hat keine Profile angegeben — Icons bleiben in der UI ausgeblendet (siehe Header/Footer-Logik)
+    instagram: "",
+    linkedin: "",
+    facebook: "",
   },
 
   // ============================================================
@@ -105,18 +115,21 @@ export const siteConfig = {
       description:
         "Professioneller Objektschutz, Veranstaltungsschutz, Pförtner- und Empfangsdienste in Dresden und Sachsen. Geschultes Personal, klare Prozesse, lückenlose Dokumentation.",
       features: [
-        "Objektschutz und Werkschutz",
+        "Objektschutz",
+        "Personenschutz",
         "Veranstaltungsschutz",
         "Empfangs- und Pförtnerdienst",
-        "Streifendienst und Revierfahrten",
-        "Brandwache nach DGUV",
-        "Notfall- und Alarmdienst rund um die Uhr",
+        "Wachdienst und Streifendienst",
+        "Baustellenbewachung",
+        "Ladendetektiv",
+        "Notruf-Service und Citystreife",
       ],
       keywords: [
         "Sicherheitsdienst",
         "Objektschutz",
+        "Personenschutz",
         "Veranstaltungsschutz",
-        "Werkschutz",
+        "Baustellenbewachung",
       ],
     },
     {
@@ -126,20 +139,23 @@ export const siteConfig = {
       shortTitle: "Umzug",
       tagline: "Privat- und Firmenumzüge ohne Reibung.",
       description:
-        "Vollumfänglicher Umzugservice für Privatkunden und Unternehmen in Dresden, sachsenweit und bundesweit. Verpacken, transportieren, montieren — alles aus einer Hand.",
+        "Vollumfänglicher Umzugservice für Privatkunden und Unternehmen — Privat-, Firmen- und Seniorenumzüge in Dresden, sachsenweit und auf Anfrage bundesweit.",
       features: [
-        "Privatumzug und Seniorenumzug",
+        "Privatumzug",
         "Firmen- und Büroumzug",
-        "Möbelmontage und -demontage",
+        "Senioren-Umzug",
         "Verpackungsservice",
-        "Einlagerung in gesicherten Lagerräumen",
-        "Entrümpelung und Entsorgung",
+        "Möbelmontage und -demontage",
+        "Entsorgung und Entrümpelung",
+        "Einlagerung",
+        "Beiladung",
       ],
       keywords: [
         "Umzugservice",
         "Umzugsunternehmen Dresden",
         "Firmenumzug",
         "Privatumzug",
+        "Seniorenumzug",
       ],
     },
     {
@@ -149,14 +165,15 @@ export const siteConfig = {
       shortTitle: "Reinigung",
       tagline: "Saubere Räume, klare Standards.",
       description:
-        "Gewerbliche und private Reinigung in Dresden — von der täglichen Unterhaltsreinigung bis zur abschließenden Bauendreinigung. Geschultes Personal, geprüfte Verfahren.",
+        "Gewerbliche und private Reinigung in Dresden — von der Unterhalts- und Büroreinigung bis zur Industrie- und Sonderreinigung. Geschultes Personal, geprüfte Verfahren.",
       features: [
-        "Unterhaltsreinigung für Büro und Gewerbe",
-        "Grundreinigung",
-        "Bauendreinigung und Bauzwischenreinigung",
-        "Fenster- und Glasreinigung",
-        "Teppich- und Polsterreinigung",
-        "Treppenhaus- und Hausreinigung",
+        "Büroreinigung",
+        "Industriereinigung",
+        "Privathaushalt-Reinigung",
+        "Glasreinigung",
+        "Teppichreinigung",
+        "Treppenhausreinigung",
+        "Sonderreinigung",
       ],
       keywords: [
         "Gebäudereinigung Dresden",
@@ -169,98 +186,33 @@ export const siteConfig = {
 
   // ============================================================
   // STATS (Startseite stats band)
-  // Founded in 2026 — avoid claims like "20 Jahre Erfahrung".
-  // Use qualitative anchors instead of inflated numbers.
+  // Gegründet 04/2026 — KEINE inflated numbers ("Jahre Erfahrung",
+  // Kundenanzahl, 24/7-Allverfügbarkeit). Qualitative Anker statt
+  // erfundener Zahlen. 24/7 gilt ausschließlich für den
+  // Sicherheits-Notdienst — wird dort separat ausgespielt.
   // ============================================================
   stats: [
     { value: "3", label: "Geschäftsbereiche", suffix: "" },
-    { value: "24", label: "Erreichbarkeit", suffix: "/7" },
-    { value: "100", label: "Verlässlichkeit", suffix: "%" },
-    { value: "DD", label: "Standort Dresden", suffix: "" }, // 🔒 stylish: DD = Dresden Kfz-Kennzeichen
+    { value: "DD", label: "Standort Dresden", suffix: "" }, // 🔒 DD = Dresden Kfz-Kennzeichen
+    { value: "Mo–Sa", label: "Erreichbar", suffix: "" }, // 🔒 echte Bürozeiten
+    { value: "§34a", label: "GewO-Erlaubnis", suffix: "" }, // 🔒 Wachschein-Nachweis
   ],
 
   // ============================================================
-  // REFERENZEN — placeholder case studies
-  // Anonymized & plausible. Replace with real cases as portfolio grows.
-  // Years left at 2026 since the company was just founded.
+  // REFERENZEN
+  // 🔒 Bewusst LEER bis erste echte Projekte vorliegen.
+  // Gegründet 04/2026 — fingierte Case-Studies wären irreführend
+  // und rechtlich riskant (UWG §5). Erst befüllen, wenn der Kunde
+  // konkrete Projekte (mit Erlaubnis zur Nennung) freigibt.
   // ============================================================
-  references: [
-    {
-      slug: "kulturfestival-neustadt",
-      service: "sicherheitsdienst",
-      title: "Veranstaltungsschutz für ein Kulturfestival",
-      client: "Kulturveranstalter, Dresden-Neustadt",
-      year: "2026",
-      summary:
-        "Einlasskontrolle, Crowd-Management und Nachtdienst über drei Festivaltage.",
-      details:
-        "Geschulte Sicherheitskräfte, abgestimmtes Schichtsystem, enge Zusammenarbeit mit Veranstalter und Behörden. Reibungsloser Ablauf ohne Zwischenfälle.",
-      image: "/placeholder/ref-01.jpg",
-    },
-    {
-      slug: "firmenumzug-it-dienstleister",
-      service: "umzugservice",
-      title: "Firmenumzug eines IT-Dienstleisters",
-      client: "Mittelständischer IT-Dienstleister, Dresden-Altstadt",
-      year: "2026",
-      summary:
-        "Umzug von 80 Arbeitsplätzen über ein Wochenende — ohne Betriebsunterbrechung.",
-      details:
-        "Vorab-Inventur, beschriftete Transportbehälter, koordinierte Demontage und Wiederaufbau. Am Montagmorgen voll funktionsfähig.",
-      image: "/placeholder/ref-02.jpg",
-    },
-    {
-      slug: "bauendreinigung-buerokomplex",
-      service: "reinigung",
-      title: "Bauendreinigung eines Bürokomplexes",
-      client: "Bauträger, Dresden-Pieschen",
-      year: "2026",
-      summary:
-        "Komplette Bauendreinigung von 2.400 m² Bürofläche vor Übergabe.",
-      details:
-        "Mehrstufiges Reinigungsverfahren, abgestimmt auf Bodenbeläge und Oberflächen. Übergabe termingerecht und mängelfrei.",
-      image: "/placeholder/ref-03.jpg",
-    },
-    {
-      slug: "werkschutz-industrie",
-      service: "sicherheitsdienst",
-      title: "Werkschutz für ein Industrieunternehmen",
-      client: "Produzierendes Gewerbe, Dresden-Klotzsche",
-      year: "2026",
-      summary:
-        "Permanenter Werkschutz inklusive Pförtnerdienst und Streifengang.",
-      details:
-        "Definierte Kontrollgänge, dokumentierte Übergaben, abgestimmte Schnittstellen zur Werksleitung. Spürbare Reduktion von Vorfällen.",
-      image: "/placeholder/ref-04.jpg",
-    },
-    {
-      slug: "unterhaltsreinigung-praxis",
-      service: "reinigung",
-      title: "Unterhaltsreinigung einer Gemeinschaftspraxis",
-      client: "Medizinische Gemeinschaftspraxis, Dresden-Striesen",
-      year: "2026",
-      summary:
-        "Tägliche Reinigung nach Hygieneplan außerhalb der Praxiszeiten.",
-      details:
-        "Abgestimmt auf medizinische Hygieneanforderungen, geprüfte Reinigungsmittel, geschultes Personal mit Verschwiegenheitspflicht.",
-      image: "/placeholder/ref-05.jpg",
-    },
-  ],
+  references: [],
 
   // ============================================================
-  // PARTNER LOGOS — placeholders
-  // Generate generic geometric wordmarks (e.g. abstract monograms).
-  // Do NOT fabricate real company names or imply real partnerships.
-  // Use neutral labels like "Partner A" and swap later.
+  // PARTNER LOGOS
+  // 🔒 Leer — keine fingierten Partnerschaften ausspielen.
+  // Wenn echte Kooperationen entstehen, hier nachtragen.
   // ============================================================
-  partners: [
-    { name: "Partner A", logo: "/placeholder/partner-01.svg" }, // ⚠️ PLACEHOLDER
-    { name: "Partner B", logo: "/placeholder/partner-02.svg" }, // ⚠️ PLACEHOLDER
-    { name: "Partner C", logo: "/placeholder/partner-03.svg" }, // ⚠️ PLACEHOLDER
-    { name: "Partner D", logo: "/placeholder/partner-04.svg" }, // ⚠️ PLACEHOLDER
-    { name: "Partner E", logo: "/placeholder/partner-05.svg" }, // ⚠️ PLACEHOLDER
-    { name: "Partner F", logo: "/placeholder/partner-06.svg" }, // ⚠️ PLACEHOLDER
-  ],
+  partners: [] as Array<{ name: string; logo: string }>,
 
   // ============================================================
   // FONTS  🔒  (Clash Display + Switzer, locally hosted from Fontshare)

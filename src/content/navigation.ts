@@ -14,7 +14,7 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: "Über uns", href: "/ueber-uns" },
-  { label: "Referenzen", href: "/referenzen" },
+  { label: "Häufige Fragen", href: "/haeufige-fragen" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 

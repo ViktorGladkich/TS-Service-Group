@@ -17,6 +17,10 @@ const buttonVariants = cva(
           "bg-[var(--color-text)] text-[var(--color-bg)]",
           "hover:bg-[var(--color-metallic)]",
         ],
+        secondary: [
+          "bg-[var(--color-bg)] text-[var(--color-text)]",
+          "border border-[var(--color-border)]",
+        ],
         ghost: [
           "bg-transparent text-[var(--color-text)]",
           "hover:bg-[var(--color-elevated)]",
@@ -51,13 +55,35 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant = "primary", size, ...props }, ref) => {
+    // Determine sliding fill bg color and text hover based on variant
+    const isDarkVariant = variant === "primary" || variant === "metallic" || variant === "secondary";
+    const fillBgClass = isDarkVariant ? "bg-white" : "bg-[var(--color-text)]";
+    const textHoverClass = "group-hover:text-[var(--color-bg)]";
+
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          "group relative overflow-hidden",
+          buttonVariants({ variant, size, className })
+        )}
         ref={ref}
         {...props}
-      />
+      >
+        {/* Sliding background fill */}
+        <span className={cn(
+          "absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none",
+          fillBgClass
+        )} />
+        
+        {/* Content wrapper */}
+        <span className={cn(
+          "relative z-10 flex items-center justify-center gap-2 transition-colors duration-500",
+          textHoverClass
+        )}>
+          {props.children}
+        </span>
+      </button>
     );
   }
 );

@@ -28,20 +28,6 @@ export function TickerSection() {
         duration: 35, // Smooth, elegant speed
         repeat: -1,
       });
-
-      // Subtle 3D depth parallax: slide down and scale down slightly as it's covered
-      gsap.to(sectionRef.current, {
-        y: 60,
-        scale: 0.98,
-        opacity: 0.8,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "bottom bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -58,7 +44,7 @@ export function TickerSection() {
   return (
     <Section 
       ref={sectionRef}
-      className="relative z-10 overflow-hidden bg-bg py-16 md:py-24" 
+      className="relative z-10 overflow-hidden bg-bg my-12 md:my-16 lg:my-40 py-16 md:py-24" 
       id="ticker"
     >
       <div 

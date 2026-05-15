@@ -3,10 +3,11 @@
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight, Play, X } from "lucide-react";
 import { siteConfig } from "@/lib/site.config";
 import { cn } from "@/lib/cn";
 import gsap from "gsap";
+import { Button } from "@/components/ui/button";
 
 const Corner = ({ className }: { className?: string }) => (
   <svg
@@ -20,17 +21,19 @@ const Corner = ({ className }: { className?: string }) => (
 );
 
 const SLIDES = [
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2940&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2940&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2940&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2940&auto=format&fit=crop",
+  { src: "/images/hero-01.jpg", alt: "Professioneller Sicherheitsdienst – modernes Gebäude Dresden" },
+  { src: "/images/hero-02.jpg", alt: "Umzugservice – sorgfältig geplanter Privatumzug" },
+  { src: "/images/hero-03.jpg", alt: "Gebäudereinigung – makellose Büroflächen Dresden" },
 ];
 const SLIDE_DURATION = 5000; // ms
+const SHOWREEL_SRC = "/videos/hero-showreel.mp4";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Entrance animation with GSAP
   useEffect(() => {
@@ -54,6 +57,9 @@ export function HeroSection() {
       // 3. White layout panels sliding from corners
       tl.to(".hero-panel-tl", { opacity: 1, duration: 0.1 }, "-=1.2")
         .fromTo(".hero-panel-tl", { y: -50 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1.2")
+        
+        .to(".hero-panel-tc", { opacity: 1, duration: 0.1 }, "-=1.2")
+        .fromTo(".hero-panel-tc", { y: -50 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1.2")
         
         .to(".hero-panel-tr", { opacity: 1, duration: 0.1 }, "-=1.1")
         .fromTo(".hero-panel-tr", { y: -50 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1.1")
@@ -100,6 +106,32 @@ export function HeroSection() {
     };
   }, [currentSlide]);
 
+  // Video modal: ESC to close, lock body scroll, autoplay on open
+  useEffect(() => {
+    if (!videoOpen) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setVideoOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    // Best-effort autoplay
+    const v = videoRef.current;
+    if (v) {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+    }
+
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+      if (videoRef.current) videoRef.current.pause();
+    };
+  }, [videoOpen]);
+
   return (
     <section
       ref={sectionRef}
@@ -109,15 +141,22 @@ export function HeroSection() {
       <div className="relative w-full flex-1 overflow-hidden rounded-[32px] bg-bg">
 
         {/* Background Slides */}
-        {SLIDES.map((src, i) => (
+        {SLIDES.map((slide, i) => (
           <div
-            key={src}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
-            style={{
-              backgroundImage: `url('${src}')`,
-              opacity: i === currentSlide ? 0.6 : 0,
-            }}
-          />
+            key={slide.src}
+            className="absolute inset-0 transition-opacity duration-1000"
+            style={{ opacity: i === currentSlide ? 0.6 : 0 }}
+          >
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className="object-cover"
+              style={{ objectPosition: "62% center" }}
+            />
+          </div>
         ))}
         <div className="absolute inset-0 bg-linear-to-t from-bg via-black/40 to-bg/60" />
 
@@ -135,14 +174,20 @@ export function HeroSection() {
               <div className="overflow-hidden pb-2"><div className="hero-title-line">Bewegung.</div></div>
             </h1>
 
-            <div className="hero-video mt-10 flex items-center gap-5 opacity-0">
-              <button className="group flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white transition-all hover:bg-white hover:text-black">
-                <Play className="ml-1 h-5 w-5 fill-current" />
-              </button>
-              <span className="font-mono text-sm uppercase tracking-widest text-white">
+            <button
+              type="button"
+              onClick={() => setVideoOpen(true)}
+              aria-label="Showreel-Video abspielen"
+              className="hero-video group mt-10 flex items-center gap-5 opacity-0"
+            >
+              <span className="relative flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white transition-all duration-500 group-hover:bg-white group-hover:text-black group-hover:scale-110">
+                <span className="absolute inset-0 rounded-full border border-white/40 animate-ping opacity-60" />
+                <Play className="relative ml-1 h-5 w-5 fill-current" />
+              </span>
+              <span className="font-mono text-sm uppercase tracking-widest text-white/90 transition-colors group-hover:text-white">
                 Video ansehen
               </span>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -167,21 +212,20 @@ export function HeroSection() {
 
         {/* Bottom Right Card (Visible on Desktop) */}
         <div
-          className="hero-card-br absolute bottom-8 right-8 z-10 hidden w-[340px] rounded-[24px] border border-white/10 bg-white/5 p-6 opacity-0 backdrop-blur-md lg:block"
+          className="hero-card-br absolute bottom-8 right-8 z-10 hidden w-[360px] rounded-[2.5rem] border border-white/20 bg-white/10 p-8 opacity-0 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] lg:block pointer-events-auto"
         >
-          <p className="mb-2 font-mono text-xs uppercase tracking-[0.12em] text-white/50">
-            Dresden, Sachsen
+          <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-metallic-light font-medium">
+            [ Dresden, Sachsen ]
           </p>
           <p className="text-sm leading-relaxed text-white/80">
             Drei Geschäftsbereiche, ein Qualitätsanspruch. Verlässlich, diskret und präzise — seit{" "}
             {siteConfig.brand.foundedYear} in Dresden.
           </p>
-          <div className="mt-6">
-            <Link
-              href="/kontakt"
-              className="inline-flex w-full justify-center rounded-full border border-white/20 py-3 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black"
-            >
-              Leistungen entdecken
+          <div className="mt-6 pt-1">
+            <Link href="/kontakt">
+              <Button variant="secondary" size="md" className="w-full rounded-full font-mono uppercase tracking-wider text-xs border border-black shadow-lg">
+                Leistungen entdecken
+              </Button>
             </Link>
           </div>
         </div>
@@ -191,21 +235,10 @@ export function HeroSection() {
           WHITE OVERLAYS (DESKTOP ONLY)
           ============================================================ */}
 
-      {/* Top-Left Panel (Logo + Nav) */}
-      <div className="hero-panel-tl absolute left-6 top-6 z-50 hidden items-center gap-8 rounded-br-[32px] bg-metallic-light pb-5 pr-6 opacity-0 lg:flex">
+      {/* Top-Left Panel (Nav) */}
+      <div className="hero-panel-tl absolute left-6 top-6 z-50 hidden items-center gap-8 rounded-br-[32px] bg-metallic-light pb-5 pr-8 pl-8 pt-5 opacity-0 lg:flex">
         <Corner className="-right-8 top-0 rotate-180" />
         <Corner className="-bottom-8 left-0 rotate-180" />
-
-        <Link href="/" className="transition-transform hover:scale-105">
-          <Image
-            src="/images/screen4.png"
-            alt="TS Service Group Logo"
-            width={200}
-            height={60}
-            priority
-            className="h-14 w-auto rounded-xl object-contain"
-          />
-        </Link>
 
         <nav className="flex items-center gap-8 text-sm font-medium text-bg">
           <Link
@@ -220,10 +253,24 @@ export function HeroSection() {
           <Link href="/ueber-uns" className="text-black/60 transition-colors hover:text-black">
             Über uns
           </Link>
-          <Link href="/referenzen" className="text-black/60 transition-colors hover:text-black">
-            Referenzen
+          <Link href="/haeufige-fragen" className="text-black/60 transition-colors hover:text-black">
+            FAQ
           </Link>
         </nav>
+      </div>
+
+      {/* Top-Center Logo (Clean, transparent, no white box) */}
+      <div className="hero-panel-tc absolute left-1/2 top-5 z-50 hidden -translate-x-1/2 items-center justify-center opacity-0 lg:flex pointer-events-auto">
+        <Link href="/" className="transition-transform hover:scale-105">
+          <Image
+            src="/images/logo-white.png"
+            alt="TS Service Group Logo"
+            width={320}
+            height={90}
+            priority
+            className="h-16 md:h-20  scale-145 w-auto object-contain"
+          />
+        </Link>
       </div>
 
       {/* Top-Right Panel (Socials + CTA) */}
@@ -256,11 +303,15 @@ export function HeroSection() {
 
         <Link
           href="/kontakt"
-          className="flex h-12 items-center gap-3 rounded-full bg-bg pl-6 pr-2 text-sm font-medium text-white transition-colors hover:bg-black/80"
+          className="group relative flex h-12 items-center gap-3 rounded-full bg-bg pl-6 pr-2 text-sm font-medium text-white overflow-hidden border border-white/10"
         >
-          Anfragen
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
-            <ArrowUpRight className="h-4 w-4" />
+          <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none" />
+          
+          <span className="relative z-10 group-hover:text-bg transition-colors duration-500">
+            Anfragen
+          </span>
+          <div className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white text-black group-hover:bg-bg group-hover:text-white transition-colors duration-500">
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
           </div>
         </Link>
       </div>
@@ -301,6 +352,47 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* ============================================================
+          VIDEO LIGHTBOX MODAL
+          ============================================================ */}
+      {videoOpen && (
+        <div
+          onClick={() => setVideoOpen(false)}
+          className="hero-modal-backdrop fixed inset-0 z-[100] flex items-center justify-center bg-black/85 px-4 py-10 backdrop-blur-xl sm:px-8 lg:px-16"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Showreel Video"
+        >
+          <button
+            type="button"
+            onClick={() => setVideoOpen(false)}
+            aria-label="Video schließen"
+            className="absolute right-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md transition-all hover:scale-110 hover:bg-white hover:text-black lg:right-8 lg:top-8"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="hero-modal-frame relative w-full max-w-[1400px] overflow-hidden rounded-[24px] border border-white/10 bg-black shadow-[0_30px_120px_-20px_rgba(0,0,0,0.8)]"
+            style={{ aspectRatio: "16 / 9" }}
+          >
+            <video
+              ref={videoRef}
+              src={SHOWREEL_SRC}
+              className="h-full w-full object-cover"
+              controls
+              playsInline
+              preload="metadata"
+            />
+          </div>
+
+          <p className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 lg:text-xs">
+            ESC zum Schließen
+          </p>
+        </div>
+      )}
     </section>
   );
 }

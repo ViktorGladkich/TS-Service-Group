@@ -1,19 +1,21 @@
-import { Section } from "@/components/ui";
+import { KontaktHero } from "@/components/sections/kontakt-hero";
+import { KontaktForm } from "@/components/sections/kontakt-form";
+import { KontaktMap } from "@/components/sections/kontakt-map";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata = generatePageMetadata({
   title: "Kontakt",
   description:
-    "Nehmen Sie Kontakt mit der TS Service Group auf — Ihr Ansprechpartner für Sicherheitsdienst, Umzug und Reinigung in Dresden.",
+    "Sprechen Sie uns an — TS Service Group Dresden. Sicherheitsdienst, Umzugservice und Reinigung. Anfrage über das Formular oder direkt per Telefon.",
   path: "/kontakt",
 });
 
 export default function KontaktPage() {
   return (
-    <Section padding="hero">
-      <p className="eyebrow mb-4">Kontakt</p>
-      <h1 className="heading-1">Sprechen Sie uns an</h1>
-      {/* TODO: Contact form (RHF + Zod), OSM map, NAP */}
-    </Section>
+    <>
+      <KontaktHero />
+      <KontaktForm />
+      <KontaktMap />
+    </>
   );
 }

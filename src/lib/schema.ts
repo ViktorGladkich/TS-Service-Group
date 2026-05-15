@@ -57,7 +57,7 @@ export function generateOrganizationSchema(): WithContext<LocalBusiness> {
     ],
     openingHoursSpecification: contact.openingHours.map((hours) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: hours.days,
+      dayOfWeek: hours.days as any,
       opens: hours.opens,
       closes: hours.closes,
     })),

@@ -197,6 +197,28 @@ body {
 }
 
 /* ============================================================
+ * VIDEO MODAL ANIMATIONS
+ * ============================================================ */
+
+@keyframes hero-modal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes hero-modal-zoom {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.hero-modal-backdrop {
+  animation: hero-modal-fade 320ms ease-out;
+}
+
+.hero-modal-frame {
+  animation: hero-modal-zoom 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
  * SCROLLBAR (subtle, on-brand)
  * ============================================================ */
 

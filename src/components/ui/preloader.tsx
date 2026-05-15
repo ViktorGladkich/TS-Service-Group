@@ -134,9 +134,9 @@ export function Preloader({ onComplete }: PreloaderProps) {
     >
       {/* 3 Staggered Background Curtains */}
       <div className="absolute inset-0 flex w-full h-full z-0">
-        <div ref={el => { curtainsRef.current[0] = el; }} className="w-1/3 h-full bg-metallic-light" />
-        <div ref={el => { curtainsRef.current[1] = el; }} className="w-1/3 h-full bg-metallic-light" />
-        <div ref={el => { curtainsRef.current[2] = el; }} className="w-1/3 h-full bg-metallic-light" />
+        <div ref={el => { curtainsRef.current[0] = el; }} className="w-1/3 h-full bg-[#0a0a0a] border-r border-white/5" />
+        <div ref={el => { curtainsRef.current[1] = el; }} className="w-1/3 h-full bg-[#0a0a0a] border-r border-white/5" />
+        <div ref={el => { curtainsRef.current[2] = el; }} className="w-1/3 h-full bg-[#0a0a0a]" />
       </div>
 
       {/* Foreground Animation Container */}
@@ -145,7 +145,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
         {/* Step 0: Main Title */}
         <div 
           ref={textRef}
-          className="absolute flex space-x-1 md:space-x-3 font-display text-[5.5vw] sm:text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight text-bg whitespace-nowrap"
+          className="absolute flex space-x-1 md:space-x-3 font-display text-[5.5vw] sm:text-3xl md:text-5xl lg:text-7xl font-medium tracking-tight text-white whitespace-nowrap"
           style={{ transformStyle: "preserve-3d" }}
         >
           {text.split("").map((char, index) => {
@@ -166,24 +166,24 @@ export function Preloader({ onComplete }: PreloaderProps) {
         </div>
 
         {/* Flashing Services */}
-        <div ref={step1Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-bg tracking-tighter">
+        <div ref={step1Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-white tracking-tighter">
           SICHERHEIT
         </div>
-        <div ref={step2Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-bg tracking-tighter">
+        <div ref={step2Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-white tracking-tighter">
           UMZUGSERVICE
         </div>
-        <div ref={step3Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-bg tracking-tighter">
+        <div ref={step3Ref} className="absolute opacity-0 font-display text-[8vw] sm:text-5xl md:text-8xl font-medium text-white tracking-tighter">
           CLEANING
         </div>
 
         {/* Final Logo */}
         <div ref={logoRef} className="absolute opacity-0 flex items-center justify-center">
           <Image 
-            src="/images/screen4.png" 
+            src="/images/logo-white.png" 
             alt="TS Service Group" 
-            width={300} 
-            height={80} 
-            className="w-48 h-auto rounded-xl object-contain md:w-64"
+            width={480} 
+            height={160} 
+            className="w-72 h-auto object-contain md:w-96 scale-125 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
             priority
           />
         </div>

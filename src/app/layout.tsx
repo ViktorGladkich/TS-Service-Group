@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { clashDisplay, switzer } from "@/lib/fonts";
 import { generateOrganizationSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site.config";
-import { Header } from "@/components/layout";
+import { Header, Footer } from "@/components/layout";
 import { PageWrapper } from "@/components/ui/page-wrapper";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: siteConfig.seo.defaultTitle,
   description: siteConfig.seo.defaultDescription,
-  keywords: siteConfig.seo.keywords,
+  keywords: [...siteConfig.seo.keywords],
   metadataBase: new URL(siteConfig.seo.siteUrl),
   alternates: {
     canonical: "/",
@@ -61,7 +61,10 @@ export default function RootLayout({
       <body className="bg-bg text-text font-sans antialiased">
         <PageWrapper>
           <Header />
-          <main>{children}</main>
+          <main className="relative z-10 bg-bg min-h-screen shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            {children}
+          </main>
+          <Footer />
         </PageWrapper>
       </body>
     </html>

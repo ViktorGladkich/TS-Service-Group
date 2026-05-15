@@ -17,21 +17,21 @@ const SERVICES = [
     title: "SICHERHEIT",
     href: "/leistungen/sicherheitsdienst",
     description: "Professioneller Objektschutz und Veranstaltungssicherheit. Diskret, präzise und kompromisslos.",
-    image: "/images/service-security.png"
+    image: "/images/service-security.jpg"
   },
   {
     id: "02",
     title: "UMZUG",
     href: "/leistungen/umzugservice",
     description: "Reibungslose Privat- und Firmenumzüge. Wir bewegen Werte mit höchster Sorgfalt.",
-    image: "/images/service-moving.png"
+    image: "/images/service-moving.jpg"
   },
   {
     id: "03",
     title: "REINIGUNG",
     href: "/leistungen/reinigung",
     description: "Exzellente Gebäude- und Unterhaltsreinigung für makellose Repräsentation.",
-    image: "/images/service-cleaning.png"
+    image: "/images/service-cleaning.jpg"
   }
 ];
 
@@ -150,8 +150,9 @@ export function ServiceShowcase() {
                     src={service.image}
                     alt={service.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 720px"
                     className={cn(
-                      "object-cover transition-all duration-1200 ease-out",
+                      "object-cover object-center transition-all duration-1200 ease-out",
                       isHovered ? "scale-105 opacity-60 grayscale-0" : "scale-100 opacity-30 grayscale"
                     )}
                   />

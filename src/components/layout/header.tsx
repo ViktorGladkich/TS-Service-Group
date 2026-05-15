@@ -31,14 +31,21 @@ export function Header() {
           isHome && "max-lg:flex lg:hidden" // Show on mobile, hide on desktop where Hero has custom panels
         )}
       >
-        <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 lg:px-10">
+        <div className="mx-auto flex h-28 max-w-[1440px] items-center justify-between px-6 lg:px-10">
           {/* Logo */}
           <Link
             href="/"
             className="group transition-transform duration-300 hover:scale-105"
             aria-label="TS Service Group — Startseite"
           >
-            <Image src="/images/screen4.png" alt="TS Service Group" width={200} height={60} priority className="h-12 w-auto rounded-xl object-contain" />
+            <Image 
+              src="/images/logo-white.png" 
+              alt="TS Service Group" 
+              width={480} 
+              height={120} 
+              priority 
+              className="h-24 w-auto rounded-xl object-contain transition-opacity duration-300" 
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -69,12 +76,14 @@ export function Header() {
             <Link
               href="/kontakt"
               className={cn(
-                "hidden rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 lg:inline-flex",
-                "border border-border-hover text-text",
-                "hover:border-text hover:bg-text hover:text-bg"
+                "group relative hidden rounded-full px-6 py-2.5 text-sm font-medium lg:inline-flex overflow-hidden items-center justify-center",
+                "border border-border-hover text-text"
               )}
             >
-              Kontakt
+              <div className="absolute inset-0 bg-text translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none" />
+              <span className="relative z-10 group-hover:text-bg transition-colors duration-500">
+                Kontakt
+              </span>
             </Link>
 
             {/* Mobile hamburger */}
