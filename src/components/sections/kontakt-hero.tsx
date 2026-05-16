@@ -53,7 +53,7 @@ export function KontaktHero() {
       ref={sectionRef}
       className="relative overflow-hidden bg-bg"
     >
-      <div className="grid min-h-screen grid-cols-1 lg:grid-cols-12">
+      <div className="grid min-h-svh grid-cols-1 lg:grid-cols-12">
         {/* LEFT — text content */}
         <div className="relative flex flex-col justify-end px-6 pb-20 pt-44 md:px-12 md:pb-24 md:pt-56 lg:col-span-7 lg:pr-12 lg:pt-64">          <div className="space-y-10">
             <span

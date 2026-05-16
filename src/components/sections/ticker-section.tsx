@@ -44,10 +44,14 @@ export function TickerSection() {
   return (
     <Section
       ref={sectionRef}
-      className="relative z-20 overflow-hidden bg-bg -mt-24 md:-mt-40 lg:-mt-56 mb-12 md:mb-16 lg:mb-40 py-16 md:py-24"
+      className="relative z-10 overflow-hidden bg-bg my-12 md:my-16 lg:my-40 py-16 md:py-24"
       id="ticker"
     >
-      <div 
+      {/* Top hairline — gives the ticker a clear visual border so it reads
+          as a distinct strip, not as endless dark space between video & SC. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+      <div
         className="relative mx-auto flex w-full max-w-[100vw] items-center"
         ref={containerRef}
         onMouseEnter={handleMouseEnter}
@@ -79,6 +83,9 @@ export function TickerSection() {
           ))}
         </div>
       </div>
+
+      {/* Bottom hairline — symmetric with top, closes the ticker strip. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
     </Section>
   );
 }

@@ -60,6 +60,10 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  /* Reserve space for the scrollbar even when overflow is hidden
+     (during the preloader) so the page doesn't shift left by the
+     scrollbar width when the lock is released. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -69,6 +73,10 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   overflow-x: hidden;
+  /* Pair with the html rule above: when JS toggles body.overflow=hidden
+     during the preloader, browsers propagate that to the viewport. Keeping
+     the gutter reserved on body too means no shift when scroll is released. */
+  scrollbar-gutter: stable;
 }
 
 /* ---- Focus ring (on-brand metallic hairline) ---- */

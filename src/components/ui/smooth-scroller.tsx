@@ -7,6 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Mobile URL-bar show/hide resizes the visual viewport but not the layout
+// viewport. Without this, ScrollTrigger recalculates every pin/scrub on every
+// URL-bar toggle, causing visible jumps mid-scroll on iOS Safari & Chrome.
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 interface Props {
   children: React.ReactNode;
   enabled: boolean;

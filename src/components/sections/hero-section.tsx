@@ -140,10 +140,10 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex h-screen min-h-[750px] flex-col overflow-hidden bg-metallic-light p-4 font-sans lg:p-6"
+      className="relative flex h-svh min-h-[600px] flex-col overflow-hidden bg-metallic-light font-sans md:min-h-[700px] lg:min-h-[750px] lg:p-6"
     >
-      {/* Inner Dark Container */}
-      <div className="relative w-full flex-1 overflow-hidden rounded-[32px] bg-bg">
+      {/* Inner Dark Container — full-bleed on mobile, framed on desktop */}
+      <div className="relative w-full flex-1 overflow-hidden bg-bg lg:rounded-[32px]">
 
         {/* Background Slides */}
         {SLIDES.map((slide, i) => (
@@ -156,7 +156,7 @@ export function HeroSection() {
               src={slide.src}
               alt={slide.alt}
               fill
-              priority={i === 0}
+              priority={true}
               sizes="100vw"
               className="object-cover"
               style={{ objectPosition: "62% center" }}
@@ -227,10 +227,12 @@ export function HeroSection() {
             {siteConfig.brand.foundedYear} in Dresden.
           </p>
           <div className="mt-6 pt-1">
-            <Link href="/kontakt">
-              <Button variant="secondary" size="md" className="w-full rounded-full font-mono uppercase tracking-wider text-xs border border-black shadow-lg">
-                Leistungen entdecken
-              </Button>
+            <Link
+              href="/kontakt"
+              className="group relative flex h-11 w-full items-center justify-center overflow-hidden rounded-full border border-black/20 bg-metallic-light font-mono text-xs font-medium uppercase tracking-wider text-bg shadow-lg transition-colors duration-500 hover:text-white"
+            >
+              <span className="pointer-events-none absolute inset-0 translate-y-full bg-black transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0" />
+              <span className="relative z-10">Leistungen entdecken</span>
             </Link>
           </div>
         </div>

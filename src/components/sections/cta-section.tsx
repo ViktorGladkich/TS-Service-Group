@@ -73,7 +73,7 @@ export function CtaSection() {
     <Section
       ref={containerRef}
       container={false}
-      className="relative z-30 mt-12 md:mt-1 w-full h-screen min-h-[700px] overflow-hidden bg-bg  py-4 lg:py-6"
+      className="relative z-30 mt-12 md:mt-1 w-full h-svh min-h-[700px] overflow-hidden bg-bg  py-4 lg:py-6"
       id="cta"
       
     >

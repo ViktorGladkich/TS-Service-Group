@@ -72,7 +72,8 @@ function useBentoAnimations(
 const SCOOP_BR = "M0 0V32C0 14.3269 14.3269 0 32 0H0Z";
 const SCOOP_TL = "M32 0V32H0C14.3269 32 32 14.3269 32 0Z";
 
-// AVATARS entfernt — keine erfundenen "Kundenbilder" für eine neu gegründete Firma.
+const METALLIC_GRADIENT =
+  "linear-gradient(135deg, #EDEDED 0%, #B5B5B5 50%, #8A8A8A 100%)";
 
 const PILLS = ["Sicherheit", "Umzug", "Reinigung", "Inhabergeführt"];
 
@@ -80,7 +81,7 @@ const PILLS = ["Sicherheit", "Umzug", "Reinigung", "Inhabergeführt"];
 
 export function BentoSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  
+
   const headlineRef = useRef<HTMLDivElement>(null);
   const topRightRef = useRef<HTMLAnchorElement>(null);
   const leftTallRef = useRef<HTMLAnchorElement>(null);
@@ -100,34 +101,205 @@ export function BentoSection() {
   });
 
   return (
-    <section ref={sectionRef} className="bg-bg py-24 px-4 md:px-8 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 auto-rows-[240px] md:auto-rows-[280px]">
+    <section
+      ref={sectionRef}
+      className="overflow-hidden bg-bg px-4 py-16 md:px-8 md:py-24"
+    >
+      <div className="mx-auto max-w-[1400px]">
+
+        {/* ════════════════════════════════════════════════════════════
+            MOBILE LAYOUT (< lg) — clean editorial stack, no rigid grid
+            ════════════════════════════════════════════════════════════ */}
+        <div className="flex flex-col gap-4 lg:hidden">
+
+          {/* Headline block */}
+          <div
+            ref={headlineRef}
+            className="bento-mobile-item flex flex-col gap-4 px-1 pt-2 pb-4"
+          >
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
+              [ Premium · Inhabergeführt ]
+            </span>
+            <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-[-0.02em] text-text sm:text-5xl">
+              Premium-Lösungen<br />
+              <span className="text-text-muted">für höchste Ansprüche.</span>
+            </h2>
+          </div>
+
+          {/* Security card — image + bottom glass strip */}
+          <Link
+            href="/leistungen/sicherheitsdienst"
+            className="bento-mobile-item group relative block aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/[0.06] sm:aspect-[5/4]"
+          >
+            <Image
+              src="/images/bento-security.jpg"
+              alt="Sicherheitsdienst — Objektschutz"
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+
+            {/* Eyebrow chip */}
+            <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white backdrop-blur-md">
+              <span className="h-1 w-1 rounded-full bg-metallic-light" />
+              01 · Sicherheit
+            </div>
+
+            {/* Bottom content */}
+            <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
+              <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-white sm:text-3xl">
+                Ihre Sicherheit.<br />Garantiert.
+              </h3>
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-md transition-all group-hover:bg-white group-hover:text-bg">
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+              </span>
+            </div>
+          </Link>
+
+          {/* Two-up: 100% stat + Direct-to-owner */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bento-mobile-item flex flex-col justify-between rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-5">
+              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-text-subtle">
+                [ Anspruch ]
+              </span>
+              <div className="flex flex-col gap-2">
+                <span
+                  className="font-display text-5xl font-medium leading-none tracking-[-0.04em] sm:text-6xl"
+                  style={{
+                    background: METALLIC_GRADIENT,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  100%
+                </span>
+                <span className="text-xs leading-relaxed text-text-muted">
+                  Zuverlässig · Transparent
+                </span>
+              </div>
+            </div>
+
+            <Link
+              href="/kontakt"
+              className="bento-mobile-item group relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-5"
+            >
+              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-text-subtle">
+                [ Direkt zum Inhaber ]
+              </span>
+              <div className="flex items-end justify-between gap-3">
+                <h4 className="font-display text-xl font-medium leading-tight tracking-tight text-text sm:text-2xl">
+                  Persönlich.<br />Verbindlich.
+                </h4>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-bg text-white transition-all group-hover:bg-white group-hover:text-bg">
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+                </span>
+              </div>
+            </Link>
+          </div>
+
+          {/* Premium service card */}
+          <Link
+            href="/kontakt"
+            className="bento-mobile-item group relative block overflow-hidden rounded-[2rem] border border-white/[0.06] bg-white/[0.03] p-6"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-3">
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
+                  [ Premium-Service ]
+                </span>
+                <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-text sm:text-3xl">
+                  Den perfekten<br />Service zusammenstellen.
+                </h3>
+              </div>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-bg text-white transition-all group-hover:bg-white group-hover:text-bg">
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+              </span>
+            </div>
+
+            <p className="mt-4 text-sm leading-relaxed text-text-muted">
+              Beantworten Sie ein paar kurze Fragen — wir melden uns mit einem
+              maßgeschneiderten Vorschlag.
+            </p>
+
+            <div className="relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-2xl">
+              <Image
+                src="/images/bento-premium.jpg"
+                alt="Premium Service — Werkzeuge und Sorgfalt"
+                fill
+                sizes="(min-width: 1024px) 1px, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+          </Link>
+
+          {/* Interior signature card */}
+          <div className="bento-mobile-item relative overflow-hidden rounded-[2rem]">
+            <div className="relative aspect-[4/5] w-full">
+              <Image
+                src="/images/bento-interior.jpg"
+                alt="Saubere, sichere Räume — minimalistisches Interieur"
+                fill
+                sizes="(min-width: 1024px) 1px, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
+            </div>
+
+            {/* Floating glass label */}
+            <div className="absolute inset-x-5 top-5 flex items-center gap-2 self-start rounded-full border border-white/20 bg-white/10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white backdrop-blur-md w-fit">
+              <span className="h-1 w-1 rounded-full bg-metallic-light" />
+              Räume mit Standard
+            </div>
+
+            {/* Bottom block with pills + headline */}
+            <div className="absolute inset-x-5 bottom-5 space-y-4">
+              <div className="flex flex-wrap gap-1.5">
+                {PILLS.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-white backdrop-blur-md"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h4 className="max-w-[18ch] font-display text-xl font-medium leading-tight tracking-tight text-white sm:text-2xl">
+                Wir schaffen sichere und saubere Räume für Sie.
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        {/* ════════════════════════════════════════════════════════════
+            DESKTOP LAYOUT (≥ lg) — original bento, untouched
+            ════════════════════════════════════════════════════════════ */}
+        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-5 lg:auto-rows-[280px]">
 
           {/* ── ROW 1: Headline ── */}
-          <div ref={headlineRef} className="bento-mobile-item col-span-1 lg:col-span-7 row-span-1 flex flex-col justify-center p-4 lg:p-8">
+          <div ref={headlineRef} className="lg:col-span-7 row-span-1 flex flex-col justify-center p-4 lg:p-8">
             <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl text-white font-medium leading-tight tracking-tight mb-4">
               Wir bieten Premium-Lösungen <br className="hidden md:block" />für höchste Ansprüche.
             </h2>
           </div>
 
           {/* ── ROW 1: Security Card ── */}
-          <Link 
+          <Link
             href="/leistungen/sicherheitsdienst"
-            ref={topRightRef} 
-            className="bento-mobile-item col-span-1 lg:col-span-5 row-span-1 rounded-4xl overflow-hidden relative group cursor-pointer border border-white/5"
+            ref={topRightRef}
+            className="lg:col-span-5 row-span-1 rounded-4xl overflow-hidden relative group cursor-pointer border border-white/5"
           >
             <Image
               src="/images/bento-security.jpg"
               alt="Sicherheitsdienst — Objektschutz"
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+              sizes="(max-width: 1024px) 50vw, 600px"
               className="object-cover scale-135 translate-x-[-20%] translate-y-[15%] transition-transform duration-700"
             />
             {/* Apple Glass Overlay on the right */}
             <div className="absolute inset-y-0 right-0 w-full sm:w-1/2 flex flex-col justify-center p-8 bg-white/10 backdrop-blur-2xl border-l border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] rounded-4xl">
               <div className="absolute top-6 right-6 w-10 h-10 bg-bg rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 shadow-lg z-10 border border-white/10">
-                {/* Sliding background fill */}
                 <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
                 <ArrowUpRight className="relative z-10 text-white group-hover:text-bg w-5 h-5 transition-all duration-500 group-hover:rotate-45" />
               </div>
@@ -138,10 +310,10 @@ export function BentoSection() {
           </Link>
 
           {/* ── ROW 2-3: Left Tall Card ── */}
-          <Link 
+          <Link
             href="/kontakt"
-            ref={leftTallRef} 
-            className="bento-mobile-item col-span-1 lg:col-span-4 lg:row-span-2 bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] rounded-4xl p-8 flex flex-col relative group cursor-pointer"
+            ref={leftTallRef}
+            className="lg:col-span-4 lg:row-span-2 bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] rounded-4xl p-8 flex flex-col relative group cursor-pointer"
           >
             <div className="absolute top-8 right-8 w-10 h-10 bg-bg rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 shadow-lg z-10 border border-white/10">
               <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
@@ -154,25 +326,25 @@ export function BentoSection() {
                 src="/images/bento-premium.jpg"
                 alt="Premium Service — Werkzeuge und Sorgfalt"
                 fill
-                sizes="(max-width: 1024px) 100vw, 466px"
+                sizes="466px"
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
             </div>
           </Link>
 
           {/* ── ROW 2-3: Right Large Card with L-shape cutout ── */}
-          <div ref={rightLargeRef} className="bento-mobile-item col-span-1 lg:col-span-8 lg:row-span-2 relative rounded-4xl overflow-hidden min-h-[500px] lg:min-h-0">
+          <div ref={rightLargeRef} className="lg:col-span-8 lg:row-span-2 relative rounded-4xl overflow-hidden">
             <Image
               src="/images/bento-interior.jpg"
               alt="Saubere, sichere Räume — minimalistisches Interieur"
               fill
-              sizes="(max-width: 1024px) 100vw, 933px"
+              sizes="933px"
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-linear-to-t from-bg/70 via-bg/20 to-transparent pointer-events-none" />
 
             {/* L-Shape Cutout (desktop) */}
-            <div ref={statRef} className="hidden lg:block absolute top-0 left-0 bg-bg z-10" style={{ width: "calc(45% + 0.625rem)", height: "calc(40% + 0.625rem)", borderBottomRightRadius: "2rem" }}>
+            <div ref={statRef} className="absolute top-0 left-0 bg-bg z-10" style={{ width: "calc(45% + 0.625rem)", height: "calc(40% + 0.625rem)", borderBottomRightRadius: "2rem" }}>
               <Scoop className="absolute top-0 -right-8 w-8 h-8" fill="#0A0A0A" path={SCOOP_BR} />
               <Scoop className="absolute -bottom-8 left-0 w-8 h-8" fill="#0A0A0A" path={SCOOP_BR} />
               <div className="absolute inset-0 right-5 bottom-5 bg-white/10 backdrop-blur-2xl rounded-4xl p-8 flex flex-col justify-center border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
@@ -181,19 +353,13 @@ export function BentoSection() {
               </div>
             </div>
 
-            {/* Mobile fallback */}
-            <div className="block lg:hidden bg-white/10 backdrop-blur-2xl p-8 m-4 rounded-3xl relative z-20 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
-              <h3 className="text-4xl font-display font-semibold text-white mb-2">100%</h3>
-              <p className="text-gray-400 text-sm">Zuverlässigkeit und Transparenz bei jedem Serviceeinsatz.</p>
-            </div>
-
             {/* Floating content */}
-            <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-between z-20 pointer-events-none">
+            <div className="absolute inset-0 p-8 flex flex-col justify-between z-20 pointer-events-none">
               {/* Owner-direct glass card */}
               <Link
                 href="/kontakt"
                 ref={glassRef}
-                className="self-end bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-6 w-[calc(100%-2rem)] lg:w-auto max-w-[18rem] pointer-events-auto shadow-2xl group/glass"
+                className="self-end bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-6 w-auto max-w-[18rem] pointer-events-auto shadow-2xl group/glass"
               >
                 <div className="flex justify-between items-start mb-3">
                   <h4 className="font-display text-2xl font-semibold text-white tracking-tight leading-tight">Direkt zum<br />Inhaber.</h4>

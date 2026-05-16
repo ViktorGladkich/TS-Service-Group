@@ -49,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${clashDisplay.variable} ${switzer.variable}`}>
+    <html lang="de" data-scroll-behavior="smooth" className={`${clashDisplay.variable} ${switzer.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -61,7 +61,7 @@ export default function RootLayout({
       <body className="bg-bg text-text font-sans antialiased">
         <PageWrapper>
           <Header />
-          <main className="relative z-10 bg-bg min-h-screen shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          <main className="relative z-10 bg-bg min-h-svh shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             {children}
           </main>
           <Footer />

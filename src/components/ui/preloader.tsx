@@ -69,23 +69,43 @@ export function Preloader({ onComplete }: PreloaderProps) {
       };
 
       const eyebrowWords = wrapWords(".preloader-eyebrow");
-      const titleWords = wrapWords(".preloader-title");
+      const cycleWords = gsap.utils.toArray<HTMLElement>(".preloader-word-cycle");
 
       const tl = gsap.timeline({
         defaults: { ease: "hop" },
         onComplete,
       });
 
-      tl
-        // 1. Eyebrow rises
-        .to(eyebrowWords, { y: "0%", duration: 0.7, stagger: 0.04 }, 0.3)
-        // 2. Title rises shortly after
-        .to(titleWords, { y: "0%", duration: 0.8, stagger: 0.06 }, 0.5)
-        // 3. Copy fades after a hold
-        .to(copyRef.current, { opacity: 0, duration: 0.4 }, 2.0)
-        // 4. Curtain split — top slides up, bottom slides down
-        .to(topHalfRef.current, { yPercent: -100, duration: 1.2 }, 2.55)
-        .to(bottomHalfRef.current, { yPercent: 100, duration: 1.2 }, 2.55);
+      // 1. Eyebrow rises
+      tl.to(eyebrowWords, { y: "0%", duration: 0.6, stagger: 0.04 }, 0.2);
+
+      // 2. Fast sequential word cycle without overlap
+      cycleWords.forEach((word, index) => {
+        const CYCLE_DURATION = 0.75; // 0.35 in + 0.15 hold + 0.25 out
+        const startTime = 0.4 + index * CYCLE_DURATION;
+        
+        // fade in & slide up
+        tl.fromTo(word, 
+          { opacity: 0, y: 20 }, 
+          { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 
+          startTime
+        );
+        
+        // fade out & slide up (except last word which stays until copy fade)
+        if (index < cycleWords.length - 1) {
+          tl.to(word, 
+            { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, 
+            startTime + 0.5 // 0.35 in + 0.15 hold
+          );
+        }
+      });
+
+      // 3. Copy fades after a hold
+      tl.to(copyRef.current, { opacity: 0, duration: 0.4 }, 2.4);
+
+      // 4. Curtain split — top slides up, bottom slides down
+      tl.to(topHalfRef.current, { yPercent: -100, duration: 1.2 }, 2.7)
+        .to(bottomHalfRef.current, { yPercent: 100, duration: 1.2 }, 2.7);
     }, rootRef);
 
     return () => ctx.revert();
@@ -120,12 +140,21 @@ export function Preloader({ onComplete }: PreloaderProps) {
           <p className="preloader-eyebrow font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/55 mb-5">
             TS Service Group · Dresden
           </p>
-          <h1
-            className="preloader-title font-display text-white uppercase font-medium leading-[0.95] tracking-[-0.04em]"
-            style={{ fontSize: "clamp(2.2rem, 4.5vw + 0.5rem, 4.5rem)" }}
-          >
-            Sicherheit. Sauberkeit. Bewegung.
-          </h1>
+          <div className="relative flex items-center justify-center overflow-visible">
+            {/* Invisible placeholder for container height */}
+            <span className="invisible font-display uppercase font-medium leading-[0.95] tracking-[-0.04em] pointer-events-none" style={{ fontSize: "clamp(2.2rem, 4.5vw + 0.5rem, 4.5rem)" }}>
+              Sicherheit.
+            </span>
+            <span className="preloader-word-cycle absolute opacity-0 font-display text-white uppercase font-medium leading-[0.95] tracking-[-0.04em]" style={{ fontSize: "clamp(2.2rem, 4.5vw + 0.5rem, 4.5rem)" }}>
+              Sicherheit.
+            </span>
+            <span className="preloader-word-cycle absolute opacity-0 font-display text-white uppercase font-medium leading-[0.95] tracking-[-0.04em]" style={{ fontSize: "clamp(2.2rem, 4.5vw + 0.5rem, 4.5rem)" }}>
+              Sauberkeit.
+            </span>
+            <span className="preloader-word-cycle absolute opacity-0 font-display text-white uppercase font-medium leading-[0.95] tracking-[-0.04em]" style={{ fontSize: "clamp(2.2rem, 4.5vw + 0.5rem, 4.5rem)" }}>
+              Bewegung.
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -78,22 +78,12 @@ export function ServiceShowcase() {
           "-=0.8"
         );
 
-        // Desktop-only overlay parallax: slide up on top of ticker
-        if (isDesktop) {
-          gsap.fromTo(sectionRef.current,
-            { y: 140 },
-            {
-              y: -80,
-              ease: "none",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top bottom",
-                end: "top top",
-                scrub: true,
-              }
-            }
-          );
-        }
+        // (Previously had a y:140 → -80 parallax that slid SC up faster than
+        // the page. With the showreel pin + ticker naezd this caused SC to
+        // overtake ticker from below — visually shrinking ticker and giving
+        // the illusion that ticker was sliding downward. Removed in favor
+        // of the ticker-over-video effect.)
+        void isDesktop;
       }, containerRef);
 
       return () => ctx.revert();

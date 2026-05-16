@@ -62,7 +62,7 @@ export function UeberUnsHero() {
       ref={sectionRef}
       className="relative overflow-hidden bg-bg"
     >
-      <div className="grid min-h-screen grid-cols-1 lg:grid-cols-12">
+      <div className="grid min-h-svh grid-cols-1 lg:grid-cols-12">
         {/* LEFT — text content */}
         <div className="relative flex flex-col justify-end px-6 pb-20 pt-44 md:px-12 md:pb-24 md:pt-56 lg:col-span-7 lg:pr-12 lg:pt-64">
           <div className="space-y-10">
@@ -113,7 +113,7 @@ export function UeberUnsHero() {
         </div>
 
         {/* RIGHT — full-bleed hero image */}
-        <div className="relative min-h-[60vh] overflow-hidden lg:col-span-5 lg:min-h-screen">
+        <div className="relative min-h-[60svh] overflow-hidden lg:col-span-5 lg:min-h-svh">
           <div
             ref={imageWrapperRef}
             className="absolute inset-0"

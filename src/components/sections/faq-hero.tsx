@@ -44,7 +44,7 @@ export function FaqHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col justify-end overflow-hidden bg-bg pb-20 pt-44 md:pb-24 md:pt-56 lg:pt-64"
+      className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-bg pb-20 pt-44 md:pb-24 md:pt-56 lg:pt-64"
     >
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
         <div className="grid grid-cols-1 items-end gap-12 lg:grid-cols-12 lg:gap-20">

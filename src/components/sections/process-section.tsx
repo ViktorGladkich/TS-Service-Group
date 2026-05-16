@@ -260,7 +260,7 @@ export function ProcessSection() {
           ============================================================ */}
       <div
         ref={pinTargetRef}
-        className="relative hidden h-screen w-full overflow-hidden lg:block"
+        className="relative hidden h-svh w-full overflow-hidden lg:block"
         style={{
           willChange: "transform",
           transform: "translateZ(0)",

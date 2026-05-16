@@ -191,7 +191,7 @@ export function AboutSection() {
       </section>
 
       {/* ── SECTION 1: FIRST TEXT REVEAL ── */}
-      <section className="relative flex h-screen w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
+      <section className="relative flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
         <div className="relative mx-auto w-full max-w-5xl">
           <h2
             ref={text1Ref}
@@ -218,14 +218,14 @@ export function AboutSection() {
       {/* ── SECTION 2: PINNED "WARUM WIR?" + PARALLAX IMAGE STRIP BEHIND ── */}
       <section
         ref={servicesRef}
-        className="bg-bg relative z-20 flex h-screen w-full flex-col items-center justify-center overflow-hidden"
+        className="bg-bg relative z-20 flex h-svh w-full flex-col items-center justify-center overflow-hidden"
       >
         {/* Parallax image strip — sits behind the text, travels bottom→top during pin */}
         <div
           ref={parallaxRef}
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 z-0 flex flex-col items-center gap-[40vh] will-change-transform"
-          style={{ transform: "translateY(100vh)" }}
+          style={{ transform: "translateY(100svh)" }}
         >
           <figure className="relative aspect-[3/4] w-[220px] overflow-hidden rounded-[28px] border border-white/10 shadow-2xl sm:w-[300px] lg:ml-[18vw] lg:w-[380px] lg:self-auto">
             <Image
@@ -292,7 +292,7 @@ export function AboutSection() {
       </section>
 
       {/* ── SECTION 3: SECOND TEXT REVEAL (Overlapping via mount offset margin) ── */}
-      <section className="bg-bg relative z-30 mt-[152vh] flex h-screen w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
+      <section className="bg-bg relative z-30 mt-[152svh] flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
         <div className="relative mx-auto w-full max-w-5xl">
           <h2
             ref={text2Ref}
