@@ -67,7 +67,12 @@ export function LeistungenHero() {
             <h1 className="font-display font-medium leading-[0.92] tracking-tight text-text text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(5rem,8.5vw,10rem)]">
               <span className="block overflow-hidden">
                 <span className="leistungen-title-line block">
-                  Drei Disziplinen.
+                  Drei
+                </span>
+              </span>
+              <span className="block overflow-hidden">
+                <span className="leistungen-title-line block">
+                  Disziplinen.
                 </span>
               </span>
               <span className="block overflow-hidden">

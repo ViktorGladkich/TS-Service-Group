@@ -34,11 +34,6 @@ export function KontaktHero() {
         "-=0.9"
       );
       tl.to(
-        descRef.current,
-        { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
-        "-=0.9"
-      );
-      tl.to(
         ".kontakt-card-row",
         { y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: "power3.out" },
         "-=1.0"

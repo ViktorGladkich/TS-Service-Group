@@ -42,9 +42,9 @@ export function TickerSection() {
   };
 
   return (
-    <Section 
+    <Section
       ref={sectionRef}
-      className="relative z-10 overflow-hidden bg-bg my-12 md:my-16 lg:my-40 py-16 md:py-24" 
+      className="relative z-20 overflow-hidden bg-bg -mt-24 md:-mt-40 lg:-mt-56 mb-12 md:mb-16 lg:mb-40 py-16 md:py-24"
       id="ticker"
     >
       <div 

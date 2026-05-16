@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/site.config";
 import { cn } from "@/lib/cn";
 import gsap from "gsap";
 import { Button } from "@/components/ui/button";
+import { isPreloaderDone } from "@/lib/preloader-flag";
 
 const Corner = ({ className }: { className?: string }) => (
   <svg
@@ -38,44 +39,48 @@ export function HeroSection() {
   // Entrance animation with GSAP
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Increased delay to ensure preloader is completely gone before animation starts
-      const tl = gsap.timeline({ delay: 3.8 });
+      // First-load: preloader covers ~3.75s and ends with a curtain split.
+      // Start the hero entrance right as the curtain begins to part so the
+      // content is already moving into place by the time the page is fully
+      // revealed — feels much snappier than waiting for the curtain to end.
+      const heroDelay = isPreloaderDone() ? 0.1 : 2.7;
+      const tl = gsap.timeline({ delay: heroDelay });
 
       // 1. Reveal inner dark container
       tl.fromTo(sectionRef.current,
         { scale: 0.96, borderRadius: "64px" },
-        { scale: 1, borderRadius: "0px", duration: 1.8, ease: "power3.inOut" }
+        { scale: 1, borderRadius: "0px", duration: 1.1, ease: "power3.inOut" }
       );
 
       // 2. Main title text - split lines staggering up
       tl.fromTo(".hero-title-line",
         { yPercent: 120 },
-        { yPercent: 0, duration: 1.4, stagger: 0.2, ease: "power4.out" },
-        "-=0.8"
+        { yPercent: 0, duration: 0.9, stagger: 0.12, ease: "power4.out" },
+        "-=0.7"
       );
 
-      // 3. White layout panels sliding from corners
-      tl.to(".hero-panel-tl", { opacity: 1, duration: 0.1 }, "-=1.2")
-        .fromTo(".hero-panel-tl", { y: -50 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1.2")
-        
-        .to(".hero-panel-tc", { opacity: 1, duration: 0.1 }, "-=1.2")
-        .fromTo(".hero-panel-tc", { y: -50 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1.2")
-        
-        .to(".hero-panel-tr", { opacity: 1, duration: 0.1 }, "-=1.1")
-        .fromTo(".hero-panel-tr", { y: -50 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1.1")
-        
-        .to(".hero-panel-bl", { opacity: 1, duration: 0.1 }, "-=1.1")
-        .fromTo(".hero-panel-bl", { x: -50 }, { x: 0, duration: 1.2, ease: "power3.out" }, "-=1.1");
+      // 3. White layout panels sliding from corners (run in parallel)
+      tl.to(".hero-panel-tl", { opacity: 1, duration: 0.05 }, "-=0.8")
+        .fromTo(".hero-panel-tl", { y: -50 }, { y: 0, duration: 0.8, ease: "power3.out" }, "-=0.8")
 
-      // 4. Secondary floating elements fade & slide in
-      tl.to(".hero-video", { opacity: 1, duration: 0.1 }, "-=1")
-        .fromTo(".hero-video", { y: 30 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1")
-        
-        .to(".hero-progress", { opacity: 1, duration: 0.1 }, "-=1")
-        .fromTo(".hero-progress", { x: 30 }, { x: 0, duration: 1.2, ease: "power3.out" }, "-=1")
-        
-        .to(".hero-card-br", { opacity: 1, duration: 0.1 }, "-=1")
-        .fromTo(".hero-card-br", { y: 30 }, { y: 0, duration: 1.2, ease: "power3.out" }, "-=1");
+        .to(".hero-panel-tc", { opacity: 1, duration: 0.05 }, "-=0.8")
+        .fromTo(".hero-panel-tc", { y: -50 }, { y: 0, duration: 0.8, ease: "power3.out" }, "-=0.8")
+
+        .to(".hero-panel-tr", { opacity: 1, duration: 0.05 }, "-=0.75")
+        .fromTo(".hero-panel-tr", { y: -50 }, { y: 0, duration: 0.8, ease: "power3.out" }, "-=0.75")
+
+        .to(".hero-panel-bl", { opacity: 1, duration: 0.05 }, "-=0.75")
+        .fromTo(".hero-panel-bl", { x: -50 }, { x: 0, duration: 0.8, ease: "power3.out" }, "-=0.75");
+
+      // 4. Secondary floating elements fade & slide in (overlap heavily)
+      tl.to(".hero-video", { opacity: 1, duration: 0.05 }, "-=0.7")
+        .fromTo(".hero-video", { y: 30 }, { y: 0, duration: 0.7, ease: "power3.out" }, "-=0.7")
+
+        .to(".hero-progress", { opacity: 1, duration: 0.05 }, "-=0.7")
+        .fromTo(".hero-progress", { x: 30 }, { x: 0, duration: 0.7, ease: "power3.out" }, "-=0.7")
+
+        .to(".hero-card-br", { opacity: 1, duration: 0.05 }, "-=0.7")
+        .fromTo(".hero-card-br", { y: 30 }, { y: 0, duration: 0.7, ease: "power3.out" }, "-=0.7");
 
     }, sectionRef);
 

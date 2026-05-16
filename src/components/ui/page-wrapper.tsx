@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Preloader } from "@/components/ui/preloader";
 import { SmoothScroller } from "@/components/ui/smooth-scroller";
 import { PageTransitionProvider } from "@/components/ui/page-transition";
+import { markPreloaderDone } from "@/lib/preloader-flag";
 
 export function PageWrapper({ children }: { children: React.ReactNode }) {
   const [preloaderDone, setPreloaderDone] = useState(false);
@@ -18,6 +19,7 @@ export function PageWrapper({ children }: { children: React.ReactNode }) {
 
   const handleComplete = () => {
     document.body.style.overflow = "";
+    markPreloaderDone(); // module-level flag so re-mounted Hero can skip the 3.8s wait
     setPreloaderDone(true);
   };
 
@@ -26,12 +28,12 @@ export function PageWrapper({ children }: { children: React.ReactNode }) {
     <PageTransitionProvider>
       {!preloaderDone && <Preloader onComplete={handleComplete} />}
 
-      {/* Lenis initializes only after preloader exits to avoid conflicting with scroll lock */}
+      {/* Lenis initializes only after preloader exits to avoid conflicting with scroll lock.
+          Content stays visible (opacity:1) so the preloader's curtain split reveals
+          the page beneath it. Pointer events stay off until the preloader finishes. */}
       <SmoothScroller enabled={preloaderDone}>
         <div
           style={{
-            opacity: preloaderDone ? 1 : 0,
-            transition: "opacity 0.5s ease 0.1s",
             pointerEvents: preloaderDone ? "auto" : "none",
           }}
         >

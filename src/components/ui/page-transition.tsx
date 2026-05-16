@@ -16,24 +16,21 @@ const TransitionContext = createContext<NavigateFn>(() => {});
 export const usePageTransition = () => useContext(TransitionContext);
 
 /**
- * Page transition — "Cinematic Split"
+ * Page transition — "Slice Revealer"
  *
  * Click a link →
- *   1. Two dark panels meet in the center from left and right.
- *   2. The brand logo pops up in the center briefly.
- *   3. router.push fires while screen is covered.
- *   4. On pathname change, the panels separate to reveal the new page.
+ *   1. 5 vertical slices stagger in from the top to cover the screen.
+ *   2. router.push fires while screen is covered.
+ *   3. On pathname change, the slices stagger out to the bottom.
  */
 
-const COVER_DURATION = 0.5;
-const HOLD = 0.2;
-const REVEAL_DURATION = 0.5;
+const SLICES_COUNT = 5;
+const SLICE_DURATION = 0.6;
+const SLICE_STAGGER = 0.05;
+const HOLD = 0.05;
 
 export function PageTransitionProvider({ children }: PropsWithChildren) {
-  const leftCurtainRef = useRef<HTMLDivElement>(null);
-  const rightCurtainRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
+  const slicesRef = useRef<(HTMLDivElement | null)[]>([]);
   const router = useRouter();
   const pathname = usePathname();
   const isInitial = useRef(true);
@@ -53,32 +50,13 @@ export function PageTransitionProvider({ children }: PropsWithChildren) {
       },
     });
 
-    // Fade out logo and line first
-    tl.to(logoRef.current, {
-      opacity: 0,
-      scale: 0.8,
-      duration: 0.2,
-      ease: "power2.in",
+    // Split curtains (Slice Reveal to bottom)
+    tl.to(slicesRef.current, {
+      y: "100%",
+      duration: SLICE_DURATION,
+      stagger: SLICE_STAGGER,
+      ease: "power3.inOut",
     });
-    tl.to(lineRef.current, {
-      opacity: 0,
-      scaleY: 0,
-      duration: 0.3,
-      ease: "expo.inOut",
-    }, "<");
-
-    // Split curtains
-    tl.to(leftCurtainRef.current, {
-      x: "-100%",
-      duration: REVEAL_DURATION,
-      ease: "expo.inOut",
-    }, "-=0.1");
-
-    tl.to(rightCurtainRef.current, {
-      x: "100%",
-      duration: REVEAL_DURATION,
-      ease: "expo.inOut",
-    }, "<");
     
   }, [pathname]);
 
@@ -92,56 +70,20 @@ export function PageTransitionProvider({ children }: PropsWithChildren) {
         onComplete: () => router.push(href),
       });
 
-      // 1. Curtains meet in the center
+      // 1. Slices cover the screen from the top
       tl.fromTo(
-        leftCurtainRef.current,
-        { x: "-100%" },
+        slicesRef.current,
+        { y: "-100%" },
         {
-          x: "0%",
-          duration: COVER_DURATION,
-          ease: "expo.inOut",
+          y: "0%",
+          duration: SLICE_DURATION,
+          stagger: SLICE_STAGGER,
+          ease: "power3.inOut",
         },
         0
       );
 
-      tl.fromTo(
-        rightCurtainRef.current,
-        { x: "100%" },
-        {
-          x: "0%",
-          duration: COVER_DURATION,
-          ease: "expo.inOut",
-        },
-        0
-      );
-
-      // 2. Line expands down the center
-      tl.fromTo(
-        lineRef.current,
-        { opacity: 0, scaleY: 0 },
-        {
-          opacity: 1,
-          scaleY: 1,
-          duration: 0.6,
-          ease: "expo.out",
-        },
-        COVER_DURATION - 0.2
-      );
-
-      // 3. Logo pops in
-      tl.fromTo(
-        logoRef.current,
-        { opacity: 0, scale: 0.5 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "back.out(1.7)",
-        },
-        "-=0.2"
-      );
-
-      // 3. Brief hold
+      // 2. Brief hold
       tl.to({}, { duration: HOLD });
     },
     [router]
@@ -179,38 +121,17 @@ export function PageTransitionProvider({ children }: PropsWithChildren) {
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-[200] flex overflow-hidden"
       >
-        {/* Left Curtain */}
-        <div
-          ref={leftCurtainRef}
-          className="h-full w-1/2 bg-bg will-change-transform border-r border-white/5"
-          style={{ transform: "translateX(-100%)" }}
-        />
-        
-        {/* Right Curtain */}
-        <div
-          ref={rightCurtainRef}
-          className="h-full w-1/2 bg-bg will-change-transform border-l border-white/5"
-          style={{ transform: "translateX(100%)" }}
-        />
-
-        {/* Center Vertical Line */}
-        <div
-          ref={lineRef}
-          className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1px] opacity-0 pointer-events-none bg-gradient-to-b from-transparent via-metallic-light to-transparent origin-center"
-        />
-
-        {/* Center Logo/Brand */}
-        <div
-          ref={logoRef}
-          className="absolute inset-0 flex flex-col items-center justify-center opacity-0 pointer-events-none"
-        >
-          <span className="font-display font-medium text-white text-4xl tracking-[0.2em] uppercase">
-            TS SERVICE
-          </span>
-          <span className="font-mono text-xs text-text-subtle mt-2 tracking-[0.4em] uppercase">
-            GROUP
-          </span>
-        </div>
+        {/* Slices */}
+        {Array.from({ length: SLICES_COUNT }).map((_, i) => (
+          <div
+            key={i}
+            ref={(el) => {
+              slicesRef.current[i] = el;
+            }}
+            className="h-full flex-1 bg-white will-change-transform border-r border-black/10 shadow-[20px_0_40px_rgba(0,0,0,0.2)] last:border-r-0 z-10"
+            style={{ transform: "translateY(-100%)" }}
+          />
+        ))}
       </div>
 
       {/* Page content passes through untouched */}

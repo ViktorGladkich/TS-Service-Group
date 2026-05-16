@@ -30,6 +30,12 @@ export const clashDisplay = localFont({
   variable: "--font-display",
   display: "swap",
   preload: true,
+  // Next generates a size-adjusted @font-face for Arial so the fallback
+  // matches Clash Display's metrics — eliminates the layout-shift / re-wrap
+  // when the web font finishes loading. Without this, hero headlines briefly
+  // render in fallback then re-wrap once Clash Display lands.
+  adjustFontFallback: "Arial",
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 /**
@@ -67,4 +73,6 @@ export const switzer = localFont({
   variable: "--font-sans",
   display: "swap",
   preload: true,
+  adjustFontFallback: "Arial",
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });

@@ -93,7 +93,7 @@ export function AboutSection() {
                 // so both get a fair pass through the viewport during the pinned scroll.
                 if (parallaxRef.current) {
                   const startY = vh * 1.1;
-                  const endY = vh * -1.5;
+                  const endY = vh * -2.5;
                   const y = startY + (endY - startY) * progress;
                   gsap.set(parallaxRef.current, { y });
                 }
@@ -165,19 +165,29 @@ export function AboutSection() {
         <div className="bg-bg absolute inset-x-0 top-6 bottom-0 rounded-t-[48px] lg:top-8 lg:rounded-t-[64px]" />
       </div>
 
-      {/* ── SECTION HEADER: ÜBER UNS ── */}
-      <section className="bg-bg relative flex w-full flex-col items-center px-6 pt-28 pb-24 text-center lg:px-12 lg:pt-44 lg:pb-32">
-        <span className="text-text-subtle mb-5 font-mono text-[10px] tracking-[0.32em] uppercase sm:text-xs lg:mb-7">
-          [ Über uns ]
-        </span>
-        <h2 className="font-display text-5xl leading-[0.95] font-medium tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
-          Wer wir sind.
-        </h2>
-        <div aria-hidden className="bg-metallic-light/40 mt-10 h-px w-16 lg:mt-14" />
-        <p className="text-text-muted mt-10 max-w-xl font-sans text-base leading-relaxed lg:mt-14 lg:text-lg">
-          Drei Disziplinen, ein Anspruch — verlässlich, diskret, präzise. Seit Jahren im Herzen
-          Sachsens.
-        </p>
+      {/* ── SECTION HEADER: ÜBER UNS — Process-style layout ── */}
+      <section className="bg-bg relative w-full px-6 pt-28 pb-24 lg:px-12 lg:pt-44 lg:pb-32">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <div className="mb-16 flex flex-col md:mb-24">
+            <span className="mb-4 font-mono text-sm tracking-[0.2em] text-text-muted">
+              ÜBER UNS
+            </span>
+            <h2 className="font-display text-4xl font-medium tracking-tight text-text md:text-6xl lg:text-7xl">
+              Drei Disziplinen.<br />
+              Ein Team.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-5 lg:col-start-8">
+              <p className="font-sans text-base leading-relaxed text-text-muted md:text-lg">
+                Inhabergeführt aus Dresden — Sicherheit, Sauberkeit und Bewegung
+                unter einem Dach. Verlässlich, diskret und präzise. Direkter
+                Draht zum Verantwortlichen statt Hotline und Ticketsystem.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── SECTION 1: FIRST TEXT REVEAL ── */}
