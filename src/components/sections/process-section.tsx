@@ -199,7 +199,7 @@ export function ProcessSection() {
           <div className="relative flex h-3 items-center">
             <div
               ref={topLineRef}
-              className="h-px w-full origin-center bg-gradient-to-r from-transparent via-metallic-light to-transparent"
+              className="h-px w-full origin-center bg-linear-to-r from-transparent via-metallic-light to-transparent"
               style={{ transform: "scaleX(0)", willChange: "transform" }}
             />
             <div
@@ -315,7 +315,7 @@ export function ProcessSection() {
                 : "px-6 py-16"
             }
           >
-            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6 border border-border bg-bg/50 p-6">
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-6 border border-border bg-bg/50 p-6">
               <Image
                 src={`/images/${step.id}.png`}
                 alt={`Phase ${step.id} Illustration`}
@@ -327,7 +327,7 @@ export function ProcessSection() {
             <span className="mt-6 block font-mono text-[11px] uppercase tracking-[0.25em] text-text-subtle">
               Phase {step.id} · {step.subtitle}
             </span>
-            <h3 className="mt-4 font-display text-3xl font-medium leading-tight tracking-[-0.025em] text-text">
+            <h3 className="mt-4 font-display text-3xl font-medium leading-tight tracking-tight text-text">
               {step.title}
             </h3>
             <p className="mt-6 text-[15px] leading-[1.7] text-text-muted">

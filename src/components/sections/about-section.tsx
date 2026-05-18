@@ -227,7 +227,7 @@ export function AboutSection() {
           className="pointer-events-none absolute inset-x-0 top-0 z-0 flex flex-col items-center gap-[40vh] will-change-transform"
           style={{ transform: "translateY(100svh)" }}
         >
-          <figure className="relative aspect-[3/4] w-[220px] overflow-hidden rounded-[28px] border border-white/10 shadow-2xl sm:w-[300px] lg:ml-[18vw] lg:w-[380px] lg:self-auto">
+          <figure className="relative aspect-3/4 w-[220px] overflow-hidden rounded-[28px] border border-white/10 shadow-2xl sm:w-[300px] lg:ml-[18vw] lg:w-[380px] lg:self-auto">
             <Image
               src="/images/about-team.jpg"
               alt=""
@@ -237,7 +237,7 @@ export function AboutSection() {
             />
           </figure>
 
-          <figure className="relative aspect-[3/4] w-[220px] overflow-hidden rounded-[28px] border border-white/10 shadow-2xl sm:w-[300px] lg:mr-[18vw] lg:w-[380px] lg:self-auto">
+          <figure className="relative aspect-3/4 w-[220px] overflow-hidden rounded-[28px] border border-white/10 shadow-2xl sm:w-[300px] lg:mr-[18vw] lg:w-[380px] lg:self-auto">
             <Image
               src="/images/about-care.jpg"
               alt=""
@@ -251,7 +251,7 @@ export function AboutSection() {
         {/* Subtle dark vignette over the parallax to keep text readable */}
         <div
           aria-hidden
-          className="from-bg/70 via-bg/30 to-bg/70 pointer-events-none absolute inset-0 z-[1] bg-linear-to-b"
+          className="from-bg/70 via-bg/30 to-bg/70 pointer-events-none absolute inset-0 z-1 bg-linear-to-b"
         />
 
         {/* "Warum Wir?" headers — sit on top of the parallax */}

@@ -197,7 +197,7 @@ function ServicePanel({
             <div className="relative flex h-3 items-center">
               <div
                 ref={topLineRef}
-                className="h-px w-full origin-center bg-gradient-to-r from-transparent via-metallic-light to-transparent"
+                className="h-px w-full origin-center bg-linear-to-r from-transparent via-metallic-light to-transparent"
                 style={{ transform: "scaleX(0)", willChange: "transform" }}
               />
               <div
@@ -236,7 +236,7 @@ function ServicePanel({
 
             <div
               ref={imageWrapperRef}
-              className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-elevated md:aspect-[3/4]"
+              className="relative aspect-4/5 w-full overflow-hidden rounded-2xl bg-elevated md:aspect-3/4"
               style={{ clipPath: "inset(100% 0% 0% 0%)" }}
             >
               <div ref={imageInnerRef} className="absolute inset-[-8%]">
@@ -250,13 +250,13 @@ function ServicePanel({
               </div>
 
               {/* Dark gradient for number readability */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-bg via-bg/40 to-transparent" />
 
               {/* Massive metallic number watermark — partially clipped at bottom */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center overflow-hidden">
                 <span
                   ref={numberRef}
-                  className="block font-display font-medium leading-[0.85] tracking-[-0.05em] select-none"
+                  className="block font-display font-medium leading-[0.85] tracking-tighter select-none"
                   style={{
                     fontSize: "clamp(8rem, 22vw, 16rem)",
                     background: METALLIC_GRADIENT,

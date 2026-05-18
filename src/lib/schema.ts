@@ -1,5 +1,4 @@
 import type {
-  Organization,
   LocalBusiness,
   Service,
   BreadcrumbList,
@@ -57,7 +56,7 @@ export function generateOrganizationSchema(): WithContext<LocalBusiness> {
     ],
     openingHoursSpecification: contact.openingHours.map((hours) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: hours.days as any,
+      dayOfWeek: hours.days as string | string[],
       opens: hours.opens,
       closes: hours.closes,
     })),

@@ -129,7 +129,7 @@ export function BentoSection() {
           {/* Security card — image + bottom glass strip */}
           <Link
             href="/leistungen/sicherheitsdienst"
-            className="bento-mobile-item group relative block aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/[0.06] sm:aspect-[5/4]"
+            className="bento-mobile-item group relative block aspect-4/5 overflow-hidden rounded-4xl border border-white/6 sm:aspect-5/4"
           >
             <Image
               src="/images/bento-security.jpg"
@@ -138,7 +138,7 @@ export function BentoSection() {
               sizes="(max-width: 640px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/40 to-transparent" />
 
             {/* Eyebrow chip */}
             <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white backdrop-blur-md">
@@ -159,7 +159,7 @@ export function BentoSection() {
 
           {/* Two-up: 100% stat + Direct-to-owner */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bento-mobile-item flex flex-col justify-between rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-5">
+            <div className="bento-mobile-item flex flex-col justify-between rounded-[1.75rem] border border-white/10 bg-white/3 p-5">
               <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-text-subtle">
                 [ Anspruch ]
               </span>
@@ -183,7 +183,7 @@ export function BentoSection() {
 
             <Link
               href="/kontakt"
-              className="bento-mobile-item group relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-5"
+              className="bento-mobile-item group relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/3 p-5"
             >
               <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-text-subtle">
                 [ Direkt zum Inhaber ]
@@ -202,7 +202,7 @@ export function BentoSection() {
           {/* Premium service card */}
           <Link
             href="/kontakt"
-            className="bento-mobile-item group relative block overflow-hidden rounded-[2rem] border border-white/[0.06] bg-white/[0.03] p-6"
+            className="bento-mobile-item group relative block overflow-hidden rounded-4xl border border-white/6 bg-white/3 p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-3">
@@ -223,7 +223,7 @@ export function BentoSection() {
               maßgeschneiderten Vorschlag.
             </p>
 
-            <div className="relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-2xl">
+            <div className="relative mt-6 aspect-video w-full overflow-hidden rounded-2xl">
               <Image
                 src="/images/bento-premium.jpg"
                 alt="Premium Service — Werkzeuge und Sorgfalt"
@@ -235,8 +235,8 @@ export function BentoSection() {
           </Link>
 
           {/* Interior signature card */}
-          <div className="bento-mobile-item relative overflow-hidden rounded-[2rem]">
-            <div className="relative aspect-[4/5] w-full">
+          <div className="bento-mobile-item relative overflow-hidden rounded-4xl">
+            <div className="relative aspect-4/5 w-full">
               <Image
                 src="/images/bento-interior.jpg"
                 alt="Saubere, sichere Räume — minimalistisches Interieur"
@@ -244,7 +244,7 @@ export function BentoSection() {
                 sizes="(min-width: 1024px) 1px, 100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/30 to-transparent" />
             </div>
 
             {/* Floating glass label */}

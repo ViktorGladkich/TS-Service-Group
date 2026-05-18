@@ -119,7 +119,7 @@ export function PageTransitionProvider({ children }: PropsWithChildren) {
       {/* Fixed overlay above everything */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[200] flex overflow-hidden"
+        className="pointer-events-none fixed inset-0 z-200 flex overflow-hidden"
       >
         {/* Slices */}
         {Array.from({ length: SLICES_COUNT }).map((_, i) => (

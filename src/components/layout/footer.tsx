@@ -80,7 +80,7 @@ export function Footer() {
         className="relative z-0 w-full bg-metallic-light text-bg overflow-hidden"
       >
         {/* Top metallic hairline */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-black/20 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-black/20 to-transparent" />
 
         <div className="w-full">
           {/* ============================================================

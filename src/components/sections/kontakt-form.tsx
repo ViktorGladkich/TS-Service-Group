@@ -280,7 +280,7 @@ export function KontaktForm() {
                 {/* Honeypot — visually hidden, bots fill it */}
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+                  className="pointer-events-none absolute left-[-9999px] h-0 w-0 overflow-hidden opacity-0"
                 >
                   <label>
                     Lassen Sie dieses Feld leer

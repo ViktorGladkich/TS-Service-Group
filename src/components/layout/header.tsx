@@ -99,7 +99,7 @@ export function Header() {
           "transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]",
           desktopVisible
             ? "translate-y-0 opacity-100 pointer-events-auto"
-            : "-translate-y-[160%] opacity-0 pointer-events-none"
+            : "translate-y-[-160%] opacity-0 pointer-events-none"
         )}
       >
         <div className="flex items-center gap-1 rounded-full bg-bg/70 pl-2 pr-2 py-2 border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
@@ -135,7 +135,7 @@ export function Header() {
                       "flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-300",
                       isActive
                         ? "bg-white/10 text-white"
-                        : "text-white/65 hover:bg-white/[0.06] hover:text-white"
+                        : "text-white/65 hover:bg-white/6 hover:text-white"
                     )}
                   >
                     {item.label}

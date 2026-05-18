@@ -366,7 +366,7 @@ export function HeroSection() {
       {videoOpen && (
         <div
           onClick={() => setVideoOpen(false)}
-          className="hero-modal-backdrop fixed inset-0 z-[100] flex items-center justify-center bg-black/85 px-4 py-10 backdrop-blur-xl sm:px-8 lg:px-16"
+          className="hero-modal-backdrop fixed inset-0 z-100 flex items-center justify-center bg-black/85 px-4 py-10 backdrop-blur-xl sm:px-8 lg:px-16"
           role="dialog"
           aria-modal="true"
           aria-label="Showreel Video"

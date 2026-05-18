@@ -129,8 +129,8 @@ export function UeberUnsHero() {
               />
             </div>
             {/* Subtle dark gradient overlay for cohesion */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-bg/40" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg/70 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-l from-transparent via-transparent to-bg/40" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-bg/70 to-transparent" />
 
             {/* Image meta caption — bottom-left */}
             <div

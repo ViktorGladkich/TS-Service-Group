@@ -49,7 +49,7 @@ export function TickerSection() {
     >
       {/* Top hairline — gives the ticker a clear visual border so it reads
           as a distinct strip, not as endless dark space between video & SC. */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent" />
 
       <div
         className="relative mx-auto flex w-full max-w-[100vw] items-center"
@@ -85,7 +85,7 @@ export function TickerSection() {
       </div>
 
       {/* Bottom hairline — symmetric with top, closes the ticker strip. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent" />
     </Section>
   );
 }

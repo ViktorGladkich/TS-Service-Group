@@ -80,7 +80,7 @@ export function CtaSection() {
       <div className="w-full h-full px-4 lg:px-15">
         <div
           ref={wrapperRef}
-          className="relative w-full h-full overflow-hidden rounded-[1rem] md:rounded-[3rem] shadow-2xl"
+          className="relative w-full h-full overflow-hidden rounded-2xl md:rounded-[3rem] shadow-2xl"
         >
           {/* Rapid Switching Image Array */}
           {LOOP_IMAGES.map((src, index) => (
