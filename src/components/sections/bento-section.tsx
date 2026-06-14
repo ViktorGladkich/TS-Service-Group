@@ -72,9 +72,6 @@ function useBentoAnimations(
 const SCOOP_BR = "M0 0V32C0 14.3269 14.3269 0 32 0H0Z";
 const SCOOP_TL = "M32 0V32H0C14.3269 32 32 14.3269 32 0Z";
 
-const METALLIC_GRADIENT =
-  "linear-gradient(135deg, #EDEDED 0%, #B5B5B5 50%, #8A8A8A 100%)";
-
 const PILLS = ["Sicherheit", "Umzug", "Reinigung", "Inhabergeführt"];
 
 /* ═══════════════════════════════════════════════════════════════ */
@@ -159,23 +156,15 @@ export function BentoSection() {
 
           {/* Two-up: 100% stat + Direct-to-owner */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bento-mobile-item flex flex-col justify-between rounded-[1.75rem] border border-white/10 bg-white/3 p-5">
-              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-text-subtle">
+            <div className="bento-mobile-item flex flex-col justify-between rounded-[1.75rem] border border-black/10 bg-metallic-light p-5">
+              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-bg/40">
                 [ Anspruch ]
               </span>
               <div className="flex flex-col gap-2">
-                <span
-                  className="font-display text-5xl font-medium leading-none tracking-[-0.04em] sm:text-6xl"
-                  style={{
-                    background: METALLIC_GRADIENT,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
+                <span className="font-display text-5xl font-semibold leading-none tracking-[-0.04em] text-bg sm:text-6xl">
                   100%
                 </span>
-                <span className="text-xs leading-relaxed text-text-muted">
+                <span className="text-xs leading-relaxed text-bg/65">
                   Zuverlässig · Transparent
                 </span>
               </div>
@@ -202,23 +191,23 @@ export function BentoSection() {
           {/* Premium service card */}
           <Link
             href="/kontakt"
-            className="bento-mobile-item group relative block overflow-hidden rounded-4xl border border-white/6 bg-white/3 p-6"
+            className="bento-mobile-item group relative block overflow-hidden rounded-4xl border border-black/10 bg-metallic-light p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-3">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-bg/40">
                   [ Premium-Service ]
                 </span>
-                <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-text sm:text-3xl">
+                <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-bg sm:text-3xl">
                   Den perfekten<br />Service zusammenstellen.
                 </h3>
               </div>
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-bg text-white transition-all group-hover:bg-white group-hover:text-bg">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/10 bg-bg text-white transition-all group-hover:bg-metallic-light group-hover:text-bg">
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </span>
             </div>
 
-            <p className="mt-4 text-sm leading-relaxed text-text-muted">
+            <p className="mt-4 text-sm leading-relaxed text-bg/65">
               Beantworten Sie ein paar kurze Fragen — wir melden uns mit einem
               maßgeschneiderten Vorschlag.
             </p>
@@ -313,14 +302,14 @@ export function BentoSection() {
           <Link
             href="/kontakt"
             ref={leftTallRef}
-            className="lg:col-span-4 lg:row-span-2 bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] rounded-4xl p-8 flex flex-col relative group cursor-pointer"
+            className="lg:col-span-4 lg:row-span-2 bg-metallic-light border border-black/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] rounded-4xl p-8 flex flex-col relative group cursor-pointer"
           >
             <div className="absolute top-8 right-8 w-10 h-10 bg-bg rounded-full flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 shadow-lg z-10 border border-white/10">
               <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
               <ArrowUpRight className="relative z-10 text-white group-hover:text-bg w-5 h-5 transition-all duration-500 group-hover:rotate-45" />
             </div>
-            <h3 className="text-3xl lg:text-4xl text-white font-display font-medium mb-4 pr-12 tracking-tight">Nutzen Sie unseren Premium-Service</h3>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-[85%] mb-8">Beantworten Sie ein paar kurze Fragen, um den perfekten Service für Sie zusammenzustellen.</p>
+            <h3 className="text-3xl lg:text-4xl text-bg font-display font-medium mb-4 pr-12 tracking-tight">Nutzen Sie unseren Premium-Service</h3>
+            <p className="text-bg/65 text-sm leading-relaxed max-w-[85%] mb-8">Beantworten Sie ein paar kurze Fragen, um den perfekten Service für Sie zusammenzustellen.</p>
             <div className="relative grow mt-auto rounded-2xl overflow-hidden min-h-[200px]">
               <Image
                 src="/images/bento-premium.jpg"
@@ -347,9 +336,9 @@ export function BentoSection() {
             <div ref={statRef} className="absolute top-0 left-0 bg-bg z-10" style={{ width: "calc(45% + 0.625rem)", height: "calc(40% + 0.625rem)", borderBottomRightRadius: "2rem" }}>
               <Scoop className="absolute top-0 -right-8 w-8 h-8" fill="#0A0A0A" path={SCOOP_BR} />
               <Scoop className="absolute -bottom-8 left-0 w-8 h-8" fill="#0A0A0A" path={SCOOP_BR} />
-              <div className="absolute inset-0 right-5 bottom-5 bg-white/10 backdrop-blur-2xl rounded-4xl p-8 flex flex-col justify-center border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
-                <h3 className="text-5xl font-display font-semibold text-white tracking-tight mb-3">100%</h3>
-                <p className="text-gray-400 text-sm">Unser Anspruch an jeden Einsatz — Zuverlässigkeit und Transparenz.</p>
+              <div className="absolute inset-0 right-5 bottom-5 bg-metallic-light rounded-4xl p-8 flex flex-col justify-center border border-black/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]">
+                <h3 className="text-5xl font-display font-semibold text-bg tracking-tight mb-3">100%</h3>
+                <p className="text-bg/65 text-sm">Unser Anspruch an jeden Einsatz — Zuverlässigkeit und Transparenz.</p>
               </div>
             </div>
 

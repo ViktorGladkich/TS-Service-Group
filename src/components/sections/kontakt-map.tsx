@@ -104,9 +104,7 @@ export function KontaktMap() {
   );
 }
 
-// ============================================================
-// PLACEHOLDER (click-to-load — DSGVO-compliant)
-// ============================================================
+// Placeholder (click-to-load — DSGVO-compliant)
 
 function MapPlaceholder({ onLoad }: { onLoad: () => void }) {
   return (

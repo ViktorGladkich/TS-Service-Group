@@ -120,7 +120,7 @@ export function UeberUnsHero() {
           >
             <div ref={imageInnerRef} className="absolute inset-[-5%]">
               <Image
-                src="/images/about-hero.png"
+                src="/images/about-hero.jpg"
                 alt="Modernes Gebäudeinterieur in Dresden — Sitz der TS Service Group"
                 fill
                 priority

@@ -77,35 +77,35 @@ export function Preloader({ onComplete }: PreloaderProps) {
       });
 
       // 1. Eyebrow rises
-      tl.to(eyebrowWords, { y: "0%", duration: 0.6, stagger: 0.04 }, 0.2);
+      tl.to(eyebrowWords, { y: "0%", duration: 0.5, stagger: 0.04 }, 0.15);
 
       // 2. Fast sequential word cycle without overlap
       cycleWords.forEach((word, index) => {
-        const CYCLE_DURATION = 0.75; // 0.35 in + 0.15 hold + 0.25 out
-        const startTime = 0.4 + index * CYCLE_DURATION;
-        
+        const CYCLE_DURATION = 0.5; // 0.28 in + 0.07 hold + 0.15 out
+        const startTime = 0.3 + index * CYCLE_DURATION;
+
         // fade in & slide up
-        tl.fromTo(word, 
-          { opacity: 0, y: 20 }, 
-          { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 
+        tl.fromTo(word,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" },
           startTime
         );
-        
+
         // fade out & slide up (except last word which stays until copy fade)
         if (index < cycleWords.length - 1) {
-          tl.to(word, 
-            { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, 
-            startTime + 0.5 // 0.35 in + 0.15 hold
+          tl.to(word,
+            { opacity: 0, y: -20, duration: 0.15, ease: "power2.in" },
+            startTime + 0.35 // 0.28 in + 0.07 hold
           );
         }
       });
 
       // 3. Copy fades after a hold
-      tl.to(copyRef.current, { opacity: 0, duration: 0.4 }, 2.4);
+      tl.to(copyRef.current, { opacity: 0, duration: 0.35 }, 1.45);
 
-      // 4. Curtain split — top slides up, bottom slides down
-      tl.to(topHalfRef.current, { yPercent: -100, duration: 1.2 }, 2.7)
-        .to(bottomHalfRef.current, { yPercent: 100, duration: 1.2 }, 2.7);
+      // 4. Curtain split — top slides up, bottom slides down (~done at 2.45s)
+      tl.to(topHalfRef.current, { yPercent: -100, duration: 0.95 }, 1.55)
+        .to(bottomHalfRef.current, { yPercent: 100, duration: 0.95 }, 1.55);
     }, rootRef);
 
     return () => ctx.revert();

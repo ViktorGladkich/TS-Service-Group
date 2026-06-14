@@ -10,9 +10,9 @@ import { siteConfig } from "@/lib/site.config";
 import { cn } from "@/lib/cn";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  sicherheitsdienst: "/images/service-security.png",
-  umzugservice: "/images/service-moving.png",
-  reinigung: "/images/service-cleaning.png",
+  sicherheitsdienst: "/images/service-security.jpg",
+  umzugservice: "/images/service-moving.jpg",
+  reinigung: "/images/service-cleaning.jpg",
 };
 
 const METALLIC_GRADIENT =

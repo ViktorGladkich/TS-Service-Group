@@ -162,7 +162,7 @@ export function AboutSection() {
     <div ref={containerRef} className="bg-bg w-full text-white">
       {/* ── BRIDGE FROM HERO: metallic-light strip with rounded dark rising ── */}
       <div aria-hidden className="bg-metallic-light relative h-16 overflow-hidden lg:h-24">
-        <div className="bg-bg absolute inset-x-0 top-6 bottom-0 rounded-t-[48px] lg:top-8 lg:rounded-t-[64px]" />
+        <div className="bg-bg absolute inset-x-0 top-0 bottom-0  lg:top-20 " />
       </div>
 
       {/* ── SECTION HEADER: ÜBER UNS — Process-style layout ── */}

@@ -95,7 +95,7 @@ export function ServiceShowcase() {
   return (
     <Section 
       ref={sectionRef}
-      className="relative z-20 -mt-20 rounded-t-[3rem] bg-metallic-light py-24 shadow-[0_-35px_60px_-15px_rgba(0,0,0,0.35)] md:-mt-32 md:rounded-t-[5rem] md:py-32" 
+      className="relative z-20 mt-0 bg-metallic-light py-24 shadow-[0_-35px_60px_-15px_rgba(0,0,0,0.35)] md:-mt-32 md:py-32" 
       id="expertise"
     >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12" ref={containerRef}>

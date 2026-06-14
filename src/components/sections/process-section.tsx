@@ -48,9 +48,6 @@ const PROCESS_STEPS: ProcessStep[] = [
   },
 ];
 
-const METALLIC_GRADIENT =
-  "linear-gradient(135deg, #EDEDED 0%, #B5B5B5 50%, #8A8A8A 100%)";
-
 const FACE_TRANSFORMS = [
   "translateZ(30vh)",
   "rotateX(90deg) translateZ(30vh)",

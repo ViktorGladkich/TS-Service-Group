@@ -21,6 +21,11 @@ export function SmoothScroller({ children, enabled }: Props) {
   useEffect(() => {
     if (!enabled) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Skip Lenis on touch devices: with syncTouch:false it doesn't smooth
+    // native touch scrolling anyway, so the per-frame GSAP ticker would just
+    // add main-thread work (hurting mobile TBT/INP) for no UX gain. ScrollTrigger
+    // falls back to its own native scroll listener automatically.
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const lenis = new Lenis({
       duration: 1.2,

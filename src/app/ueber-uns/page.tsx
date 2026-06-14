@@ -20,7 +20,7 @@ export default function UeberUnsPage() {
 
       {/* Editorial — establishing shot of Dresden */}
       <UeberUnsEditorial
-        src="/images/about-cityscape.png"
+        src="/images/about-cityscape.jpg"
         alt="Dresden Altstadt zur blauen Stunde — Heimat der TS Service Group"
         metaLeft="Dresden, Sachsen"
         metaRight="Standort 2026 —"
@@ -30,16 +30,6 @@ export default function UeberUnsPage() {
       <UeberUnsManifesto />
 
       <UeberUnsValues />
-
-      {/* Editorial — precision/craft detail before stats */}
-      <UeberUnsEditorial
-        src="/images/about-craft.png"
-        alt="Präzision im Detail — Werkzeuge und Equipment der TS Service Group"
-        metaLeft="Präzision"
-        metaRight="In jedem Detail"
-        aspect="4/3"
-        padding="compact"
-      />
 
       <UeberUnsStats />
 

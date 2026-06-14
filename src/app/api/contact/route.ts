@@ -1,42 +1,30 @@
 import { NextResponse } from "next/server";
+import { ContactSchema } from "@/components/sections/kontakt-form/schema";
 
 /**
- * Contact form handler — receives form submissions from /kontakt.
+ * Contact form handler — receives submissions from /kontakt.
  *
- * TODO: Integrate Resend or Nodemailer (env-configured).
- * Current implementation validates input and returns success stub.
+ * TODO: integrate Resend/Nodemailer (env-configured) + rate limiting.
+ * Currently validates the payload and returns a success stub.
  */
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const { name, email, phone, service, message, privacy, honeypot } = body;
-
-    // Honeypot check — bots fill this hidden field
-    if (honeypot) {
-      // Silently reject
+    // Honeypot — bots fill this hidden field; pretend success so they move on.
+    if (body?.honeypot) {
       return NextResponse.json({ success: true });
     }
 
-    // Basic validation
-    if (!name || !email || !message || !privacy) {
+    const parsed = ContactSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: "Bitte füllen Sie alle Pflichtfelder aus." },
+        { error: "Bitte füllen Sie alle Pflichtfelder korrekt aus." },
         { status: 400 }
       );
     }
 
-    // TODO: Rate limiting
-    // TODO: Send email via Resend/Nodemailer
-    // const { RESEND_API_KEY, CONTACT_EMAIL } = process.env;
-
-    console.log("Contact form submission:", {
-      name,
-      email,
-      phone,
-      service,
-      message,
-    });
+    // TODO: send email via Resend/Nodemailer using parsed.data
 
     return NextResponse.json({
       success: true,

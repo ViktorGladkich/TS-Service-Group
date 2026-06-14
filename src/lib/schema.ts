@@ -4,6 +4,7 @@ import type {
   BreadcrumbList,
   FAQPage,
   WithContext,
+  DayOfWeek,
 } from "schema-dts";
 import { siteConfig } from "./site.config";
 
@@ -18,6 +19,16 @@ export function generateOrganizationSchema(): WithContext<LocalBusiness> {
   if (social.instagram) sameAs.push(social.instagram);
   if (social.linkedin) sameAs.push(social.linkedin);
   if (social.facebook) sameAs.push(social.facebook);
+
+  const dayMap: Record<string, string> = {
+    Mo: "https://schema.org/Monday",
+    Di: "https://schema.org/Tuesday",
+    Mi: "https://schema.org/Wednesday",
+    Do: "https://schema.org/Thursday",
+    Fr: "https://schema.org/Friday",
+    Sa: "https://schema.org/Saturday",
+    So: "https://schema.org/Sunday",
+  };
 
   return {
     "@context": "https://schema.org",
@@ -55,8 +66,8 @@ export function generateOrganizationSchema(): WithContext<LocalBusiness> {
       },
     ],
     openingHoursSpecification: contact.openingHours.map((hours) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: hours.days as string | string[],
+      "@type": "OpeningHoursSpecification" as const,
+      dayOfWeek: hours.days.map((day) => dayMap[day] || day) as unknown as DayOfWeek[],
       opens: hours.opens,
       closes: hours.closes,
     })),

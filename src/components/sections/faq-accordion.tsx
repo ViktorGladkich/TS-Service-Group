@@ -170,9 +170,7 @@ export function FaqAccordion() {
   );
 }
 
-// ============================================================
-// FAQ ITEM ROW — Number + Question + Animated Answer
-// ============================================================
+// FAQ item row — number + question + animated answer
 
 function FaqItemRow({
   item,

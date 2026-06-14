@@ -3,11 +3,10 @@
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Play, X } from "lucide-react";
+import { ArrowUpRight, Phone, X } from "lucide-react";
 import { siteConfig } from "@/lib/site.config";
 import { cn } from "@/lib/cn";
 import gsap from "gsap";
-import { Button } from "@/components/ui/button";
 import { isPreloaderDone } from "@/lib/preloader-flag";
 
 const Corner = ({ className }: { className?: string }) => (
@@ -27,11 +26,15 @@ const SLIDES = [
   { src: "/images/hero-03.jpg", alt: "Gebäudereinigung – makellose Büroflächen Dresden" },
 ];
 const SLIDE_DURATION = 5000; // ms
-const SHOWREEL_SRC = "/videos/hero-showreel.mp4";
+const SHOWREEL_SRC = "/videos/hero-showreel-opt.mp4";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  // Only the first slide is mounted on load — it's the LCP candidate. Slides
+  // 2 & 3 are mounted just before they're needed so they don't compete for
+  // bandwidth during the critical initial render.
+  const [loadedSlides, setLoadedSlides] = useState<Set<number>>(() => new Set([0]));
   const [progress, setProgress] = useState(0);
   const [videoOpen, setVideoOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -39,11 +42,11 @@ export function HeroSection() {
   // Entrance animation with GSAP
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // First-load: preloader covers ~3.75s and ends with a curtain split.
+      // First-load: preloader covers ~2.45s and ends with a curtain split.
       // Start the hero entrance right as the curtain begins to part so the
       // content is already moving into place by the time the page is fully
       // revealed — feels much snappier than waiting for the curtain to end.
-      const heroDelay = isPreloaderDone() ? 0.1 : 2.7;
+      const heroDelay = isPreloaderDone() ? 0.1 : 1.55;
       const tl = gsap.timeline({ delay: heroDelay });
 
       // 1. Reveal inner dark container
@@ -101,12 +104,20 @@ export function HeroSection() {
       }
     });
 
+    // Mount the upcoming slide ~1.2s before the transition so its image is
+    // decoded and ready, without eagerly loading it at initial paint.
+    const next = (currentSlide + 1) % SLIDES.length;
+    const preloadId = setTimeout(() => {
+      setLoadedSlides((prev) => (prev.has(next) ? prev : new Set(prev).add(next)));
+    }, SLIDE_DURATION - 1200);
+
     const timerId = setTimeout(() => {
       setCurrentSlide((s) => (s + 1) % SLIDES.length);
     }, SLIDE_DURATION);
 
     return () => {
       cancelAnimationFrame(rafId);
+      clearTimeout(preloadId);
       clearTimeout(timerId);
     };
   }, [currentSlide]);
@@ -130,17 +141,18 @@ export function HeroSection() {
       v.play().catch(() => {});
     }
 
+    const currentVideo = videoRef.current;
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
-      if (videoRef.current) videoRef.current.pause();
+      if (currentVideo) currentVideo.pause();
     };
   }, [videoOpen]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative flex h-svh min-h-[600px] flex-col overflow-hidden bg-metallic-light font-sans md:min-h-[700px] lg:min-h-[750px] lg:p-6"
+      className="relative flex h-svh min-h-[580px] flex-col overflow-hidden bg-metallic-light font-sans lg:min-h-0 lg:p-4 xl:p-6"
     >
       {/* Inner Dark Container — full-bleed on mobile, framed on desktop */}
       <div className="relative w-full flex-1 overflow-hidden bg-bg lg:rounded-[32px]">
@@ -152,26 +164,32 @@ export function HeroSection() {
             className="absolute inset-0 transition-opacity duration-1000"
             style={{ opacity: i === currentSlide ? 0.6 : 0 }}
           >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              priority={true}
-              sizes="100vw"
-              className="object-cover"
-              style={{ objectPosition: "62% center" }}
-            />
+            {loadedSlides.has(i) && (
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                // Only the first slide is the LCP candidate and gets priority.
+                // Slides 2 & 3 are mounted lazily (see loadedSlides) shortly
+                // before they animate in, so they never compete for bandwidth
+                // during the critical initial render.
+                priority={i === 0}
+                sizes="100vw"
+                className="object-cover"
+                style={{ objectPosition: "62% center" }}
+              />
+            )}
           </div>
         ))}
         <div className="absolute inset-0 bg-linear-to-t from-bg via-black/40 to-bg/60" />
 
         {/* Main Content (Center) */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 lg:px-24">
+        <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 lg:px-20 xl:px-24 pb-4 lg:pb-14 xl:pb-18">
           <div className="max-w-[800px]">
             <h1
               className={cn(
                 "font-display text-white",
-                "text-[clamp(3rem,7vw+1rem,6.5rem)] font-medium leading-[1.05] tracking-[-0.03em]"
+                "text-[clamp(2.5rem,5.5vw+1.5vh,5rem)] xl:text-[clamp(3.5rem,7vw+1rem,6.5rem)] font-medium leading-[1.05] tracking-[-0.03em]"
               )}
             >
               <div className="overflow-hidden pb-2"><div className="hero-title-line">Sicherheit.</div></div>
@@ -179,26 +197,24 @@ export function HeroSection() {
               <div className="overflow-hidden pb-2"><div className="hero-title-line">Bewegung.</div></div>
             </h1>
 
-            <button
-              type="button"
-              onClick={() => setVideoOpen(true)}
-              aria-label="Showreel-Video abspielen"
-              className="hero-video group mt-10 flex items-center gap-5 opacity-0"
+            <Link
+              href="/kontakt"
+              className="hero-video group mt-5 xl:mt-8 relative inline-flex h-12 items-center gap-3 rounded-full bg-white pl-6 pr-2 text-sm font-medium text-bg overflow-hidden border border-white/10 opacity-0 pointer-events-auto shadow-md"
             >
-              <span className="relative flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white transition-all duration-500 group-hover:bg-white group-hover:text-black group-hover:scale-110">
-                <span className="absolute inset-0 rounded-full border border-white/40 animate-ping opacity-60" />
-                <Play className="relative ml-1 h-5 w-5 fill-current" />
+              <span className="pointer-events-none absolute inset-0 translate-y-full bg-black transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0" />
+              <span className="relative z-10 group-hover:text-white transition-colors duration-500">
+                Jetzt kontaktieren
               </span>
-              <span className="font-mono text-sm uppercase tracking-widest text-white/90 transition-colors group-hover:text-white">
-                Video ansehen
-              </span>
-            </button>
+              <div className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-bg text-white group-hover:bg-white group-hover:text-bg transition-colors duration-500">
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+              </div>
+            </Link>
           </div>
         </div>
 
         {/* Right Vertical Progress (Desktop Only) */}
         <div
-          className="hero-progress absolute right-10 top-2/5 z-10 hidden -translate-y-1/2 flex-col items-center gap-4 opacity-0 lg:flex"
+          className="hero-progress absolute right-6 top-1/2 xl:right-10 xl:top-2/5 z-10 hidden -translate-y-1/2 flex-col items-center gap-4 opacity-0 lg:flex"
         >
           <span className="font-mono text-xs text-white/50">
             {String(currentSlide + 1).padStart(2, "0")}
@@ -217,7 +233,7 @@ export function HeroSection() {
 
         {/* Bottom Right Card (Visible on Desktop) */}
         <div
-          className="hero-card-br absolute bottom-8 right-8 z-10 hidden w-[360px] rounded-[2.5rem] border border-white/20 bg-white/10 p-8 opacity-0 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] lg:block pointer-events-auto"
+          className="hero-card-br absolute bottom-6 right-6 xl:bottom-8 xl:right-8 z-10 hidden w-[320px] xl:w-[360px] rounded-[2.5rem] border border-white/20 bg-white/10 p-6 xl:p-8 opacity-0 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] lg:block pointer-events-auto"
         >
           <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-metallic-light font-medium">
             [ Dresden, Sachsen ]
@@ -243,7 +259,7 @@ export function HeroSection() {
           ============================================================ */}
 
       {/* Top-Left Panel (Nav) */}
-      <div className="hero-panel-tl absolute left-6 top-6 z-50 hidden items-center gap-8 rounded-br-[32px] bg-metallic-light pb-5 pr-8 pl-8 pt-5 opacity-0 lg:flex">
+      <div className="hero-panel-tl absolute left-4 top-4 xl:left-6 xl:top-6 z-50 hidden items-center gap-8 rounded-br-[32px] bg-metallic-light pb-5 pr-8 pl-8 pt-5 opacity-0 lg:flex">
         <Corner className="-right-8 top-0 rotate-180" />
         <Corner className="-bottom-8 left-0 rotate-180" />
 
@@ -254,20 +270,29 @@ export function HeroSection() {
           >
             Startseite
           </Link>
-          <Link href="/leistungen" className="text-black/60 transition-colors hover:text-black">
+          <Link
+            href="/leistungen"
+            className="relative text-black/60 transition-colors hover:text-black after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
+          >
             Leistungen
           </Link>
-          <Link href="/ueber-uns" className="text-black/60 transition-colors hover:text-black">
+          <Link
+            href="/ueber-uns"
+            className="relative text-black/60 transition-colors hover:text-black after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
+          >
             Über uns
           </Link>
-          <Link href="/haeufige-fragen" className="text-black/60 transition-colors hover:text-black">
-            FAQ
+          <Link
+            href="/kontakt"
+            className="relative text-black/60 transition-colors hover:text-black after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-bottom-right after:scale-x-0 after:bg-black after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
+          >
+            Kontakt
           </Link>
         </nav>
       </div>
 
       {/* Top-Center Logo (Clean, transparent, no white box) */}
-      <div className="hero-panel-tc absolute left-1/2 top-5 z-50 hidden -translate-x-1/2 items-center justify-center opacity-0 lg:flex pointer-events-auto">
+      <div className="hero-panel-tc absolute left-1/2 top-3 xl:top-5 z-50 hidden -translate-x-1/2 items-center justify-center opacity-0 lg:flex pointer-events-auto">
         <Link href="/" className="transition-transform hover:scale-105">
           <Image
             src="/images/logo-white.png"
@@ -275,38 +300,26 @@ export function HeroSection() {
             width={320}
             height={90}
             priority
-            className="h-16 md:h-20  scale-145 w-auto object-contain"
+            className="h-14 md:h-16 xl:h-20 scale-145 w-auto object-contain"
           />
         </Link>
       </div>
 
       {/* Top-Right Panel (Socials + CTA) */}
-      <div className="hero-panel-tr absolute right-6 top-6 z-50 hidden items-center gap-6 rounded-bl-[32px] bg-metallic-light pb-5 pl-6 opacity-0 lg:flex">
+      <div className="hero-panel-tr absolute right-4 top-4 xl:right-6 xl:top-6 z-50 hidden items-center gap-3 rounded-bl-[32px] bg-metallic-light pb-5 pl-6 opacity-0 lg:flex">
         {/* Left concave corner — sits at the outer-left edge of this panel */}
         <Corner className="-left-8 top-0 -rotate-90" />
         {/* Bottom concave corner — sits at the bottom-right */}
         <Corner className="-bottom-8 right-0 -rotate-90" />
 
-        <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-black">
-          <a
-            href={siteConfig.social.instagram || "#"}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 transition-colors hover:bg-black/5"
-          >
-            Ig
-          </a>
-          <a
-            href={siteConfig.social.linkedin || "#"}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 transition-colors hover:bg-black/5"
-          >
-            X
-          </a>
-          <a
-            href={siteConfig.social.facebook || "#"}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 transition-colors hover:bg-black/5"
-          >
-            Fb
-          </a>
-        </div>
+        <a
+          href={`tel:${siteConfig.contact.phone}`}
+          aria-label="Telefonisch kontaktieren"
+          className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-bg text-white overflow-hidden border border-white/10 pointer-events-auto transition-transform hover:scale-105"
+        >
+          <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none" />
+          <Phone className="relative z-10 h-4 w-4 text-white group-hover:text-bg transition-colors duration-500" />
+        </a>
 
         <Link
           href="/kontakt"
@@ -324,7 +337,7 @@ export function HeroSection() {
       </div>
 
       {/* Bottom-Left Panel (Stats) — pill inside a cornered white panel */}
-      <div className="hero-panel-bl absolute bottom-6 left-6 z-50 hidden items-center rounded-tr-[32px] bg-metallic-light pb-0 pl-0 pr-4 pt-4 opacity-0 lg:flex">
+      <div className="hero-panel-bl absolute bottom-4 left-4 xl:bottom-6 xl:left-6 z-50 hidden items-center rounded-tr-[32px] bg-metallic-light pb-0 pl-0 pr-4 pt-4 opacity-0 lg:flex">
         <Corner className="-top-8 left-0 rotate-90" />
         <Corner className="-right-8 bottom-0 rotate-90" />
 

@@ -72,7 +72,11 @@ export const switzer = localFont({
   ],
   variable: "--font-sans",
   display: "swap",
-  preload: true,
+  // Body copy isn't preloaded: `adjustFontFallback` ships a size-adjusted Arial
+  // metric so the swap from fallback → Switzer causes no layout shift, and the
+  // text is readable immediately. Preloading all 5 weights here would compete
+  // with the LCP image and the display font for the critical bandwidth budget.
+  preload: false,
   adjustFontFallback: "Arial",
   fallback: ["system-ui", "Arial", "sans-serif"],
 });

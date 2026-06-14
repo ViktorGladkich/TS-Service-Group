@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { clashDisplay, switzer } from "@/lib/fonts";
 import { generateOrganizationSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site.config";
@@ -34,11 +34,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.seo.defaultTitle,
     description: siteConfig.seo.defaultDescription,
+    images: [siteConfig.seo.ogImage],
   },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
 };
 
 const organizationSchema = generateOrganizationSchema();

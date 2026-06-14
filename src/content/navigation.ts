@@ -14,7 +14,6 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: "Über uns", href: "/ueber-uns" },
-  { label: "Häufige Fragen", href: "/haeufige-fragen" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
@@ -24,5 +23,4 @@ export const NAV_ITEMS: NavItem[] = [
 export const FOOTER_NAV: NavItem[] = [
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
-  { label: "AGB", href: "/agb" },
 ];

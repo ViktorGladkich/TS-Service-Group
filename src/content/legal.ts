@@ -9,7 +9,7 @@
 
 import { siteConfig } from "@/lib/site.config";
 
-const { contact, brand, seo } = siteConfig;
+const { contact, brand } = siteConfig;
 
 export const IMPRESSUM = {
   title: "Impressum",

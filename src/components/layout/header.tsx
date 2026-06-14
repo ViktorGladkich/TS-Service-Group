@@ -121,7 +121,7 @@ export function Header() {
 
           {/* Nav links */}
           <nav className="flex items-center gap-1 px-1" aria-label="Hauptnavigation">
-            {NAV_ITEMS.filter((item) => item.label !== "Kontakt").map((item) => {
+            {NAV_ITEMS.map((item) => {
               const hasChildren = item.children && item.children.length > 0;
               const isActive =
                 pathname === item.href ||
