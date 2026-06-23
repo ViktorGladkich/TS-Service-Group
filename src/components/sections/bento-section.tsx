@@ -226,12 +226,14 @@ export function BentoSection() {
           {/* Interior signature card */}
           <div className="bento-mobile-item relative overflow-hidden rounded-4xl">
             <div className="relative aspect-4/5 w-full">
-              <Image
-                src="/images/bento-interior.jpg"
-                alt="Saubere, sichere Räume — minimalistisches Interieur"
-                fill
-                sizes="(min-width: 1024px) 1px, 100vw"
-                className="object-cover"
+              <video
+                src="/videos/hero-showreel-opt.mp4"
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
               />
               <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/30 to-transparent" />
             </div>
@@ -323,12 +325,14 @@ export function BentoSection() {
 
           {/* ── ROW 2-3: Right Large Card with L-shape cutout ── */}
           <div ref={rightLargeRef} className="lg:col-span-8 lg:row-span-2 relative rounded-4xl overflow-hidden">
-            <Image
-              src="/images/bento-interior.jpg"
-              alt="Saubere, sichere Räume — minimalistisches Interieur"
-              fill
-              sizes="933px"
-              className="object-cover object-center"
+            <video
+              src="/videos/hero-showreel-opt.mp4"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
             />
             <div className="absolute inset-0 bg-linear-to-t from-bg/70 via-bg/20 to-transparent pointer-events-none" />
 

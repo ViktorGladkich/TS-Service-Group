@@ -21,9 +21,9 @@ const Corner = ({ className }: { className?: string }) => (
 );
 
 const SLIDES = [
-  { src: "/images/hero-01.jpg", alt: "Professioneller Sicherheitsdienst – modernes Gebäude Dresden" },
-  { src: "/images/hero-02.jpg", alt: "Umzugservice – sorgfältig geplanter Privatumzug" },
-  { src: "/images/hero-03.jpg", alt: "Gebäudereinigung – makellose Büroflächen Dresden" },
+  { src: "/images/hero-01.jpg", alt: "Professioneller Sicherheitsdienst – modernes Gebäude Dresden", objectPosition: "75% center" },
+  { src: "/images/hero-02.jpg", alt: "Umzugservice – sorgfältig geplanter Privatumzug", objectPosition: "60% center" },
+  { src: "/images/hero-03.jpg", alt: "Gebäudereinigung – makellose Büroflächen Dresden", objectPosition: "62% center" },
 ];
 const SLIDE_DURATION = 5000; // ms
 const SHOWREEL_SRC = "/videos/hero-showreel-opt.mp4";
@@ -176,7 +176,7 @@ export function HeroSection() {
                 priority={i === 0}
                 sizes="100vw"
                 className="object-cover"
-                style={{ objectPosition: "62% center" }}
+                style={{ objectPosition: slide.objectPosition }}
               />
             )}
           </div>
@@ -292,15 +292,15 @@ export function HeroSection() {
       </div>
 
       {/* Top-Center Logo (Clean, transparent, no white box) */}
-      <div className="hero-panel-tc absolute left-1/2 top-3 xl:top-5 z-50 hidden -translate-x-1/2 items-center justify-center opacity-0 lg:flex pointer-events-auto">
+      <div className="hero-panel-tc absolute left-1/2 top-6 xl:top-8 z-50 hidden -translate-x-1/2 items-center justify-center opacity-0 lg:flex pointer-events-auto">
         <Link href="/" className="transition-transform hover:scale-105">
           <Image
             src="/images/logo-white.png"
             alt="TS Service Group Logo"
             width={320}
-            height={90}
+            height={80}
             priority
-            className="h-14 md:h-16 xl:h-20 scale-145 w-auto object-contain"
+            className="h-8 md:h-10 xl:h-12 w-auto object-contain"
           />
         </Link>
       </div>

@@ -5,12 +5,8 @@ import { AboutSection } from "@/components/sections/about-section";
 // Below-the-fold sections are code-split into their own client chunks so they
 // don't bloat the initial JS the browser must download + hydrate for the hero.
 // SSR stays enabled (default) so the HTML/SEO content is still server-rendered.
-const ShowreelSection = dynamic(() =>
-  import("@/components/sections/showreel-section").then((m) => m.ShowreelSection)
-);
-const TickerSection = dynamic(() =>
-  import("@/components/sections/ticker-section").then((m) => m.TickerSection)
-);
+
+
 const ServiceShowcase = dynamic(() =>
   import("@/components/sections/service-showcase").then((m) => m.ServiceShowcase)
 );
@@ -35,8 +31,6 @@ export default function HomePage() {
     <div className="">
       <HeroSection />
       <AboutSection />
-      <ShowreelSection />
-      <TickerSection />
       <ServiceShowcase />
       <BentoSection />
       <ProcessSection />

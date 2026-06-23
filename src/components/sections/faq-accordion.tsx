@@ -215,10 +215,9 @@ function FaqItemRow({
           {item.question}
         </h3>
 
-        {/* Toggle icon — rotates on open */}
         <span
           className={cn(
-            "mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-hover transition-all duration-500",
+            "mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border-hover transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
             isOpen
               ? "rotate-45 border-metallic-light bg-metallic-light/10"
               : "group-hover:border-text"
@@ -233,10 +232,9 @@ function FaqItemRow({
         </span>
       </button>
 
-      {/* Answer — modern grid-rows trick for smooth height animation */}
       <div
         className={cn(
-          "grid transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]",
+          "grid transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
           isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         )}
       >

@@ -89,9 +89,7 @@ export function Footer() {
           <div className="footer-reveal relative mx-auto max-w-[1440px] px-6 pt-20 pb-10 lg:px-12 lg:pt-28">
             <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bg/50">
-                  [ Lassen Sie uns reden ]
-                </p>
+
                 <h2 className="mt-6 font-display text-bg leading-[0.92] tracking-[-0.04em] text-[clamp(3.5rem,9vw+1rem,9rem)] font-medium">
                   Bereit,
                   <br />
@@ -141,12 +139,10 @@ export function Footer() {
               3. CONTACT + GRID
               ============================================================ */}
           <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px-12 lg:py-24">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
-              {/* ---- Direct contact (5 cols) ---- */}
-              <div className="footer-reveal lg:col-span-5">
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bg/50">
-                  [ Direkter Draht ]
-                </p>
+            <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-8">
+              {/* ---- Direct contact (4 cols) ---- */}
+              <div className="footer-reveal lg:col-span-4 lg:pr-8">
+
 
                 <div className="mt-8 divide-y divide-bg/10 border-y border-bg/10">
                   <a
@@ -195,12 +191,10 @@ export function Footer() {
               </div>
 
               {/* ---- Links grid (7 cols) ---- */}
-              <div className="footer-reveal grid grid-cols-2 gap-10 lg:col-span-7 lg:grid-cols-3">
+              <div className="footer-reveal grid grid-cols-2 gap-10 lg:col-span-7 lg:col-start-6 lg:grid-cols-3">
                 {/* Leistungen */}
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bg/50">
-                    [ Leistungen ]
-                  </p>
+
                   <ul className="mt-8 space-y-4">
                     {siteConfig.services.map((service) => (
                       <li key={service.slug}>
@@ -223,9 +217,7 @@ export function Footer() {
 
                 {/* Unternehmen */}
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bg/50">
-                    [ Unternehmen ]
-                  </p>
+
                   <ul className="mt-8 space-y-4">
                     {NAV_ITEMS.map((item) => (
                       <li key={item.href}>
@@ -245,9 +237,7 @@ export function Footer() {
 
                 {/* Rechtliches + sozial */}
                 <div className="col-span-2 lg:col-span-1">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-bg/50">
-                    [ Rechtliches ]
-                  </p>
+
                   <ul className="mt-8 space-y-4">
                     {FOOTER_NAV.map((item) => (
                       <li key={item.href}>
@@ -287,7 +277,7 @@ export function Footer() {
               <div
                 className={cn(
                   "w-full text-center font-display font-medium uppercase leading-[0.85] tracking-[-0.04em] whitespace-nowrap py-6 text-bg lg:py-10",
-                  "text-[9.5vw] sm:text-[10.5vw]"
+                  "text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[6.5vw]"
                 )}
               >
                 TS·SERVICE·GROUP

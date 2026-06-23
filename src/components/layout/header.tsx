@@ -59,10 +59,10 @@ export function Header() {
             <Image
               src="/images/logo-white.png"
               alt="TS Service Group"
-              width={400}
-              height={100}
+              width={200}
+              height={50}
               priority
-              className="h-12 w-auto object-contain"
+              className="h-6 w-auto object-contain"
             />
           </Link>
 
@@ -115,7 +115,7 @@ export function Header() {
               width={120}
               height={30}
               priority
-              className="h-20 w-auto object-contain"
+              className="h-6 lg:h-7 w-auto object-contain"
             />
           </Link>
 

@@ -95,7 +95,7 @@ export function ServiceShowcase() {
   return (
     <Section 
       ref={sectionRef}
-      className="relative z-20 mt-0 bg-metallic-light py-24 shadow-[0_-35px_60px_-15px_rgba(0,0,0,0.35)] md:-mt-32 md:py-32" 
+      className="relative z-20 mt-12 bg-metallic-light py-24 shadow-[0_-35px_60px_-15px_rgba(0,0,0,0.35)] md:mt-24 md:py-32" 
       id="expertise"
     >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12" ref={containerRef}>
@@ -143,7 +143,7 @@ export function ServiceShowcase() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 720px"
                     className={cn(
                       "object-cover object-center transition-all duration-1200 ease-out",
-                      isHovered ? "scale-105 opacity-60 grayscale-0" : "scale-100 opacity-30 grayscale"
+                      isHovered ? "scale-105 opacity-80" : "scale-100 opacity-40"
                     )}
                   />
                   {/* Gradient Overlay for text readability */}
