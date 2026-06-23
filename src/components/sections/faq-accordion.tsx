@@ -65,11 +65,11 @@ export function FaqAccordion() {
       );
       gsap.fromTo(
         ".faq-section-title-line",
-        { yPercent: 100 },
+        { y: 40, opacity: 0 },
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 1.2,
-          stagger: 0.15,
           ease: "power4.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -117,13 +117,11 @@ export function FaqAccordion() {
             ref={titleRef}
             className="font-display text-4xl font-medium tracking-tight text-text md:text-6xl lg:text-7xl"
           >
-            <span className="block overflow-hidden">
-              <span
-                className="faq-section-title-line block"
-                style={{ transform: "translateY(100%)" }}
-              >
-                Was Sie wissen sollten.
-              </span>
+            <span
+              className="faq-section-title-line block"
+              style={{ opacity: 0 }}
+            >
+              Was Sie wissen sollten.
             </span>
           </h2>
         </div>
