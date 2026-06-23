@@ -42,7 +42,18 @@ export function SmoothScroller({ children, enabled }: Props) {
     gsap.ticker.add(ticker);
     gsap.ticker.lagSmoothing(0);
 
+    // Manual refresh on width resize (handles device rotation but ignores mobile URL bar height changes)
+    let lastWidth = window.innerWidth;
+    const handleResize = () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        ScrollTrigger.refresh();
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
     return () => {
+      window.removeEventListener("resize", handleResize);
       gsap.ticker.remove(ticker);
       lenis.destroy();
     };

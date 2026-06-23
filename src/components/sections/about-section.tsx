@@ -101,28 +101,21 @@ export function AboutSection() {
               },
             });
 
-            // Capture viewport height ONCE at setup — never recalculate during
-            // scroll. This is the key fix: on mobile browsers the address bar
-            // show/hide changes window.innerHeight, but ignoreMobileResize
-            // (set in smooth-scroller.tsx) tells ScrollTrigger to ignore those
-            // resize events. By also freezing the height we use for `end` and
-            // parallax math, nothing ever shifts during a scroll.
-            const frozenVh = window.innerHeight;
-
+            // Pinning + parallax — Active on all devices, mobile jank is handled by ScrollTrigger ignoreMobileResize config
             ScrollTrigger.create({
               trigger: servicesRef.current,
               start: "top top",
-              end: `+=${frozenVh * 2}`,
+              end: () => `+=${window.innerHeight * 2}`,
               pin: true,
               scrub: 1,
               pinSpacing: false,
               onUpdate: (self) => {
                 const progress = self.progress;
+                const vh = window.innerHeight;
 
-                // Parallax image strip — desktop only (too small on mobile)
-                if (isDesktop && parallaxRef.current) {
-                  const startY = frozenVh * 1.1;
-                  const endY = frozenVh * -2.5;
+                if (parallaxRef.current) {
+                  const startY = vh * 1.1;
+                  const endY = vh * -2.5;
                   const y = startY + (endY - startY) * progress;
                   gsap.set(parallaxRef.current, { y });
                 }
@@ -251,7 +244,7 @@ export function AboutSection() {
         <div
           ref={parallaxRef}
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden flex-col items-center gap-[40vh] will-change-transform lg:flex"
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 flex flex-col items-center gap-[40vh] will-change-transform"
           style={{ transform: "translateY(100svh)" }}
         >
           <figure className="relative aspect-3/4 w-[220px] overflow-hidden rounded-[28px] border border-white/10 shadow-2xl sm:w-[300px] lg:ml-[18vw] lg:w-[380px] lg:self-auto">
