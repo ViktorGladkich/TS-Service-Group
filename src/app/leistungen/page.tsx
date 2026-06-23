@@ -1,6 +1,5 @@
 import { LeistungenHero } from "@/components/sections/leistungen-hero";
 import { LeistungenServices } from "@/components/sections/leistungen-services";
-import { CtaSection } from "@/components/sections/cta-section";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata = generatePageMetadata({
@@ -15,7 +14,6 @@ export default function LeistungenPage() {
     <>
       <LeistungenHero />
       <LeistungenServices />
-      <CtaSection />
     </>
   );
 }

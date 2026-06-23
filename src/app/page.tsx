@@ -19,9 +19,7 @@ const ProcessSection = dynamic(() =>
 const FaqAccordion = dynamic(() =>
   import("@/components/sections/faq-accordion").then((m) => m.FaqAccordion)
 );
-const CtaSection = dynamic(() =>
-  import("@/components/sections/cta-section").then((m) => m.CtaSection)
-);
+
 
 /**
  * Startseite — homepage
@@ -35,7 +33,7 @@ export default function HomePage() {
       <BentoSection />
       <ProcessSection />
       <FaqAccordion />
-      <CtaSection />
+
     </div>
   );
 }

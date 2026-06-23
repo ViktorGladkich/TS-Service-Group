@@ -43,6 +43,21 @@ export const FAQ_SICHERHEIT: FAQItem[] = [
     answer:
       "Ja, wir sind darauf eingerichtet, auch kurzfristige Anfragen für Veranstaltungsschutz in Dresden und Umgebung zu bedienen. Kontaktieren Sie uns frühzeitig für eine optimale Planung.",
   },
+  {
+    question: "Bieten Sie auch regelmäßige Revierfahrten an?",
+    answer:
+      "Ja, wir übernehmen Kontrollfahrten und Revierstreifen außerhalb Ihrer Geschäftszeiten, um Ihr Objekt effektiv abzusichern.",
+  },
+  {
+    question: "Wie wird der Einsatzverlauf dokumentiert?",
+    answer:
+      "Alle Einsätze werden von uns digital und manipulationssicher protokolliert. So haben Sie jederzeit volle Transparenz über Kontrollgänge und Vorkommnisse.",
+  },
+  {
+    question: "Können Sie auch Baustellen absichern?",
+    answer:
+      "Absolut. Die Baustellenbewachung gehört zu unseren Kernkompetenzen. Wir schützen Material und Maschinen effektiv vor Diebstahl und Vandalismus.",
+  },
 ];
 
 export const FAQ_UMZUG: FAQItem[] = [
@@ -56,6 +71,21 @@ export const FAQ_UMZUG: FAQItem[] = [
     answer:
       "Ja, Einlagerung gehört zu unseren Zusatzleistungen — für Zwischen- oder Langzeitlagerung im Raum Dresden. Wir stimmen Lagerort und Zugang individuell mit Ihnen ab.",
   },
+  {
+    question: "Übernehmen Sie auch die Demontage und Montage von Möbeln?",
+    answer:
+      "Ja, unser geschultes Personal demontiert Ihre Möbel fachgerecht am alten Standort und baut sie am Zielort wieder passgenau auf.",
+  },
+  {
+    question: "Bieten Sie auch Firmenumzüge und Büroauflösungen an?",
+    answer:
+      "Selbstverständlich. Wir planen Firmenumzüge so, dass Ihr Geschäftsbetrieb minimal beeinträchtigt wird, und kümmern uns auch um IT-Transporte und Aktenvernichtung.",
+  },
+  {
+    question: "Stellen Sie Umzugskartons und Verpackungsmaterial?",
+    answer:
+      "Ja, wir liefern Ihnen im Vorfeld das komplette benötigte Verpackungsmaterial, von stabilen Umzugskartons bis hin zu Spezialverpackungen für zerbrechliche Gegenstände.",
+  },
 ];
 
 export const FAQ_REINIGUNG: FAQItem[] = [
@@ -68,5 +98,20 @@ export const FAQ_REINIGUNG: FAQItem[] = [
     question: "Wie oft findet die Unterhaltsreinigung statt?",
     answer:
       "Die Häufigkeit richten wir nach Ihrem Bedarf — von täglicher Reinigung bis zu wöchentlichen oder monatlichen Intervallen. Alles wird vertraglich klar geregelt.",
+  },
+  {
+    question: "Übernehmen Sie auch die Grund- oder Baureinigung?",
+    answer:
+      "Ja, neben der Unterhaltsreinigung bieten wir auch intensive Grundreinigungen sowie die komplette Bauendreinigung nach Renovierungen oder Neubauten an.",
+  },
+  {
+    question: "Reinigen Sie auch Glas- und Fassadenflächen?",
+    answer:
+      "Unser Portfolio umfasst auch die professionelle Glas- und Fensterreinigung, auf Wunsch inklusive Rahmen- und schwer zugänglicher Fassadenflächen.",
+  },
+  {
+    question: "Muss ich Reinigungsmittel oder Geräte bereitstellen?",
+    answer:
+      "Nein, wir bringen unsere komplette Ausrüstung sowie alle benötigten, auf die Oberflächen abgestimmten Reinigungsmittel selbst mit.",
   },
 ];

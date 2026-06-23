@@ -3,7 +3,6 @@ import { UeberUnsEditorial } from "@/components/sections/ueber-uns-editorial";
 import { UeberUnsManifesto } from "@/components/sections/ueber-uns-manifesto";
 import { UeberUnsValues } from "@/components/sections/ueber-uns-values";
 import { UeberUnsStats } from "@/components/sections/ueber-uns-stats";
-import { CtaSection } from "@/components/sections/cta-section";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata = generatePageMetadata({
@@ -33,7 +32,6 @@ export default function UeberUnsPage() {
 
       <UeberUnsStats />
 
-      <CtaSection />
     </>
   );
 }

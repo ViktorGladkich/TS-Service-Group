@@ -60,10 +60,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  /* Reserve space for the scrollbar even when overflow is hidden
-     (during the preloader) so the page doesn't shift left by the
-     scrollbar width when the lock is released. */
-  scrollbar-gutter: stable;
+  /* Reserve space for the scrollbar removed to prevent permanent empty track */
 }
 
 body {
@@ -73,10 +70,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   overflow-x: hidden;
-  /* Pair with the html rule above: when JS toggles body.overflow=hidden
-     during the preloader, browsers propagate that to the viewport. Keeping
-     the gutter reserved on body too means no shift when scroll is released. */
-  scrollbar-gutter: stable;
+  /* Pair with the html rule above */
 }
 
 /* ---- Focus ring (on-brand metallic hairline) ---- */
@@ -226,26 +220,7 @@ body {
   animation: hero-modal-zoom 520ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ============================================================
- * SCROLLBAR (subtle, on-brand)
- * ============================================================ */
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-text-subtle);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
-}
 
 /* ============================================================
  * FOOTER MARQUEE

@@ -72,7 +72,7 @@ export function FaqAccordion() {
           stagger: 0.15,
           ease: "power4.out",
           scrollTrigger: {
-            trigger: titleRef.current,
+            trigger: sectionRef.current,
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
@@ -106,7 +106,7 @@ export function FaqAccordion() {
     >
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12">
         {/* Section header */}
-        <div className="mb-12 flex flex-col md:mb-16">
+        <div className="mb-12 flex flex-col items-center text-center md:mb-16">
           <span
             className="faq-section-eyebrow mb-4 font-mono text-sm uppercase tracking-[0.2em] text-text-muted"
             style={{ opacity: 0 }}
@@ -128,11 +128,10 @@ export function FaqAccordion() {
           </h2>
         </div>
 
-        {/* Category tabs */}
         <div
           role="tablist"
           aria-label="FAQ Kategorien"
-          className="mb-12 flex flex-wrap gap-2 border-b border-border pb-8 md:gap-3 md:mb-16"
+          className="mb-12 flex flex-wrap justify-center gap-2 md:gap-3 md:mb-16"
         >
           {CATEGORIES.map((cat) => (
             <button
@@ -141,7 +140,7 @@ export function FaqAccordion() {
               aria-selected={activeCategory === cat.id}
               onClick={() => handleCategoryChange(cat.id)}
               className={cn(
-                "faq-category-pill rounded-full border px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-300",
+                "faq-category-pill cursor-pointer rounded-full border px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-300",
                 activeCategory === cat.id
                   ? "border-metallic-light bg-metallic-light text-bg"
                   : "border-border text-text-muted hover:border-border-hover hover:text-text"
@@ -189,7 +188,7 @@ function FaqItemRow({
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="group flex w-full items-start gap-4 py-8 text-left md:gap-8 md:py-10"
+        className="group flex w-full cursor-pointer items-start gap-4 py-8 text-left md:gap-8 md:py-10"
       >
         {/* Metallic numbered tag */}
         <span

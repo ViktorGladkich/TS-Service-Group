@@ -1,6 +1,5 @@
 import { FaqHero } from "@/components/sections/faq-hero";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
-import { CtaSection } from "@/components/sections/cta-section";
 import { generatePageMetadata } from "@/lib/seo";
 import { generateFaqSchema } from "@/lib/schema";
 import {
@@ -35,7 +34,6 @@ export default function HaeufigeFragenPage() {
       />
       <FaqHero />
       <FaqAccordion />
-      <CtaSection />
     </>
   );
 }

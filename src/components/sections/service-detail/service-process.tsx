@@ -166,7 +166,7 @@ export function ServiceProcess({ meta }: { meta: ServiceMeta }) {
                 <div className="md:col-span-3 md:pl-16">
                   <div className="relative flex items-center gap-4">
                     {/* dot anchor on the vertical track */}
-                    <span className="absolute -left-16 hidden h-3 w-3 -translate-y-1/2 rounded-full bg-bg ring-1 ring-metallic-light md:block" />
+                    <span className="absolute -left-[45.5px] hidden h-3 w-3 -translate-y-1/2 rounded-full bg-bg ring-1 ring-metallic-light md:block" />
                     <span
                       className="font-display font-medium leading-none tracking-[-0.04em] select-none"
                       style={{

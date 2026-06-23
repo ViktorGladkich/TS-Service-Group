@@ -114,9 +114,7 @@ export function BentoSection() {
             ref={headlineRef}
             className="bento-mobile-item flex flex-col gap-4 px-1 pt-2 pb-4"
           >
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted">
-              [ Premium · Inhabergeführt ]
-            </span>
+
             <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-[-0.02em] text-text sm:text-5xl">
               Premium-Lösungen<br />
               <span className="text-text-muted">für höchste Ansprüche.</span>
@@ -137,11 +135,7 @@ export function BentoSection() {
             />
             <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/40 to-transparent" />
 
-            {/* Eyebrow chip */}
-            <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white backdrop-blur-md">
-              <span className="h-1 w-1 rounded-full bg-metallic-light" />
-              01 · Sicherheit
-            </div>
+
 
             {/* Bottom content */}
             <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
@@ -157,9 +151,7 @@ export function BentoSection() {
           {/* Two-up: 100% stat + Direct-to-owner */}
           <div className="grid grid-cols-2 gap-4">
             <div className="bento-mobile-item flex flex-col justify-between rounded-[1.75rem] border border-black/10 bg-metallic-light p-5">
-              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-bg/40">
-                [ Anspruch ]
-              </span>
+
               <div className="flex flex-col gap-2">
                 <span className="font-display text-5xl font-semibold leading-none tracking-[-0.04em] text-bg sm:text-6xl">
                   100%
@@ -174,9 +166,7 @@ export function BentoSection() {
               href="/kontakt"
               className="bento-mobile-item group relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/3 p-5"
             >
-              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-text-subtle">
-                [ Direkt zum Inhaber ]
-              </span>
+
               <div className="flex items-end justify-between gap-3">
                 <h4 className="font-display text-xl font-medium leading-tight tracking-tight text-text sm:text-2xl">
                   Persönlich.<br />Verbindlich.
@@ -195,9 +185,7 @@ export function BentoSection() {
           >
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-3">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-bg/40">
-                  [ Premium-Service ]
-                </span>
+
                 <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-bg sm:text-3xl">
                   Den perfekten<br />Service zusammenstellen.
                 </h3>
@@ -238,11 +226,7 @@ export function BentoSection() {
               <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/30 to-transparent" />
             </div>
 
-            {/* Floating glass label */}
-            <div className="absolute inset-x-5 top-5 flex items-center gap-2 self-start rounded-full border border-white/20 bg-white/10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-white backdrop-blur-md w-fit">
-              <span className="h-1 w-1 rounded-full bg-metallic-light" />
-              Räume mit Standard
-            </div>
+
 
             {/* Bottom block with pills + headline */}
             <div className="absolute inset-x-5 bottom-5 space-y-4">

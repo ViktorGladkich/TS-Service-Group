@@ -105,7 +105,7 @@ export function CtaSection() {
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none p-6 text-center">
             <div className="bg-white/10 backdrop-blur-2xl border border-white/20 px-8 sm:px-12 md:px-16 py-12 md:py-16 rounded-[2.5rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] space-y-8 max-w-2xl pointer-events-auto">
               <div className="space-y-3">
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-metallic-light font-medium">
+                <p className="hidden md:block font-mono text-xs uppercase tracking-[0.25em] text-metallic-light font-medium">
                   [ BEREIT FÜR EXZELLENZ ]
                 </p>
                 <h2 className="font-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">

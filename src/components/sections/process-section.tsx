@@ -321,9 +321,7 @@ export function ProcessSection() {
                 className="object-contain p-6 transition-all duration-500 scale-90"
               />
             </div>
-            <span className="mt-6 block font-mono text-[11px] uppercase tracking-[0.25em] text-text-subtle">
-              Phase {step.id} · {step.subtitle}
-            </span>
+
             <h3 className="mt-4 font-display text-3xl font-medium leading-tight tracking-tight text-text">
               {step.title}
             </h3>
