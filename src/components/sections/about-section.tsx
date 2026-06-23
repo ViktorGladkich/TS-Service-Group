@@ -101,54 +101,59 @@ export function AboutSection() {
               },
             });
 
-            // Pinning + parallax — DESKTOP ONLY to avoid mobile jank
-            if (isDesktop) {
-              ScrollTrigger.create({
-                trigger: servicesRef.current,
-                start: "top top",
-                end: () => `+=${window.innerHeight * 2}`,
-                pin: true,
-                scrub: 1,
-                pinSpacing: false,
-                onUpdate: (self) => {
-                  const progress = self.progress;
-                  const vh = window.innerHeight;
+            // Capture viewport height ONCE at setup — never recalculate during
+            // scroll. This is the key fix: on mobile browsers the address bar
+            // show/hide changes window.innerHeight, but ignoreMobileResize
+            // (set in smooth-scroller.tsx) tells ScrollTrigger to ignore those
+            // resize events. By also freezing the height we use for `end` and
+            // parallax math, nothing ever shifts during a scroll.
+            const frozenVh = window.innerHeight;
 
-                  if (parallaxRef.current) {
-                    const startY = vh * 1.1;
-                    const endY = vh * -2.5;
-                    const y = startY + (endY - startY) * progress;
-                    gsap.set(parallaxRef.current, { y });
-                  }
+            ScrollTrigger.create({
+              trigger: servicesRef.current,
+              start: "top top",
+              end: `+=${frozenVh * 2}`,
+              pin: true,
+              scrub: 1,
+              pinSpacing: false,
+              onUpdate: (self) => {
+                const progress = self.progress;
 
-                  if (progress <= 0.5) {
-                    const yProgress = progress / 0.5;
-                    gsap.set(header0Ref.current, {
-                      x: "0%",
-                      y: `${yProgress * 100}%`,
-                      scale: 1,
-                      opacity: 1,
-                    });
-                    gsap.set(header1Ref.current, { x: "0%", y: "0%", scale: 1, opacity: 1 });
-                    gsap.set(header2Ref.current, {
-                      x: "0%",
-                      y: `${yProgress * -100}%`,
-                      scale: 1,
-                      opacity: 1,
-                    });
-                  } else {
-                    const scaleProgress = (progress - 0.5) / 0.5;
-                    const minScale = 0.3;
-                    const scale = 1 - scaleProgress * (1 - minScale);
-                    const opacity = 1 - scaleProgress * 0.5;
+                // Parallax image strip — desktop only (too small on mobile)
+                if (isDesktop && parallaxRef.current) {
+                  const startY = frozenVh * 1.1;
+                  const endY = frozenVh * -2.5;
+                  const y = startY + (endY - startY) * progress;
+                  gsap.set(parallaxRef.current, { y });
+                }
 
-                    gsap.set(header0Ref.current, { x: "0%", y: "100%", scale, opacity });
-                    gsap.set(header1Ref.current, { x: "0%", y: "0%", scale, opacity });
-                    gsap.set(header2Ref.current, { x: "0%", y: "-100%", scale, opacity });
-                  }
-                },
-              });
-            }
+                if (progress <= 0.5) {
+                  const yProgress = progress / 0.5;
+                  gsap.set(header0Ref.current, {
+                    x: "0%",
+                    y: `${yProgress * 100}%`,
+                    scale: 1,
+                    opacity: 1,
+                  });
+                  gsap.set(header1Ref.current, { x: "0%", y: "0%", scale: 1, opacity: 1 });
+                  gsap.set(header2Ref.current, {
+                    x: "0%",
+                    y: `${yProgress * -100}%`,
+                    scale: 1,
+                    opacity: 1,
+                  });
+                } else {
+                  const scaleProgress = (progress - 0.5) / 0.5;
+                  const minScale = isDesktop ? 0.3 : 0.45;
+                  const scale = 1 - scaleProgress * (1 - minScale);
+                  const opacity = 1 - scaleProgress * 0.5;
+
+                  gsap.set(header0Ref.current, { x: "0%", y: "100%", scale, opacity });
+                  gsap.set(header1Ref.current, { x: "0%", y: "0%", scale, opacity });
+                  gsap.set(header2Ref.current, { x: "0%", y: "-100%", scale, opacity });
+                }
+              },
+            });
           }
 
           // ── 3. SECOND TEXT REVEAL ──
@@ -246,7 +251,7 @@ export function AboutSection() {
         <div
           ref={parallaxRef}
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 z-0 flex flex-col items-center gap-[40vh] will-change-transform"
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden flex-col items-center gap-[40vh] will-change-transform lg:flex"
           style={{ transform: "translateY(100svh)" }}
         >
           <figure className="relative aspect-3/4 w-[220px] overflow-hidden rounded-[28px] border border-white/10 shadow-2xl sm:w-[300px] lg:ml-[18vw] lg:w-[380px] lg:self-auto">
@@ -314,7 +319,7 @@ export function AboutSection() {
       </section>
 
       {/* ── SECTION 3: SECOND TEXT REVEAL (Overlapping via mount offset margin) ── */}
-      <section className="bg-bg relative z-30 mt-0 lg:mt-[152svh] flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
+      <section className="bg-bg relative z-30 mt-[152svh] flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
         <div className="relative mx-auto w-full max-w-5xl">
           <h2
             ref={text2Ref}
