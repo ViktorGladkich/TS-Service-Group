@@ -18,7 +18,7 @@ const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "info@ts-servicegroup.de";
 // verifiziert ist, kann ersatzweise "onboarding@resend.dev" verwendet werden.
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ??
-  "TS Service Group <kontakt@ts-servicegroup.de>";
+  "TS Service Group <info@ts-servicegroup.de>";
 
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 

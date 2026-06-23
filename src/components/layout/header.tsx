@@ -178,14 +178,14 @@ export function Header() {
           {/* CTA */}
           <Link
             href="/kontakt"
-            className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white py-1.5 pl-5 pr-1.5 text-sm font-medium text-bg"
+            className="group relative flex items-center gap-2 overflow-hidden rounded-full border border-white bg-white py-1 pl-4 pr-1 text-xs font-medium text-bg"
           >
             <span className="pointer-events-none absolute inset-0 translate-y-full bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0" />
             <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
               Anfragen
             </span>
-            <span className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-bg text-white transition-colors duration-500 group-hover:bg-white group-hover:text-bg">
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+            <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-bg text-white transition-colors duration-500 group-hover:bg-white group-hover:text-bg">
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:rotate-45" />
             </span>
           </Link>
         </div>

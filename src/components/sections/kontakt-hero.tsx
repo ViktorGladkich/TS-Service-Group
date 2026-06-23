@@ -105,7 +105,6 @@ export function KontaktHero() {
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-text-subtle">
                   [ Anruf ]
                 </span>
-                <div className="h-px flex-1 bg-border" />
               </div>
               <a
                 href={`tel:${siteConfig.contact.phone}`}
@@ -126,7 +125,6 @@ export function KontaktHero() {
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-text-subtle">
                   [ E-Mail ]
                 </span>
-                <div className="h-px flex-1 bg-border" />
               </div>
               <a
                 href={`mailto:${siteConfig.contact.email}`}
@@ -147,7 +145,6 @@ export function KontaktHero() {
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-metallic-light">
                   [ Inhaber ]
                 </span>
-                <div className="h-px flex-1 bg-metallic-light/30" />
               </div>
               <a
                 href={`tel:${siteConfig.contact.emergency.phone}`}

@@ -130,9 +130,3 @@ Devrientstraße 5, 01067 Dresden`,
     },
   ],
 };
-
-export const AGB = {
-  title: "Allgemeine Geschäftsbedingungen",
-  seoTitle: "AGB",
-  seoDescription: `Allgemeine Geschäftsbedingungen der TS Service Group.`,
-};

@@ -101,58 +101,54 @@ export function AboutSection() {
               },
             });
 
-            // Pinning, vertical merging, scaling + parallax image strip behind text
-            ScrollTrigger.create({
-              trigger: servicesRef.current,
-              start: "top top",
-              end: () => `+=${window.innerHeight * 2}`,
-              pin: true,
-              scrub: 1,
-              pinSpacing: false, // Allows next section to scroll OVER it
-              onUpdate: (self) => {
-                const progress = self.progress;
-                const vh = window.innerHeight;
+            // Pinning + parallax — DESKTOP ONLY to avoid mobile jank
+            if (isDesktop) {
+              ScrollTrigger.create({
+                trigger: servicesRef.current,
+                start: "top top",
+                end: () => `+=${window.innerHeight * 2}`,
+                pin: true,
+                scrub: 1,
+                pinSpacing: false,
+                onUpdate: (self) => {
+                  const progress = self.progress;
+                  const vh = window.innerHeight;
 
-                // Parallax image strip: starts just below the viewport (+110vh) and ends
-                // fully off the top (-150vh). With 2 stacked cards + gap (~130vh tall),
-                // image 1 is centered around progress ~32% and image 2 around ~65%,
-                // so both get a fair pass through the viewport during the pinned scroll.
-                if (parallaxRef.current) {
-                  const startY = vh * 1.1;
-                  const endY = vh * -2.5;
-                  const y = startY + (endY - startY) * progress;
-                  gsap.set(parallaxRef.current, { y });
-                }
+                  if (parallaxRef.current) {
+                    const startY = vh * 1.1;
+                    const endY = vh * -2.5;
+                    const y = startY + (endY - startY) * progress;
+                    gsap.set(parallaxRef.current, { y });
+                  }
 
-                if (progress <= 0.5) {
-                  // First 50% of scroll: vertical collapse into center
-                  const yProgress = progress / 0.5;
-                  gsap.set(header0Ref.current, {
-                    x: "0%",
-                    y: `${yProgress * 100}%`,
-                    scale: 1,
-                    opacity: 1,
-                  });
-                  gsap.set(header1Ref.current, { x: "0%", y: "0%", scale: 1, opacity: 1 });
-                  gsap.set(header2Ref.current, {
-                    x: "0%",
-                    y: `${yProgress * -100}%`,
-                    scale: 1,
-                    opacity: 1,
-                  });
-                } else {
-                  // Second 50%: stay collapsed & scale down to fade away
-                  const scaleProgress = (progress - 0.5) / 0.5;
-                  const minScale = isDesktop ? 0.3 : 0.45;
-                  const scale = 1 - scaleProgress * (1 - minScale);
-                  const opacity = 1 - scaleProgress * 0.5;
+                  if (progress <= 0.5) {
+                    const yProgress = progress / 0.5;
+                    gsap.set(header0Ref.current, {
+                      x: "0%",
+                      y: `${yProgress * 100}%`,
+                      scale: 1,
+                      opacity: 1,
+                    });
+                    gsap.set(header1Ref.current, { x: "0%", y: "0%", scale: 1, opacity: 1 });
+                    gsap.set(header2Ref.current, {
+                      x: "0%",
+                      y: `${yProgress * -100}%`,
+                      scale: 1,
+                      opacity: 1,
+                    });
+                  } else {
+                    const scaleProgress = (progress - 0.5) / 0.5;
+                    const minScale = 0.3;
+                    const scale = 1 - scaleProgress * (1 - minScale);
+                    const opacity = 1 - scaleProgress * 0.5;
 
-                  gsap.set(header0Ref.current, { x: "0%", y: "100%", scale, opacity });
-                  gsap.set(header1Ref.current, { x: "0%", y: "0%", scale, opacity });
-                  gsap.set(header2Ref.current, { x: "0%", y: "-100%", scale, opacity });
-                }
-              },
-            });
+                    gsap.set(header0Ref.current, { x: "0%", y: "100%", scale, opacity });
+                    gsap.set(header1Ref.current, { x: "0%", y: "0%", scale, opacity });
+                    gsap.set(header2Ref.current, { x: "0%", y: "-100%", scale, opacity });
+                  }
+                },
+              });
+            }
           }
 
           // ── 3. SECOND TEXT REVEAL ──
@@ -318,7 +314,7 @@ export function AboutSection() {
       </section>
 
       {/* ── SECTION 3: SECOND TEXT REVEAL (Overlapping via mount offset margin) ── */}
-      <section className="bg-bg relative z-30 mt-[152svh] flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
+      <section className="bg-bg relative z-30 mt-0 lg:mt-[152svh] flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
         <div className="relative mx-auto w-full max-w-5xl">
           <h2
             ref={text2Ref}

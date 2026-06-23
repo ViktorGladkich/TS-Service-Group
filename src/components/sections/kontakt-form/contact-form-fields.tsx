@@ -184,11 +184,17 @@ export function ContactFormFields({
         <button
           type="submit"
           disabled={isBusy}
-          className="group inline-flex items-center gap-3 rounded-full border border-border-hover bg-elevated py-1.5 pl-5 pr-1.5 text-sm font-medium text-text transition-all duration-300 hover:bg-elevated/80 disabled:cursor-not-allowed disabled:opacity-60"
+          className="group relative overflow-hidden inline-flex cursor-pointer items-center gap-3 rounded-full border border-white bg-white py-1.5 pl-5 pr-1.5 text-sm font-medium text-black transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          <span>{isBusy ? "Wird gesendet…" : "Anfrage senden"}</span>
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-text text-bg transition-transform duration-500 group-hover:rotate-45">
-            <ArrowUpRight className="h-4 w-4" />
+          {/* Sliding background fill */}
+          <span className="pointer-events-none absolute inset-0 translate-y-full bg-black transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0" />
+
+          {/* Content wrapper */}
+          <span className="relative z-10 flex items-center justify-center gap-3 transition-colors duration-500 group-hover:text-white">
+            <span>{isBusy ? "Wird gesendet…" : "Anfrage senden"}</span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-white transition-all duration-500 group-hover:rotate-45 group-hover:bg-white group-hover:text-black">
+              <ArrowUpRight className="h-4 w-4" />
+            </span>
           </span>
         </button>
       </div>

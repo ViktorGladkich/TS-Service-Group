@@ -85,7 +85,7 @@ export function KontaktMap() {
           className="relative w-full overflow-hidden rounded-2xl"
           style={{ clipPath: "inset(100% 0% 0% 0%)" }}
         >
-          <div className="relative aspect-[16/9] w-full bg-elevated">
+          <div className="relative h-[380px] w-full bg-elevated md:h-auto md:aspect-[16/9]">
             {!loaded ? (
               <MapPlaceholder onLoad={() => setLoaded(true)} />
             ) : (
@@ -139,7 +139,7 @@ function MapPlaceholder({ onLoad }: { onLoad: () => void }) {
         </p>
       </div>
 
-      <span className="relative z-10 inline-flex items-center gap-3 rounded-full border border-border-hover bg-bg/40 px-5 py-2 font-mono text-xs uppercase tracking-[0.25em] text-text backdrop-blur-sm transition-colors group-hover:bg-bg/70">
+      <span className="relative z-10 mx-4 inline-flex items-center justify-center gap-3 rounded-full border border-border-hover bg-bg/40 px-4 py-3 text-center font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-text backdrop-blur-sm transition-colors group-hover:bg-bg/70">
         OpenStreetMap aktivieren
         <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-45" />
       </span>
