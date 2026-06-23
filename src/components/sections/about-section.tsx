@@ -20,6 +20,7 @@ export function AboutSection() {
   const text1OverlayRef = useRef<HTMLHeadingElement>(null);
 
   // Refs for services sliding/pinning (displaying "Warum Wir?")
+  const servicesWrapperRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const header0Ref = useRef<HTMLDivElement>(null);
@@ -80,16 +81,17 @@ export function AboutSection() {
             });
           }
 
-          // ── 2. SERVICES SLIDING (HORIZONTAL ASSEMBLY - LEFT, RIGHT, LEFT) ──
+          // ── 2. SERVICES SLIDING (NATIVE STICKY + SCROLL SCRUB) ──
           if (
+            servicesWrapperRef.current &&
             servicesRef.current &&
             header0Ref.current &&
             header1Ref.current &&
             header2Ref.current
           ) {
-            // Slide in from sides before pinning
+            // Slide in from sides before the sticky section reaches the top
             ScrollTrigger.create({
-              trigger: servicesRef.current,
+              trigger: servicesWrapperRef.current,
               start: "top bottom",
               end: "top top",
               scrub: 1,
@@ -101,19 +103,21 @@ export function AboutSection() {
               },
             });
 
-            // Pinning + parallax — Active on all devices, mobile jank is handled by ScrollTrigger ignoreMobileResize config
+            // Parallax and text scaling — driven by the wrapper's scroll
+            let vh = window.innerHeight;
             ScrollTrigger.create({
-              trigger: servicesRef.current,
+              trigger: servicesWrapperRef.current,
               start: "top top",
-              end: () => `+=${window.innerHeight * 2}`,
-              pin: true,
+              end: "bottom bottom", // Scrubs exactly through the 200svh extra space
               scrub: 1,
-              pinSpacing: false,
+              onRefresh: () => {
+                vh = window.innerHeight;
+              },
               onUpdate: (self) => {
                 const progress = self.progress;
-                const vh = window.innerHeight;
 
                 if (parallaxRef.current) {
+                  // Calculate using the cached `vh` so it doesn't jump on Android address bar hide!
                   const startY = vh * 1.1;
                   const endY = vh * -2.5;
                   const y = startY + (endY - startY) * progress;
@@ -235,11 +239,12 @@ export function AboutSection() {
         </div>
       </section>
 
-      {/* ── SECTION 2: PINNED "WARUM WIR?" + PARALLAX IMAGE STRIP BEHIND ── */}
-      <section
-        ref={servicesRef}
-        className="bg-bg relative z-20 flex h-svh w-full flex-col items-center justify-center overflow-hidden"
-      >
+      {/* ── SECTION 2 WRAPPER: NATIVE STICKY POSITIONING ── */}
+      <div ref={servicesWrapperRef} className="relative z-20 w-full" style={{ height: "300svh" }}>
+        <section
+          ref={servicesRef}
+          className="bg-bg sticky top-0 flex h-svh w-full flex-col items-center justify-center overflow-hidden"
+        >
         {/* Parallax image strip — sits behind the text, travels bottom→top during pin */}
         <div
           ref={parallaxRef}
@@ -308,11 +313,11 @@ export function AboutSection() {
           >
             Warum Wir?
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* ── SECTION 3: SECOND TEXT REVEAL (Overlapping via mount offset margin) ── */}
-      <section className="bg-bg relative z-30 mt-[152svh] flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
+      {/* ── SECTION 3: SECOND TEXT REVEAL ── */}
+      <section className="bg-bg relative z-30 flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
         <div className="relative mx-auto w-full max-w-5xl">
           <h2
             ref={text2Ref}
