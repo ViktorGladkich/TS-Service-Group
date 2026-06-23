@@ -16,12 +16,6 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     // Optimized variants are immutable for a year (filename carries a hash).
     minimumCacheTTL: 31536000,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
   },
   // Long-lived immutable caching for static media the optimizer doesn't touch
   // (videos, poster, fonts) — these filenames are stable so a year is safe.
