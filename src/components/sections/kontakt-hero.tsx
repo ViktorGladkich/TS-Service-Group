@@ -16,7 +16,7 @@ export function KontaktHero() {
       // Initial hidden state via JS, not inline JSX, so content remains visible
       // if this effect never runs.
       gsap.set(eyebrowRef.current, { y: 24, opacity: 0 });
-      gsap.set(".kontakt-title-line", { yPercent: 100 });
+      gsap.set(".kontakt-title-line", { y: 40, opacity: 0 });
       gsap.set(descRef.current, { y: 24, opacity: 0 });
       gsap.set(".kontakt-card-row", { y: 24, opacity: 0 });
       gsap.set(scrollCueRef.current, { y: 16, opacity: 0 });
@@ -25,7 +25,7 @@ export function KontaktHero() {
       tl.to(eyebrowRef.current, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" });
       tl.to(
         ".kontakt-title-line",
-        { yPercent: 0, duration: 1.3, stagger: 0.15, ease: "power4.out" },
+        { y: 0, opacity: 1, duration: 1.3, stagger: 0.15, ease: "power4.out" },
         "-=0.7"
       );
       tl.to(
@@ -145,7 +145,7 @@ export function KontaktHero() {
             <div className="kontakt-card-row space-y-3">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs uppercase tracking-[0.3em] text-metallic-light">
-                  [ Notruf 24/7 ]
+                  [ Inhaber ]
                 </span>
                 <div className="h-px flex-1 bg-metallic-light/30" />
               </div>

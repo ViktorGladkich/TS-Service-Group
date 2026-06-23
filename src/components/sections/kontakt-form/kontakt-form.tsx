@@ -95,9 +95,10 @@ export function KontaktForm() {
       );
       gsap.fromTo(
         ".kontakt-form-title-line",
-        { yPercent: 100 },
+        { y: 40, opacity: 0 },
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 1.2,
           stagger: 0.15,
           ease: "power4.out",
@@ -166,7 +167,7 @@ export function KontaktForm() {
             <span className="block overflow-hidden">
               <span
                 className="kontakt-form-title-line block"
-                style={{ transform: "translateY(100%)" }}
+                style={{ opacity: 0 }}
               >
                 Schreiben Sie uns.
               </span>

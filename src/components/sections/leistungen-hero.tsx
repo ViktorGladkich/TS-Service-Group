@@ -16,7 +16,7 @@ export function LeistungenHero() {
       // runs — e.g. JS error, hydration glitch — the content stays visible
       // instead of permanently stuck off-screen / at opacity 0.
       gsap.set(eyebrowRef.current, { y: 24, opacity: 0 });
-      gsap.set(".leistungen-title-line", { yPercent: 100 });
+      gsap.set(".leistungen-title-line", { y: 40, opacity: 0 });
       gsap.set(descRef.current, { y: 24, opacity: 0 });
       gsap.set(scrollCueRef.current, { y: 16, opacity: 0 });
 
@@ -30,7 +30,7 @@ export function LeistungenHero() {
       });
       tl.to(
         ".leistungen-title-line",
-        { yPercent: 0, duration: 1.3, stagger: 0.16, ease: "power4.out" },
+        { y: 0, opacity: 1, duration: 1.3, stagger: 0.15, ease: "power4.out" },
         "-=0.7"
       );
       tl.to(

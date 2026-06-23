@@ -57,8 +57,8 @@ export function HeroSection() {
 
       // 2. Main title text - split lines staggering up
       tl.fromTo(".hero-title-line",
-        { yPercent: 120 },
-        { yPercent: 0, duration: 0.9, stagger: 0.12, ease: "power4.out" },
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.12, ease: "power4.out" },
         "-=0.7"
       );
 

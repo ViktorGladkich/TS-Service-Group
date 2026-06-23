@@ -42,18 +42,6 @@ export function ContactInfo() {
         </ul>
       </div>
 
-      <div
-        className="kontakt-form-info border-t border-border pt-8 space-y-3"
-        style={{ opacity: 0 }}
-      >
-        <span className="block font-mono text-[10px] uppercase tracking-[0.3em] text-metallic-light">
-          Notruf 24/7
-        </span>
-        <p className="text-sm leading-relaxed text-text-muted">
-          Für akute Sicherheitsanliegen ist unser Notdienst rund um die Uhr
-          erreichbar.
-        </p>
-      </div>
     </aside>
   );
 }

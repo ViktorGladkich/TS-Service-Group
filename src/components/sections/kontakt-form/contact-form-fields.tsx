@@ -156,7 +156,7 @@ export function ContactFormFields({
           <input
             type="checkbox"
             {...register("privacy")}
-            className="kontakt-checkbox mt-1 shrink-0"
+            className="kontakt-checkbox mt-[2px] shrink-0"
           />
           <span className="text-sm leading-relaxed text-text-muted">
             Ich habe die{" "}
@@ -184,10 +184,10 @@ export function ContactFormFields({
         <button
           type="submit"
           disabled={isBusy}
-          className="group inline-flex items-center gap-4 rounded-full border border-border-hover bg-elevated py-2 pl-6 pr-2 text-sm font-medium text-text transition-all duration-300 hover:bg-elevated/80 disabled:cursor-not-allowed disabled:opacity-60"
+          className="group inline-flex items-center gap-3 rounded-full border border-border-hover bg-elevated py-1.5 pl-5 pr-1.5 text-sm font-medium text-text transition-all duration-300 hover:bg-elevated/80 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <span>{isBusy ? "Wird gesendet…" : "Anfrage senden"}</span>
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-text text-bg transition-transform duration-500 group-hover:rotate-45">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-text text-bg transition-transform duration-500 group-hover:rotate-45">
             <ArrowUpRight className="h-4 w-4" />
           </span>
         </button>

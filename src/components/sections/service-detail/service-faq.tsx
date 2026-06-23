@@ -34,10 +34,11 @@ export function ServiceFaq({ meta }: { meta: ServiceMeta }) {
         }
       );
       gsap.fromTo(
-        ".sfaq-title-line",
-        { yPercent: 100 },
+        ".service-faq-title-line",
+        { y: 40, opacity: 0 },
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 1.2,
           stagger: 0.15,
           ease: "power4.out",
@@ -73,10 +74,10 @@ export function ServiceFaq({ meta }: { meta: ServiceMeta }) {
                 <span key={i} className="block overflow-hidden pb-1">
                   <span
                     className={
-                      "sfaq-title-line block " +
+                      "service-faq-title-line block " +
                       (i === meta.faqTitle.length - 1 ? "text-text-muted" : "")
                     }
-                    style={{ transform: "translateY(100%)" }}
+                    style={{ opacity: 0 }}
                   >
                     {line}
                   </span>
@@ -167,8 +168,8 @@ function FaqRow({
           isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         )}
       >
-        <div className="overflow-hidden">
-          <p className="max-w-3xl pb-8 pl-0 pr-12 text-base leading-relaxed text-text-muted md:pl-[3.5rem] md:text-lg">
+        <div className="service-faq-answer-inner overflow-hidden">
+          <p className="max-w-3xl pb-8 pl-0 pr-12 text-base leading-relaxed text-text-muted md:pl-14 md:text-lg">
             {item.answer}
           </p>
         </div>

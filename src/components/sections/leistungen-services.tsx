@@ -130,9 +130,9 @@ function ServicePanel({
       if (numberRef.current) {
         gsap.fromTo(
           numberRef.current,
-          { yPercent: 100, opacity: 0 },
+          { y: 40, opacity: 0 },
           {
-            yPercent: 0,
+            y: 0,
             opacity: 1,
             duration: 1.4,
             ease: "power4.out",

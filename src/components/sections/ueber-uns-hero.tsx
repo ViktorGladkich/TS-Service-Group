@@ -18,7 +18,7 @@ export function UeberUnsHero() {
       // Set initial hidden state in JS, not inline JSX, so content stays visible
       // if this effect never runs.
       gsap.set(eyebrowRef.current, { y: 24, opacity: 0 });
-      gsap.set(".ueber-title-line", { yPercent: 100 });
+      gsap.set(".ueber-title-line", { y: 40, opacity: 0 });
       gsap.set(descRef.current, { y: 24, opacity: 0 });
       gsap.set(imageWrapperRef.current, { clipPath: "inset(100% 0% 0% 0%)" });
       gsap.set(imageMetaRef.current, { y: 16, opacity: 0 });
@@ -28,7 +28,7 @@ export function UeberUnsHero() {
       tl.to(eyebrowRef.current, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" });
       tl.to(
         ".ueber-title-line",
-        { yPercent: 0, duration: 1.3, stagger: 0.15, ease: "power4.out" },
+        { y: 0, opacity: 1, duration: 1.3, stagger: 0.15, ease: "power4.out" },
         "-=0.7"
       );
       tl.to(
@@ -132,19 +132,6 @@ export function UeberUnsHero() {
             <div className="pointer-events-none absolute inset-0 bg-linear-to-l from-transparent via-transparent to-bg/40" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-bg/70 to-transparent" />
 
-            {/* Image meta caption — bottom-left */}
-            <div
-              ref={imageMetaRef}
-              className="absolute bottom-6 left-6 z-10 flex items-center gap-3 md:bottom-10 md:left-10"
-            >
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-metallic-light">
-                Standort
-              </span>
-              <div className="h-px w-8 bg-metallic-light/60" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/85">
-                Dresden, Sachsen
-              </span>
-            </div>
           </div>
         </div>
       </div>

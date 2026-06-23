@@ -44,7 +44,7 @@ const PROCESS_STEPS: ProcessStep[] = [
     subtitle: "Direkter Draht zum Inhaber",
     description:
       "Qualität ist kein Zufall, sondern Ergebnis kurzer Wege. Sie haben einen festen Ansprechpartner, regelmäßige Rückmeldungen und im Sicherheitsbereich einen Notdienst rund um die Uhr — direkt am Mobil des Inhabers.",
-    tags: ["Inhabergeführt", "Sicherheits-Notruf 24/7", "Persönlich"],
+    tags: ["Inhabergeführt", "Persönlich"],
   },
 ];
 
@@ -170,6 +170,30 @@ export function ProcessSection() {
       }, containerRef);
 
       return () => cubeCtx.revert();
+    });
+
+    mm.add("(max-width: 1023px)", () => {
+      const mobileCtx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>(".process-mobile-item").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { y: 60, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1.2,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+      }, containerRef);
+
+      return () => mobileCtx.revert();
     });
 
     return () => {
@@ -307,9 +331,10 @@ export function ProcessSection() {
           <div
             key={step.id}
             className={
-              i < PROCESS_STEPS.length - 1
+              "process-mobile-item " +
+              (i < PROCESS_STEPS.length - 1
                 ? "border-b border-border px-6 py-16"
-                : "px-6 py-16"
+                : "px-6 py-16")
             }
           >
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-6 border border-border bg-bg/50 p-6">

@@ -19,7 +19,7 @@ export function ServiceHero({ meta }: { meta: ServiceMeta }) {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.set(".sh-eyebrow", { y: 24, opacity: 0 });
-      gsap.set(".sh-title-line", { yPercent: 110 });
+      gsap.set(".sh-title-line", { y: 40, opacity: 0 });
       gsap.set(".sh-intro", { y: 24, opacity: 0 });
       gsap.set(".sh-meta-row", { y: 24, opacity: 0 });
       gsap.set(".sh-scroll", { y: 16, opacity: 0 });
@@ -30,7 +30,7 @@ export function ServiceHero({ meta }: { meta: ServiceMeta }) {
 
       tl.to(
         ".sh-title-line",
-        { yPercent: 0, duration: 1.3, stagger: 0.15, ease: "power4.out" },
+        { y: 0, opacity: 1, duration: 1.3, stagger: 0.15, ease: "power4.out" },
         "-=0.7"
       );
 
@@ -50,8 +50,8 @@ export function ServiceHero({ meta }: { meta: ServiceMeta }) {
 
       tl.fromTo(
         numberRef.current,
-        { yPercent: 100, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: 1.2, ease: "power4.out" },
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out" },
         "-=1.0"
       );
 
@@ -128,8 +128,8 @@ export function ServiceHero({ meta }: { meta: ServiceMeta }) {
           <div className="lg:col-span-5">
             <div
               ref={imageWrapperRef}
-              className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-elevated"
-              style={{ clipPath: "inset(0% 0% 100% 0%)" }}
+              className="relative aspect-4/5 w-full overflow-hidden rounded-2xl bg-elevated md:aspect-square lg:aspect-auto lg:h-full"
+              style={{ clipPath: "inset(0% 0% 0% 0%)" }}
             >
               <div ref={imageInnerRef} className="absolute inset-[-6%]">
                 <Image
@@ -143,13 +143,13 @@ export function ServiceHero({ meta }: { meta: ServiceMeta }) {
               </div>
 
               {/* Dark gradient for legibility */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-bg via-bg/40 to-transparent" />
 
               {/* Massive metallic service number */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center overflow-hidden">
                 <span
                   ref={numberRef}
-                  className="block font-display font-medium leading-[0.85] tracking-[-0.05em] select-none"
+                  className="block font-display font-medium leading-[0.85] tracking-tighter select-none"
                   style={{
                     fontSize: "clamp(7rem, 18vw, 14rem)",
                     background: METALLIC_GRADIENT,

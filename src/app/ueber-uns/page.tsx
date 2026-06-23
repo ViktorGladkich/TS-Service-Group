@@ -17,14 +17,14 @@ export default function UeberUnsPage() {
     <>
       <UeberUnsHero />
 
-      {/* Editorial — establishing shot of Dresden */}
-      <UeberUnsEditorial
-        src="/images/about-cityscape.jpg"
-        alt="Dresden Altstadt zur blauen Stunde — Heimat der TS Service Group"
-        metaLeft="Dresden, Sachsen"
-        metaRight="Standort 2026 —"
-        aspect="16/9"
-      />
+      {/* Editorial — establishing shot of Dresden (hidden on mobile to keep 1 image) */}
+      <div className="hidden lg:block">
+        <UeberUnsEditorial
+          src="/images/about-cityscape.jpg"
+          alt="Dresden Altstadt zur blauen Stunde — Heimat der TS Service Group"
+          aspect="16/9"
+        />
+      </div>
 
       <UeberUnsManifesto />
 

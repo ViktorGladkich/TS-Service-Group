@@ -65,9 +65,10 @@ export function UeberUnsValues() {
       );
       gsap.fromTo(
         ".values-title-line",
-        { yPercent: 100 },
+        { y: 40, opacity: 0 },
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 1.2,
           stagger: 0.15,
           ease: "power4.out",
@@ -92,8 +93,8 @@ export function UeberUnsValues() {
 
         tl.fromTo(
           row.querySelector(".values-number"),
-          { yPercent: 100, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 1.1, ease: "power4.out" }
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.1, ease: "power4.out" }
         )
           .fromTo(
             row.querySelector(".values-row-title"),
@@ -131,9 +132,17 @@ export function UeberUnsValues() {
             <span className="block overflow-hidden">
               <span
                 className="values-title-line block"
-                style={{ transform: "translateY(100%)" }}
+                style={{ opacity: 0 }}
               >
-                Was uns antreibt.
+                Drei Disziplinen.
+              </span>
+            </span>
+            <span className="block overflow-hidden pb-1">
+              <span
+                className="values-title-line block text-text-muted"
+                style={{ opacity: 0 }}
+              >
+                Eine Haltung.
               </span>
             </span>
           </h2>
@@ -164,7 +173,7 @@ export function UeberUnsValues() {
 
               <div className="flex flex-col justify-center space-y-4 md:col-span-9 lg:col-span-10 lg:pl-12 lg:space-y-6">
                 <h3
-                  className="values-row-title font-display text-3xl font-medium tracking-tight text-text sm:text-4xl md:text-5xl"
+                  className="value-title font-display text-2xl font-medium tracking-tighter text-text md:text-3xl lg:text-4xl"
                   style={{ opacity: 0 }}
                 >
                   {value.title}.

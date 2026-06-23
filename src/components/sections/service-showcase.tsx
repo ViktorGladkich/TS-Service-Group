@@ -52,37 +52,69 @@ export function ServiceShowcase() {
       const { isDesktop } = context.conditions as { isDesktop: boolean };
 
       const ctx = gsap.context(() => {
-        // Entrance animation sequence
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 75%",
-            toggleActions: "play none none reverse",
-          }
-        });
+        if (isDesktop) {
+          // Entrance animation sequence
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            }
+          });
 
-        tl.fromTo(headlineRef.current, 
-          { y: 50, opacity: 0 }, 
-          { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
-        );
+          tl.fromTo(headlineRef.current, 
+            { y: 50, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+          );
 
-        tl.fromTo(cardsRef.current, 
-          { y: 100, opacity: 0 }, 
-          { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out" },
-          "-=0.6"
-        );
+          tl.fromTo(cardsRef.current, 
+            { y: 100, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out" },
+            "-=0.6"
+          );
 
-        tl.fromTo(".service-image-mask",
-          { clipPath: "inset(100% 0 0 0)" },
-          { clipPath: "inset(0% 0 0 0)", duration: 1.2, stagger: 0.15, ease: "power3.inOut" },
-          "-=0.8"
-        );
+          tl.fromTo(".service-image-mask",
+            { clipPath: "inset(100% 0 0 0)" },
+            { clipPath: "inset(0% 0 0 0)", duration: 1.2, stagger: 0.15, ease: "power3.inOut" },
+            "-=0.8"
+          );
+        } else {
+          // Mobile entrance animation
+          gsap.fromTo(headlineRef.current, 
+            { y: 60, opacity: 0 }, 
+            { 
+              y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+              scrollTrigger: {
+                trigger: headlineRef.current,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+              }
+            }
+          );
 
-        // (Previously had a y:140 → -80 parallax that slid SC up faster than
-        // the page. With the showreel pin + ticker naezd this caused SC to
-        // overtake ticker from below — visually shrinking ticker and giving
-        // the illusion that ticker was sliding downward. Removed in favor
-        // of the ticker-over-video effect.)
+          cardsRef.current.forEach((card) => {
+            if (!card) return;
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+              }
+            });
+            tl.fromTo(card, 
+              { y: 60, opacity: 0 }, 
+              { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
+            );
+            const mask = card.querySelector(".service-image-mask");
+            if (mask) {
+              tl.fromTo(mask, 
+                { clipPath: "inset(100% 0 0 0)" }, 
+                { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power3.inOut" }, 
+                "-=1"
+              );
+            }
+          });
+        }
         void isDesktop;
       }, containerRef);
 

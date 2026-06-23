@@ -34,9 +34,10 @@ export function UeberUnsStats() {
 
       gsap.fromTo(
         ".stats-title-line",
-        { yPercent: 100 },
+        { y: 40, opacity: 0 },
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 1.2,
           stagger: 0.15,
           ease: "power4.out",
@@ -61,9 +62,9 @@ export function UeberUnsStats() {
 
         tl.fromTo(
           item.querySelector(".stat-value"),
-          { yPercent: 100, opacity: 0 },
+          { y: 40, opacity: 0 },
           {
-            yPercent: 0,
+            y: 0,
             opacity: 1,
             duration: 1.2,
             ease: "power4.out",
@@ -96,18 +97,18 @@ export function UeberUnsStats() {
             IN ZAHLEN
           </span>
           <h2 className="font-display text-4xl font-medium tracking-tight text-text md:text-6xl lg:text-7xl">
-            <span className="block overflow-hidden">
+            <span className="block overflow-hidden pb-2">
               <span
                 className="stats-title-line block"
-                style={{ transform: "translateY(100%)" }}
+                style={{ opacity: 0 }}
               >
                 Vier Anker.
               </span>
             </span>
-            <span className="block overflow-hidden">
+            <span className="block overflow-hidden pb-2">
               <span
                 className="stats-title-line block text-text-muted"
-                style={{ transform: "translateY(100%)" }}
+                style={{ opacity: 0 }}
               >
                 Eine Realität.
               </span>
@@ -116,7 +117,7 @@ export function UeberUnsStats() {
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 gap-y-14 border-t border-border pt-16 md:grid-cols-4 md:gap-x-8 md:pt-20">
+        <div className="grid grid-cols-2 gap-y-10 gap-x-4 border-t border-border pt-12 md:grid-cols-4 md:gap-x-8 md:gap-y-14 md:pt-20">
           {siteConfig.stats.map((stat) => (
             <div
               key={stat.label}
@@ -124,9 +125,9 @@ export function UeberUnsStats() {
             >
               <div className="overflow-hidden">
                 <span
-                  className="stat-value block font-display font-medium leading-[0.85] tracking-[-0.04em] select-none"
+                  className="stat-value block font-display font-medium leading-[0.85] tracking-[-0.04em] select-none whitespace-nowrap"
                   style={{
-                    fontSize: "clamp(4rem, 7vw, 7rem)",
+                    fontSize: "clamp(2rem, 6.5vw, 7rem)",
                     background: METALLIC_GRADIENT,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -139,7 +140,7 @@ export function UeberUnsStats() {
                 </span>
               </div>
               <span
-                className="stat-label mt-5 font-mono text-xs uppercase tracking-[0.25em] text-text-muted"
+                className="stat-label mt-3 md:mt-5 font-mono text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.25em] text-text-muted break-words w-full"
                 style={{ opacity: 0 }}
               >
                 {stat.label}

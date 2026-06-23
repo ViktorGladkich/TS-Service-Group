@@ -180,8 +180,31 @@ function FaqItemRow({
   isOpen: boolean;
   onToggle: () => void;
 }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        rowRef.current,
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: rowRef.current,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, rowRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="border-b border-border">
+    <div ref={rowRef} className="border-b border-border" style={{ opacity: 0 }}>
       <button
         type="button"
         onClick={onToggle}
@@ -235,11 +258,11 @@ function FaqItemRow({
           isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         )}
       >
-        <div className="overflow-hidden">
+        <div className="overflow-hidden md:pl-22 lg:pl-24">
           <p
             className={cn(
               "max-w-3xl pb-8 pr-12 text-base leading-relaxed text-text-muted md:text-lg",
-              "pl-0 md:pl-[5.5rem] lg:pl-[6rem]"
+              "pl-0"
             )}
           >
             {item.answer}

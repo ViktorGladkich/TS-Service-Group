@@ -70,10 +70,11 @@ export function ServicePillars({ meta }: { meta: ServiceMeta }) {
       );
 
       gsap.fromTo(
-        ".sp-title-line",
-        { yPercent: 100 },
+        ".service-pillars-title-line",
+        { y: 40, opacity: 0 },
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 1.2,
           stagger: 0.15,
           ease: "power4.out",
@@ -135,7 +136,7 @@ export function ServicePillars({ meta }: { meta: ServiceMeta }) {
           <div className="relative flex h-3 items-center">
             <div
               ref={topLineRef}
-              className="h-px w-full origin-center bg-gradient-to-r from-transparent via-metallic-light to-transparent"
+              className="h-px w-full origin-center bg-linear-to-r from-transparent via-metallic-light to-transparent"
               style={{ transform: "scaleX(0)", willChange: "transform" }}
             />
             <div
@@ -165,11 +166,8 @@ export function ServicePillars({ meta }: { meta: ServiceMeta }) {
               {meta.pillarsTitle.map((line, i) => (
                 <span key={i} className="block overflow-hidden pb-1">
                   <span
-                    className={
-                      "sp-title-line block " +
-                      (i === meta.pillarsTitle.length - 1 ? "text-text-muted" : "")
-                    }
-                    style={{ transform: "translateY(100%)" }}
+                    className="service-pillars-title-line block"
+                    style={{ opacity: 0 }}
                   >
                     {line}
                   </span>
@@ -189,16 +187,10 @@ export function ServicePillars({ meta }: { meta: ServiceMeta }) {
 
         {/* Pillars grid */}
         <div className="mt-20 grid grid-cols-1 md:mt-28 md:grid-cols-2 lg:grid-cols-4">
-          {meta.pillars.map((p, i) => (
+          {meta.pillars.map((p) => (
             <div
               key={p.id}
-              className={
-                "sp-pillar group relative flex flex-col gap-6 border-border p-6 md:p-8 " +
-                (i % 2 === 1 ? "md:border-l " : "") +
-                "lg:border-l " +
-                (i === 0 ? "lg:border-l-0 " : "") +
-                "border-t md:[&:nth-child(-n+2)]:border-t-0 lg:[&:nth-child(-n+4)]:border-t-0"
-              }
+              className="sp-pillar group flex flex-col items-start border-t border-border py-12 md:px-8 md:[&:nth-child(-n+2)]:border-t-0 lg:px-10 lg:[&:nth-child(-n+4)]:border-t-0"
               style={{ opacity: 0 }}
             >
               <span

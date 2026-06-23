@@ -11,6 +11,10 @@ gsap.registerPlugin(ScrollTrigger);
 export function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Refs for intro section
+  const introHeadlineRef = useRef<HTMLHeadingElement>(null);
+  const introDescRef = useRef<HTMLParagraphElement>(null);
+
   // Refs for first text reveal
   const text1Ref = useRef<HTMLHeadingElement>(null);
   const text1OverlayRef = useRef<HTMLHeadingElement>(null);
@@ -38,6 +42,28 @@ export function AboutSection() {
         const { isDesktop } = context.conditions as { isDesktop: boolean };
 
         const ctx = gsap.context(() => {
+          // ── 0. INTRO TEXT REVEAL ──
+          if (introHeadlineRef.current && introDescRef.current) {
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: introHeadlineRef.current,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            });
+            tl.fromTo(
+              introHeadlineRef.current,
+              { y: 60, opacity: 0 },
+              { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
+            );
+            tl.fromTo(
+              introDescRef.current,
+              { y: 60, opacity: 0 },
+              { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
+              "-=0.9"
+            );
+          }
+
           // ── 1. FIRST TEXT REVEAL ──
           if (text1Ref.current && text1OverlayRef.current) {
             ScrollTrigger.create({
@@ -172,7 +198,7 @@ export function AboutSection() {
             <span className="mb-4 font-mono text-sm tracking-[0.2em] text-text-muted">
               ÜBER UNS
             </span>
-            <h2 className="font-display text-4xl font-medium tracking-tight text-text md:text-6xl lg:text-7xl">
+            <h2 ref={introHeadlineRef} className="font-display text-4xl font-medium tracking-tight text-text md:text-6xl lg:text-7xl">
               Drei Disziplinen.<br />
               Ein Team.
             </h2>
@@ -180,7 +206,7 @@ export function AboutSection() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-5 lg:col-start-8">
-              <p className="font-sans text-base leading-relaxed text-text-muted md:text-lg">
+              <p ref={introDescRef} className="font-sans text-base leading-relaxed text-text-muted md:text-lg">
                 Inhabergeführt aus Dresden — Sicherheit, Sauberkeit und Bewegung
                 unter einem Dach. Verlässlich, diskret und präzise. Direkter
                 Draht zum Verantwortlichen statt Hotline und Ticketsystem.

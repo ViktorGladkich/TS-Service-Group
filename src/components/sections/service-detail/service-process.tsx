@@ -34,10 +34,11 @@ export function ServiceProcess({ meta }: { meta: ServiceMeta }) {
       );
 
       gsap.fromTo(
-        ".sproc-title-line",
-        { yPercent: 100 },
+        ".service-process-title-line",
+        { y: 40, opacity: 0 },
         {
-          yPercent: 0,
+          y: 0,
+          opacity: 1,
           duration: 1.2,
           stagger: 0.15,
           ease: "power4.out",
@@ -124,11 +125,8 @@ export function ServiceProcess({ meta }: { meta: ServiceMeta }) {
               {meta.processTitle.map((line, i) => (
                 <span key={i} className="block overflow-hidden pb-1">
                   <span
-                    className={
-                      "sproc-title-line block " +
-                      (i === meta.processTitle.length - 1 ? "text-text-muted" : "")
-                    }
-                    style={{ transform: "translateY(100%)" }}
+                    className="service-process-title-line block"
+                    style={{ opacity: 0 }}
                   >
                     {line}
                   </span>
@@ -149,10 +147,10 @@ export function ServiceProcess({ meta }: { meta: ServiceMeta }) {
         {/* Steps with vertical scroll-driven track */}
         <div ref={trackRef} className="relative mt-20 md:mt-28">
           {/* Vertical guideline */}
-          <div className="pointer-events-none absolute left-[1.5rem] top-0 hidden h-full w-px bg-border md:block" />
+          <div className="pointer-events-none absolute left-6 top-0 hidden h-full w-px bg-border md:block" />
           <span
             ref={progressRef}
-            className="pointer-events-none absolute left-[1.5rem] top-0 hidden h-full w-px origin-top bg-metallic-light md:block"
+            className="pointer-events-none absolute left-6 top-0 hidden h-full w-px origin-top bg-metallic-light md:block"
             style={{ transform: "scaleY(0)" }}
           />
 
@@ -166,7 +164,7 @@ export function ServiceProcess({ meta }: { meta: ServiceMeta }) {
                 <div className="md:col-span-3 md:pl-16">
                   <div className="relative flex items-center gap-4">
                     {/* dot anchor on the vertical track */}
-                    <span className="absolute -left-[45.5px] hidden h-3 w-3 -translate-y-1/2 rounded-full bg-bg ring-1 ring-metallic-light md:block" />
+                    <span className="absolute left-[-45.5px] hidden h-3 w-3 -translate-y-1/2 rounded-full bg-bg ring-1 ring-metallic-light md:block" />
                     <span
                       className="font-display font-medium leading-none tracking-[-0.04em] select-none"
                       style={{

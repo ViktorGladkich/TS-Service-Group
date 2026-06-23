@@ -55,9 +55,9 @@ function useBentoAnimations(
     mm.add("(max-width: 1023px)", () => {
       const ctx = gsap.context(() => {
         gsap.utils.toArray<HTMLElement>(".bento-mobile-item").forEach((el) => {
-          gsap.fromTo(el, { y: 40, opacity: 0 }, {
-            y: 0, opacity: 1, duration: 0.6, ease: "power2.out",
-            scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" },
+          gsap.fromTo(el, { y: 60, opacity: 0 }, {
+            y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" },
           });
         });
       }, sectionRef);
