@@ -116,7 +116,6 @@ export const siteConfig = {
         "Professioneller Objektschutz, Veranstaltungsschutz, Pförtner- und Empfangsdienste in Dresden und Sachsen. Geschultes Personal, klare Prozesse, lückenlose Dokumentation.",
       features: [
         "Objektschutz",
-        "Personenschutz",
         "Veranstaltungsschutz",
         "Empfangs- und Pförtnerdienst",
         "Wachdienst und Streifendienst",
@@ -127,7 +126,6 @@ export const siteConfig = {
       keywords: [
         "Sicherheitsdienst",
         "Objektschutz",
-        "Personenschutz",
         "Veranstaltungsschutz",
         "Baustellenbewachung",
       ],

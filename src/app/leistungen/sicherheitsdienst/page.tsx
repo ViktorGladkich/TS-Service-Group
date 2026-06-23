@@ -32,7 +32,7 @@ const META: ServiceMeta = {
   heroEyebrow: "01 — Sicherheitsdienst",
   heroTitleLines: ["Diskreter Schutz.", "Klare Präsenz."],
   heroIntro:
-    "Objekt-, Personen- und Veranstaltungsschutz in Dresden und Sachsen. Wir kombinieren geschultes Personal, dokumentierte Abläufe und einen Notdienst rund um die Uhr — direkt am Mobil des Inhabers.",
+    "Objekt- und Veranstaltungsschutz in Dresden und Sachsen. Wir kombinieren geschultes Personal, dokumentierte Abläufe und einen Notdienst rund um die Uhr — direkt am Mobil des Inhabers.",
   heroImage: "/images/service-security.jpg",
   heroImageAlt:
     "Sicherheitsmitarbeiter im Anzug bei Objektkontrolle in Dresden",
@@ -92,14 +92,13 @@ const META: ServiceMeta = {
     },
     {
       eyebrow: "[ EINSATZFELD 02 ]",
-      title: "Veranstaltungs- & Personenschutz",
+      title: "Veranstaltungsschutz",
       body:
-        "Vom Firmenevent bis zur Privatfeier — wir planen Sicherheitskonzepte, koordinieren Einlass und Crowd-Flow und stellen einsatzbereite Teams. Für gefährdete Personen bieten wir diskrete Begleitung mit erfahrenem Personal.",
+        "Vom Firmenevent bis zur Privatfeier — wir planen Sicherheitskonzepte, koordinieren Einlass und Crowd-Flow und stellen einsatzbereite Teams.",
       bullets: [
         "Einlasskontrolle & Akkreditierung",
         "Crowd-Management",
         "Bühnen- und Backstage-Schutz",
-        "Begleit- und Personenschutz",
         "Ladendetektivdienst",
       ],
       image: "/images/hero-01.jpg",
@@ -149,7 +148,7 @@ const META: ServiceMeta = {
     {
       question: "Welche Qualifikationen hat Ihr Personal?",
       answer:
-        "Jede Kraft hat mindestens die Sachkundeprüfung nach §34a GewO. Für Personenschutz und exponierte Objekte setzen wir Mitarbeitende mit zusätzlicher Erfahrung und Schulung ein.",
+        "Jede Kraft hat mindestens die Sachkundeprüfung nach §34a GewO. Für exponierte Objekte setzen wir Mitarbeitende mit zusätzlicher Erfahrung und Schulung ein.",
     },
     {
       question: "Was kostet ein Sicherheitsdienst?",

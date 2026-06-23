@@ -1,13 +1,17 @@
+import type { Metadata } from "next";
 import { Section } from "@/components/ui";
 import { IMPRESSUM } from "@/content/legal";
 import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata = generatePageMetadata({
+// Exakter Titel laut Vorgabe — Template ("%s | …") wird bewusst umgangen.
+export const metadata: Metadata = {
+  ...generatePageMetadata({
+    description: IMPRESSUM.seoDescription,
+    path: "/impressum",
+    noIndex: false,
+  }),
   title: IMPRESSUM.seoTitle,
-  description: IMPRESSUM.seoDescription,
-  path: "/impressum",
-  noIndex: false,
-});
+};
 
 export default function ImpressumPage() {
   return (
