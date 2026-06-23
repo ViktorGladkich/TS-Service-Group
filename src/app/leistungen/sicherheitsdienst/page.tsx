@@ -76,7 +76,6 @@ const META: ServiceMeta = {
 
   showcase: [
     {
-      eyebrow: "[ EINSATZFELD 01 ]",
       title: "Objekt- & Werkschutz",
       body:
         "Permanente oder turnusmäßige Bewachung von Gewerbeobjekten, Produktionsstätten und Verwaltungsgebäuden. Wir richten Schichtmodelle, Streifenrouten und Zutrittskontrollen passgenau auf Ihre Liegenschaft ein.",
@@ -91,7 +90,6 @@ const META: ServiceMeta = {
       imageAlt: "Pförtnerbereich eines Bürogebäudes mit Sicherheitsmitarbeiter",
     },
     {
-      eyebrow: "[ EINSATZFELD 02 ]",
       title: "Veranstaltungsschutz",
       body:
         "Vom Firmenevent bis zur Privatfeier — wir planen Sicherheitskonzepte, koordinieren Einlass und Crowd-Flow und stellen einsatzbereite Teams.",
@@ -162,7 +160,6 @@ const META: ServiceMeta = {
     },
   ],
 
-  ctaEyebrow: "[ BEREIT FÜR DEN EINSATZ ]",
   ctaTitle: ["Sicherheit beginnt", "mit einem Gespräch."],
   ctaBody:
     "Schildern Sie uns Ihr Objekt oder Ihren Anlass. Wir melden uns innerhalb eines Werktags mit konkreten Vorschlägen — oder rund um die Uhr im Notfall.",

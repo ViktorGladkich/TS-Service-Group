@@ -5,7 +5,7 @@ export interface ServicePillar {
 }
 
 export interface ServiceShowcaseBlock {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   body: string;
   bullets: string[];
@@ -48,7 +48,7 @@ export interface ServiceMeta {
   faqEyebrow: string;
   faqTitle: string[];
   faq: ServiceFaqItem[];
-  ctaEyebrow: string;
+  ctaEyebrow?: string;
   ctaTitle: string[];
   ctaBody: string;
   ctaImage: string;

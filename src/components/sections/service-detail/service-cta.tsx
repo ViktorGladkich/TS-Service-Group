@@ -100,12 +100,16 @@ export function ServiceCta({ meta }: { meta: ServiceMeta }) {
         <div className="relative z-10 flex h-full flex-col justify-between p-8 md:p-14 lg:p-20">
           {/* top */}
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <span className="scta-text font-mono text-[11px] uppercase tracking-[0.3em] text-metallic-light">
-              {meta.ctaEyebrow}
-            </span>
-            <span className="scta-text font-mono text-[11px] uppercase tracking-[0.3em] text-white/60">
-              [ {meta.shortLabel} · Dresden · Sachsen ]
-            </span>
+            {meta.ctaEyebrow && (
+              <span className="scta-text font-mono text-[11px] uppercase tracking-[0.3em] text-metallic-light">
+                {meta.ctaEyebrow}
+              </span>
+            )}
+            {meta.shortLabel && meta.ctaEyebrow && (
+              <span className="scta-text font-mono text-[11px] uppercase tracking-[0.3em] text-white/60">
+                [ {meta.shortLabel} · Dresden · Sachsen ]
+              </span>
+            )}
           </div>
 
           {/* bottom block */}
@@ -128,25 +132,25 @@ export function ServiceCta({ meta }: { meta: ServiceMeta }) {
               {meta.ctaBody}
             </p>
 
-            <div className="scta-text flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="scta-text flex flex-col items-start gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/kontakt"
-                className="group relative inline-flex h-14 items-center gap-4 overflow-hidden rounded-full border border-white/15 bg-white pl-7 pr-2 text-sm font-medium text-bg"
+                className="group relative inline-flex h-12 w-[260px] sm:w-auto items-center justify-between overflow-hidden rounded-full border border-white/15 bg-white pl-5 pr-1.5 text-sm font-medium text-bg"
               >
                 <span className="pointer-events-none absolute inset-0 translate-y-full bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0" />
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                   Unverbindlich anfragen
                 </span>
-                <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-bg text-white transition-all duration-500 group-hover:bg-white group-hover:text-bg">
+                <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-bg text-white transition-all duration-500 group-hover:bg-white group-hover:text-bg">
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
                 </span>
               </Link>
 
               <a
                 href={`tel:${siteConfig.contact.phone}`}
-                className="group inline-flex h-14 items-center gap-3 rounded-full border border-white/20 bg-white/5 px-6 font-mono text-xs uppercase tracking-[0.2em] text-white backdrop-blur-md transition-colors hover:bg-white/10"
+                className="group inline-flex h-12 w-[260px] sm:w-auto items-center justify-center gap-3 rounded-full border border-white/20 bg-white/5 px-4 font-mono text-[11px] uppercase tracking-[0.2em] text-white backdrop-blur-md transition-colors hover:bg-white/10"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-metallic-light" />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-metallic-light" />
                 {siteConfig.contact.phoneDisplay}
               </a>
             </div>

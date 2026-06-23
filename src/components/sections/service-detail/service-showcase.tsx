@@ -141,10 +141,12 @@ function ShowcaseRow({
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-bg/40 via-transparent to-transparent" />
 
               {/* Corner index */}
-              <div className="absolute left-6 top-6 flex items-center gap-3 rounded-full border border-white/20 bg-black/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-white backdrop-blur-md">
-                <span className="h-1 w-1 rounded-full bg-metallic-light" />
-                {block.eyebrow}
-              </div>
+              {block.eyebrow && (
+                <div className="absolute left-6 top-6 flex items-center gap-3 rounded-full border border-white/20 bg-black/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-white backdrop-blur-md">
+                  <span className="h-1 w-1 rounded-full bg-metallic-light" />
+                  {block.eyebrow}
+                </div>
+              )}
             </div>
           </div>
 
@@ -156,12 +158,14 @@ function ShowcaseRow({
             )}
           >
             <div className="space-y-8">
-              <span
-                className="showcase-eyebrow block font-mono text-xs uppercase tracking-[0.3em] text-metallic-light"
-                style={{ opacity: 0 }}
-              >
-                {block.eyebrow}
-              </span>
+              {block.eyebrow && (
+                <span
+                  className="showcase-eyebrow block font-mono text-xs uppercase tracking-[0.3em] text-metallic-light"
+                  style={{ opacity: 0 }}
+                >
+                  {block.eyebrow}
+                </span>
+              )}
 
               <h3
                 className="showcase-title font-display text-3xl font-medium leading-[1] tracking-tight text-text sm:text-4xl md:text-5xl"
