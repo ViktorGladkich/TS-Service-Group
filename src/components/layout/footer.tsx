@@ -5,7 +5,6 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site.config";
 import { NAV_ITEMS, FOOTER_NAV } from "@/content/navigation";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
-import { cn } from "@/lib/cn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -98,9 +97,21 @@ export function Footer() {
                 <ArrowUpRight className="h-4 w-4 lg:h-5 lg:w-5 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 text-black/60" />
               </a>
             </div>
+
+            {/* Mobile Navigation Links */}
+            <div className="flex flex-col gap-3 pt-6 lg:hidden">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/40 mb-1">Navigation</span>
+              <div className="flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-mono uppercase tracking-[0.2em] text-black/60">
+                <Link href="/ueber-uns" className="hover:text-bg transition-colors">Über uns</Link>
+                <Link href="/kontakt" className="hover:text-bg transition-colors">Kontakt</Link>
+                <Link href="/leistungen" className="hover:text-bg transition-colors">Leistungen</Link>
+                <Link href="/datenschutz" className="hover:text-bg transition-colors">Datenschutz</Link>
+                <Link href="/impressum" className="hover:text-bg transition-colors">Impressum</Link>
+              </div>
+            </div>
           </div>
 
-          {/* ---- Right: Navigation (Desktop only, Mobile uses compact bottom bar) ---- */}
+          {/* ---- Right: Navigation (Desktop only) ---- */}
           <div className="hidden lg:grid lg:col-span-6 lg:col-start-7 grid-cols-3 gap-10">
             {/* Leistungen */}
             <div className="flex flex-col gap-6">
@@ -113,7 +124,7 @@ export function Footer() {
                       className="group relative inline-flex items-center gap-2 text-black/60 hover:text-bg transition-colors font-display text-xl"
                     >
                       <span>{service.title}</span>
-                      <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-right scale-x-0 bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:origin-left group-hover:scale-x-100" />
+                      <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:origin-left group-hover:scale-x-100" />
                     </Link>
                   </li>
                 ))}
@@ -131,7 +142,7 @@ export function Footer() {
                       className="group relative inline-flex items-center gap-2 text-black/60 hover:text-bg transition-colors font-display text-xl"
                     >
                       <span>{item.label}</span>
-                      <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-right scale-x-0 bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:origin-left group-hover:scale-x-100" />
+                      <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:origin-left group-hover:scale-x-100" />
                     </Link>
                   </li>
                 ))}
@@ -149,7 +160,7 @@ export function Footer() {
                       className="group relative inline-flex items-center gap-2 text-black/60 hover:text-bg transition-colors font-display text-xl"
                     >
                       <span>{item.label}</span>
-                      <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-right scale-x-0 bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:origin-left group-hover:scale-x-100" />
+                      <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:origin-left group-hover:scale-x-100" />
                     </Link>
                   </li>
                 ))}
@@ -164,7 +175,7 @@ export function Footer() {
           ============================================================ */}
       <div className="footer-reveal border-t-0 lg:border-t border-black/10">
         {/* Giant wordmark */}
-        <div className="relative overflow-hidden flex justify-center w-full px-5 py-8 lg:px-6 lg:py-12 select-none pointer-events-none">
+        <div className="relative overflow-hidden flex justify-center w-full px-5 py-8 lg:px-6 lg:py-12 select-none pointer-events-none border-b border-black/10">
           <div
             className="w-full text-center font-display font-medium uppercase leading-[0.8] tracking-[-0.03em] whitespace-nowrap text-bg"
             style={{ fontSize: "clamp(3.5rem, 12vw, 15rem)" }}
@@ -179,13 +190,6 @@ export function Footer() {
           {/* Mobile minimal layout */}
           <div className="flex flex-col gap-4 lg:hidden">
             <div className="h-px flex-1 bg-black/10 lg:hidden" />
-            <div className="flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-mono uppercase tracking-[0.2em] text-black/60">
-              <Link href="/ueber-uns" className="hover:text-bg transition-colors">Über uns</Link>
-              <Link href="/kontakt" className="hover:text-bg transition-colors">Kontakt</Link>
-              <Link href="/leistungen" className="hover:text-bg transition-colors">Leistungen</Link>
-              <Link href="/datenschutz" className="hover:text-bg transition-colors">Datenschutz</Link>
-              <Link href="/impressum" className="hover:text-bg transition-colors">Impressum</Link>
-            </div>
             <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-black/40">
               ©{currentYear} {siteConfig.brand.legalName}
             </div>

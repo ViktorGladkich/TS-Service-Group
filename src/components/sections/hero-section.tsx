@@ -7,7 +7,6 @@ import { ArrowUpRight, Phone, X } from "lucide-react";
 import { siteConfig } from "@/lib/site.config";
 import { cn } from "@/lib/cn";
 import gsap from "gsap";
-import { isPreloaderDone } from "@/lib/preloader-flag";
 
 const Corner = ({ className }: { className?: string }) => (
   <svg
@@ -42,11 +41,7 @@ export function HeroSection() {
   // Entrance animation with GSAP
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // First-load: preloader covers ~2.45s and ends with a curtain split.
-      // Start the hero entrance right as the curtain begins to part so the
-      // content is already moving into place by the time the page is fully
-      // revealed — feels much snappier than waiting for the curtain to end.
-      const heroDelay = isPreloaderDone() ? 0.1 : 1.55;
+      const heroDelay = 0.1;
       const tl = gsap.timeline({ delay: heroDelay });
 
       // 1. Reveal inner dark container
