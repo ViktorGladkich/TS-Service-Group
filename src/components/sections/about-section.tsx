@@ -313,8 +313,9 @@ export function AboutSection() {
           >
             Warum Wir?
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+    </div>
 
       {/* ── SECTION 3: SECOND TEXT REVEAL ── */}
       <section className="bg-bg relative z-30 flex h-svh w-full items-center justify-center overflow-hidden px-6 select-none lg:px-12">
