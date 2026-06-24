@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site.config";
 import { NAV_ITEMS, FOOTER_NAV } from "@/content/navigation";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
@@ -11,9 +12,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const revealRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    // Ensure ScrollTrigger gets the new page height after navigation
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
 
     const ctx = gsap.context(() => {
       // 1. Reveal the main blocks
@@ -53,8 +60,11 @@ export function Footer() {
       );
     }, revealRef);
 
-    return () => ctx.revert();
-  }, []);
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
+  }, [pathname]);
 
   const handleScrollTop = () => {
     if (typeof window === "undefined") return;
@@ -86,8 +96,8 @@ export function Footer() {
             <span className="relative z-10 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors duration-500 group-hover:text-bg">
               Projekt starten
             </span>
-            <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white text-bg transition-colors duration-500 group-hover:bg-black/10">
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+            <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white text-bg transition-colors duration-500 group-hover:bg-black">
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45 group-hover:text-white" />
             </span>
           </Link>
         </div>
