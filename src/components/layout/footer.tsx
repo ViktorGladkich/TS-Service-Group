@@ -16,19 +16,38 @@ export function Footer() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // 1. Reveal the main blocks
       gsap.fromTo(
         ".footer-reveal",
-        { y: 30, opacity: 0 },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 1.2,
           ease: "power3.out",
-          stagger: 0.1,
+          stagger: 0.15,
           scrollTrigger: {
             trigger: revealRef.current,
-            start: "top 80%",
+            start: "top 85%",
             once: true,
+          },
+        }
+      );
+
+      // 2. Parallax and scale for the giant "TS SERVICE" text
+      gsap.fromTo(
+        ".footer-giant-text",
+        { y: 100, opacity: 0, scale: 0.9 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".footer-giant-container",
+            start: "top 95%",
+            end: "bottom 80%",
+            scrub: 1,
           },
         }
       );
@@ -175,9 +194,9 @@ export function Footer() {
           ============================================================ */}
       <div className="footer-reveal border-t-0 lg:border-t border-black/10">
         {/* Giant wordmark */}
-        <div className="relative overflow-hidden flex justify-center w-full px-5 py-8 lg:px-6 lg:py-12 select-none pointer-events-none border-b border-black/10">
+        <div className="footer-giant-container relative overflow-hidden flex justify-center w-full px-5 py-8 lg:px-6 lg:py-12 select-none pointer-events-none border-b border-black/10">
           <div
-            className="w-full text-center font-display font-medium uppercase leading-[0.8] tracking-[-0.03em] whitespace-nowrap text-bg"
+            className="footer-giant-text w-full text-center font-display font-medium uppercase leading-[0.8] tracking-[-0.03em] whitespace-nowrap text-bg"
             style={{ fontSize: "clamp(3.5rem, 12vw, 15rem)" }}
           >
             TS SERVICE
