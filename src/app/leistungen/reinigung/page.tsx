@@ -76,8 +76,7 @@ const META: ServiceMeta = {
 
   showcase: [
     {
-      eyebrow: "[ EINSATZFELD 01 ]",
-      title: "Unterhalts- & Büroreinigung",
+      title: "Regelmäßige Unterhaltsreinigung",
       body:
         "Tägliche, wöchentliche oder bedarfsorientierte Reinigung von Büros, Praxen, Kanzleien und Verwaltungsgebäuden. Wir arbeiten außerhalb Ihrer Geschäftszeiten und stimmen Frequenzen und Räume klar ab.",
       bullets: [
@@ -91,8 +90,7 @@ const META: ServiceMeta = {
       imageAlt: "Modernes Büro nach professioneller Unterhaltsreinigung",
     },
     {
-      eyebrow: "[ EINSATZFELD 02 ]",
-      title: "Sonder- & Bauendreinigung",
+      title: "Spezial- & Grundreinigung",
       body:
         "Nach Sanierung, Umbau oder Mieterwechsel — wenn der Staub nach Wochen nicht weichen will. Wir reinigen Bauresten, Glasflächen, Lüftungsgitter und Bodenbeläge gründlich und übergabefertig.",
       bullets: [
@@ -163,8 +161,7 @@ const META: ServiceMeta = {
     },
   ],
 
-  ctaEyebrow: "[ BEREIT FÜR SAUBERE STANDARDS ]",
-  ctaTitle: ["Saubere Räume.", "Klarer Auftrag."],
+  ctaTitle: ["Frische Räume,", "klare Gedanken."],
   ctaBody:
     "Vereinbaren Sie eine kostenfreie Begehung. Wir erstellen einen Reinigungsplan und ein Festpreisangebot — passgenau auf Ihre Räume und Frequenz.",
   ctaImage: "/images/service-cleaning.jpg",

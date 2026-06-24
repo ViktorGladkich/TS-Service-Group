@@ -135,7 +135,7 @@ export function ServiceCta({ meta }: { meta: ServiceMeta }) {
             <div className="scta-text flex flex-col items-start gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/kontakt"
-                className="group relative inline-flex h-12 w-[260px] sm:w-auto items-center justify-between overflow-hidden rounded-full border border-white/15 bg-white pl-5 pr-1.5 text-sm font-medium text-bg"
+                className="group relative inline-flex h-12 w-[260px] sm:w-auto items-center justify-between gap-4 overflow-hidden rounded-full border border-white/15 bg-white pl-5 pr-1.5 text-sm font-medium text-bg"
               >
                 <span className="pointer-events-none absolute inset-0 translate-y-full bg-bg transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0" />
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">

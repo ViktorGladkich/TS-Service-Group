@@ -76,8 +76,7 @@ const META: ServiceMeta = {
 
   showcase: [
     {
-      eyebrow: "[ EINSATZFELD 01 ]",
-      title: "Privat- & Seniorenumzug",
+      title: "Privatumzüge",
       body:
         "Wir planen Ihren Umzug so, wie wir ihn für uns selbst planen würden: sauber inventarisiert, sorgfältig gepackt und respektvoll mit Ihren Möbeln. Für Senioren-Umzüge übernehmen wir auf Wunsch auch das Ausräumen der alten Wohnung und das Einräumen am neuen Ort.",
       bullets: [
@@ -91,8 +90,7 @@ const META: ServiceMeta = {
       imageAlt: "Eingerichteter Wohnraum nach erfolgreichem Umzug",
     },
     {
-      eyebrow: "[ EINSATZFELD 02 ]",
-      title: "Firmen- & Büroumzug",
+      title: "Gewerbe- & Büroumzüge",
       body:
         "Ein Büroumzug ist Logistik im Kleinen — Server, IT, Akten, Möbel müssen zeitlich abgestimmt zwischen zwei Standorten bewegt werden, oft am Wochenende. Wir liefern den Projektplan, das Team und das Material, damit montags wieder gearbeitet wird.",
       bullets: [
@@ -163,8 +161,7 @@ const META: ServiceMeta = {
     },
   ],
 
-  ctaEyebrow: "[ BEREIT ZUM PACKEN ]",
-  ctaTitle: ["Termin sichern.", "Festpreis erhalten."],
+  ctaTitle: ["Der nächste Schritt.", "Professionell verpackt."],
   ctaBody:
     "Schildern Sie uns kurz Ihren Umzug — wir vereinbaren eine Besichtigung und schicken Ihnen ein schriftliches Festpreisangebot. Ohne Verpflichtung.",
   ctaImage: "/images/service-moving.jpg",
