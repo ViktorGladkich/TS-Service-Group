@@ -157,7 +157,7 @@ export function HeroSection() {
           <div
             key={slide.src}
             className="absolute inset-0 transition-opacity duration-1000"
-            style={{ opacity: i === currentSlide ? 0.6 : 0 }}
+            style={{ opacity: i === currentSlide ? 1 : 0 }}
           >
             {loadedSlides.has(i) && (
               <Image
