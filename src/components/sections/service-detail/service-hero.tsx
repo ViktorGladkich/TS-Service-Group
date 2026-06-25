@@ -167,10 +167,10 @@ export function ServiceHero({ meta }: { meta: ServiceMeta }) {
               {/* Floating CTA chip */}
               <Link
                 href="/kontakt"
-                className="group absolute right-5 top-5 flex h-12 items-center gap-3 rounded-full border border-white/20 bg-white/10 pl-5 pr-2 font-mono text-xs uppercase tracking-[0.18em] text-white backdrop-blur-xl transition-all hover:bg-white hover:text-bg"
+                className="group absolute right-5 top-5 flex h-12 items-center gap-3 rounded-full border border-white/10 bg-white pl-5 pr-2 font-mono text-xs uppercase tracking-[0.18em] text-bg shadow-lg transition-colors duration-300 hover:bg-bg hover:text-white"
               >
                 Anfragen
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-bg transition-transform duration-500 group-hover:rotate-45">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-bg text-white transition-all duration-300 group-hover:bg-white group-hover:text-bg group-hover:rotate-45">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </Link>
@@ -179,14 +179,14 @@ export function ServiceHero({ meta }: { meta: ServiceMeta }) {
         </div>
 
         {/* META FOOTER ROW */}
-        <div className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-border pt-10 md:mt-28 md:grid-cols-4 md:pt-14">
+        <div className="mt-20 grid grid-cols-2 gap-x-4 gap-y-8 border-t border-border pt-10 sm:gap-x-6 md:mt-28 md:grid-cols-4 md:pt-14">
           {meta.heroMeta.map((m) => (
-            <div key={m.label} className="sh-meta-row flex flex-col gap-3">
+            <div key={m.label} className="sh-meta-row flex flex-col gap-2 sm:gap-3">
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-subtle">
                 {m.label}
               </span>
               <span
-                className="font-display text-2xl font-medium leading-none tracking-tight md:text-3xl"
+                className="font-display text-[clamp(1.15rem,4.5vw,1.75rem)] md:text-3xl font-medium leading-tight tracking-tight break-words hyphens-auto"
                 style={{
                   background: METALLIC_GRADIENT,
                   WebkitBackgroundClip: "text",

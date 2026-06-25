@@ -23,41 +23,84 @@ export function Footer() {
     }, 150);
 
     const ctx = gsap.context(() => {
-      // 1. Reveal the main blocks
-      gsap.fromTo(
-        ".footer-reveal",
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: revealRef.current,
-            start: "top 85%",
-            once: true,
-          },
-        }
-      );
+      const mm = gsap.matchMedia();
 
-      // 2. Parallax and scale for the giant "TS SERVICE" text
-      gsap.fromTo(
-        ".footer-giant-text",
-        { y: 100, opacity: 0, scale: 0.9 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".footer-giant-container",
-            start: "top 95%",
-            end: "bottom 80%",
-            scrub: 1,
-          },
-        }
-      );
+      // Desktop animations (min-width: 1024px)
+      mm.add("(min-width: 1024px)", () => {
+        // 1. Reveal the main blocks
+        gsap.fromTo(
+          ".footer-reveal",
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: revealRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+
+        // 2. Parallax and scale for the giant "TS SERVICE" text
+        gsap.fromTo(
+          ".footer-giant-text",
+          { y: 100, opacity: 0, scale: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".footer-giant-container",
+              start: "top 95%",
+              end: "bottom bottom",
+              scrub: 1,
+            },
+          }
+        );
+      });
+
+      // Mobile/Tablet animations (max-width: 1023px)
+      mm.add("(max-width: 1023px)", () => {
+        // 1. Gentler, smoother reveal on mobile to prevent layout jumps
+        gsap.fromTo(
+          ".footer-reveal",
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.0,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: revealRef.current,
+              start: "top 92%",
+              once: true,
+            },
+          }
+        );
+
+        // 2. Ultra-smooth, non-scrub fade-in-up for giant text on mobile
+        gsap.fromTo(
+          ".footer-giant-text",
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".footer-giant-container",
+              start: "top 92%",
+              once: true,
+            },
+          }
+        );
+      });
     }, revealRef);
 
     return () => {

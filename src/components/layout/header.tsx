@@ -50,7 +50,7 @@ export function Header() {
         className={cn(
           "fixed top-0 right-0 left-0 z-50 flex transition-all duration-500 lg:hidden",
           scrolled
-            ? "bg-bg/80 backdrop-blur-xl border-b border-white/5"
+            ? "bg-bg/30 backdrop-blur-lg border-b border-white/5"
             : "bg-transparent"
         )}
       >
@@ -102,7 +102,7 @@ export function Header() {
             : "translate-y-[-160%] opacity-0 pointer-events-none"
         )}
       >
-        <div className="flex items-center gap-1 rounded-full bg-bg/70 pl-2 pr-2 py-2 border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
+        <div className="flex items-center gap-1 rounded-full bg-bg/45 pl-2 pr-2 py-2 border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
           {/* Brand chip */}
           <Link
             href="/"
@@ -153,7 +153,7 @@ export function Header() {
                         "transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
                       )}
                     >
-                      <div className="flex min-w-[260px] flex-col gap-0.5 rounded-2xl border border-white/10 bg-bg/90 p-2 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
+                      <div className="flex min-w-[260px] flex-col gap-0.5 rounded-2xl border border-white/10 bg-bg/75 p-2 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
                         <span className="px-3 py-2 font-mono text-[9px] uppercase tracking-[0.3em] text-white/35">
                           [ Bereiche ]
                         </span>
